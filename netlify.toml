@@ -1,0 +1,9 @@
+# Netlify : site statique, aucune commande de build nécessaire
+[build]
+  publish = "."
+
+# Toujours servir la dernière version des données
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Cache-Control = "no-cache"
