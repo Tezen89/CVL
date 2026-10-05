@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Le Père Quignon</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="assets/images/icon-192.png">
+<link rel="apple-touch-icon" href="assets/images/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#6B1E2E">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --main:#6B1E2E;--main2:#8E2C3F;--accent:#E0A526;--bg:#FAF6EF;--card:#fff;
+  --ink:#2A1E17;--muted:#7A6A5C;--line:#E8DCC8;--don:#D62839;--ok:#2E7D32;
+  --r:14px;--hh:60px;--safe-t:env(safe-area-inset-top,0px);
+}
+html,body{height:100%;font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-tap-highlight-color:transparent;}
+a{color:var(--main);}
+button{font-family:inherit;}
+
+/* ── HEADER ── */
+.hdr{position:fixed;top:0;left:0;right:0;height:calc(var(--hh) + var(--safe-t));padding-top:var(--safe-t);
+  background:var(--main);color:#fff;display:flex;align-items:center;gap:.5rem;padding-left:.4rem;padding-right:.8rem;
+  z-index:500;box-shadow:0 2px 10px rgba(0,0,0,.2);}
+.burger{width:48px;height:48px;border:none;background:none;cursor:pointer;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:5px;border-radius:10px;flex-shrink:0;}
+.burger:active{background:rgba(255,255,255,.12);}
+.burger span{display:block;width:24px;height:2.5px;background:#fff;border-radius:2px;transition:.25s;}
+body.menu-open .burger span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+body.menu-open .burger span:nth-child(2){opacity:0;}
+body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+.hdr-title{flex:1;min-width:0;font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hdr-logo{height:40px;width:auto;object-fit:contain;cursor:pointer;}
+.hdr-don{background:var(--accent);color:var(--ink);border:none;border-radius:20px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;}
+
+/* ── DRAWER ── */
+.overlay{position:fixed;inset:0;background:rgba(20,10,5,.5);z-index:600;opacity:0;pointer-events:none;transition:opacity .25s;}
+body.menu-open .overlay{opacity:1;pointer-events:auto;}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:min(84vw,320px);background:var(--card);z-index:700;
+  transform:translateX(-102%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;
+  box-shadow:4px 0 24px rgba(0,0,0,.25);}
+body.menu-open .drawer{transform:none;}
+.drw-head{background:linear-gradient(150deg,var(--main),var(--main2));color:#fff;padding:calc(1.2rem + var(--safe-t)) 1.2rem 1.1rem;}
+.drw-head img{height:54px;width:auto;margin-bottom:.6rem;display:block;}
+.drw-nom{font-size:18px;font-weight:800;line-height:1.2;}
+.drw-date{font-size:13px;opacity:.85;margin-top:.25rem;}
+.drw-nav{flex:1;overflow-y:auto;padding:.5rem 0;}
+.drw-item{display:flex;align-items:center;gap:.9rem;width:100%;padding:.8rem 1.3rem;border:none;background:none;
+  font-size:15px;color:var(--ink);cursor:pointer;text-align:left;text-decoration:none;position:relative;}
+.drw-item:hover{background:#F6EEE0;}
+.drw-item.on{color:var(--main);font-weight:700;background:#F6EEE0;}
+.drw-item.on::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--main);}
+.drw-ico{width:26px;text-align:center;font-size:19px;}
+.drw-foot{padding:.9rem 1.3rem 1.3rem;border-top:1px solid var(--line);font-size:12px;color:var(--muted);}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100%;padding-top:calc(var(--hh) + var(--safe-t));}
+.page.active{display:block;}
+.wrap{max-width:720px;margin:0 auto;padding:1.3rem 1.1rem 3rem;}
+.h1{font-size:clamp(1.45rem,5.5vw,2rem);font-weight:800;color:var(--main);line-height:1.15;margin-bottom:.4rem;}
+.lead{font-size:15px;color:var(--muted);margin-bottom:1.2rem;}
+.card{background:var(--card);border-radius:var(--r);padding:1.2rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(60,30,10,.07);border:1px solid var(--line);}
+.rich{font-size:15px;line-height:1.75;color:#4A3B30;}
+.rich p{margin-bottom:.8rem;}
+.rich h2{font-size:18px;color:var(--main);margin:1.3rem 0 .5rem;}
+.rich h2:first-child,.rich h3:first-child{margin-top:0;}
+.rich h3{font-size:16px;color:var(--main);margin:1rem 0 .4rem;}
+.rich ul,.rich ol{padding-left:1.3rem;margin:.4rem 0 .9rem;}
+.rich li{margin-bottom:.35rem;}
+.rich strong,.rich b{color:var(--ink);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.2rem;border-radius:12px;
+  border:none;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .1s,filter .15s;}
+.btn:active{transform:scale(.98);}
+.btn:hover{filter:brightness(1.07);}
+.btn-main{background:var(--main);color:#fff;}
+.btn-don{background:var(--don);color:#fff;}
+.btn-acc{background:var(--accent);color:var(--ink);}
+.btn-ghost{background:#fff;color:var(--main);border:1.5px solid var(--main);}
+.btn-block{display:flex;width:100%;}
+.btns{display:flex;flex-direction:column;gap:.6rem;}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:12px;background:#F3E6CF;color:#6A4A1E;}
+.sec-t{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .7rem;display:flex;align-items:center;gap:8px;}
+.sec-t::after{content:'';flex:1;height:1px;background:var(--line);}
+
+/* ── ACCUEIL ── */
+#p-accueil{background:linear-gradient(165deg,var(--main) 0%,var(--main2) 45%,var(--bg) 45.1%);}
+.hero{text-align:center;color:#fff;padding:1.6rem 1.2rem 0;max-width:720px;margin:0 auto;}
+.hero-logo{max-width:min(70vw,260px);max-height:170px;height:auto;margin:0 auto .9rem;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.25));}
+.hero-ed{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+.hero-nom{font-size:clamp(2rem,9vw,3rem);font-weight:900;line-height:1.05;margin:.3rem 0;}
+.hero-sous{font-size:15px;opacity:.9;}
+.hero-card{background:var(--card);border-radius:18px;margin:1.4rem auto 0;padding:1.2rem;color:var(--ink);
+  box-shadow:0 10px 30px rgba(60,20,10,.18);text-align:left;}
+.hero-info{display:flex;gap:.7rem;align-items:flex-start;font-size:15px;margin-bottom:.55rem;}
+.hero-info b{display:block;}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:1rem 0;}
+.cd div{background:#F6EEE0;border-radius:10px;text-align:center;padding:.55rem 0;}
+.cd b{display:block;font-size:22px;color:var(--main);font-variant-numeric:tabular-nums;}
+.cd span{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem;cursor:pointer;text-align:left;
+  display:flex;flex-direction:column;gap:.35rem;box-shadow:0 1px 4px rgba(60,30,10,.06);}
+.tile:hover{border-color:var(--main2);}
+.tile-ico{font-size:24px;}
+.tile b{font-size:14px;color:var(--ink);}
+.tile span{font-size:12px;color:var(--muted);}
+.pc-mini{display:flex;align-items:center;gap:.7rem;padding:.65rem 0;border-bottom:1px solid var(--line);}
+.pc-mini:last-child{border-bottom:none;}
+.pc-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;}
+
+/* ── CARTE ── */
+#p-carte{padding-top:0;}
+#map{position:fixed;top:calc(var(--hh) + var(--safe-t));left:0;right:0;bottom:0;z-index:1;}
+.legend{position:fixed;left:.6rem;right:.6rem;bottom:.6rem;z-index:400;background:var(--card);border-radius:16px;
+  box-shadow:0 6px 24px rgba(0,0,0,.22);max-width:520px;margin:0 auto;overflow:hidden;}
+.lg-head{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;cursor:pointer;font-weight:700;font-size:14px;}
+.lg-head .chev{transition:transform .2s;}
+.legend.closed .chev{transform:rotate(180deg);}
+.legend.closed .lg-body{display:none;}
+.lg-body{max-height:42vh;overflow-y:auto;padding:0 .6rem .6rem;}
+.lg-row{display:flex;align-items:center;gap:.6rem;padding:.55rem .4rem;border-top:1px solid var(--line);}
+.lg-row input{width:20px;height:20px;accent-color:var(--main);flex-shrink:0;}
+.lg-line{width:26px;height:5px;border-radius:3px;flex-shrink:0;}
+.lg-txt{flex:1;min-width:0;cursor:pointer;}
+.lg-txt b{font-size:14px;display:block;}
+.lg-txt small{font-size:12px;color:var(--muted);}
+.lg-gpx{font-size:11px;font-weight:700;color:var(--main);text-decoration:none;border:1px solid var(--line);padding:4px 8px;border-radius:8px;white-space:nowrap;}
+.lg-keys{display:flex;flex-wrap:wrap;gap:.8rem;padding:.6rem .4rem .2rem;border-top:1px solid var(--line);font-size:12px;color:var(--muted);}
+.map-btns{position:fixed;right:.7rem;top:calc(var(--hh) + var(--safe-t) + .7rem);z-index:400;display:flex;flex-direction:column;gap:.5rem;}
+.map-btn{width:44px;height:44px;border-radius:12px;border:none;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.25);font-size:20px;cursor:pointer;}
+.map-btn.on{background:var(--main);color:#fff;}
+.mk{border-radius:50%;border:3px solid #fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.35);}
+.udot{width:16px;height:16px;border-radius:50%;background:#2F80ED;border:3px solid #fff;box-shadow:0 0 0 6px rgba(47,128,237,.25);}
+.map-st{position:fixed;left:50%;transform:translateX(-50%);top:calc(var(--hh) + var(--safe-t) + .7rem);z-index:400;
+  background:rgba(42,30,23,.82);color:#fff;font-size:12px;padding:5px 12px;border-radius:20px;display:none;white-space:nowrap;}
+.leaflet-popup-content{font-family:inherit;font-size:13px;line-height:1.5;}
+.pop-t{font-size:15px;font-weight:700;color:var(--main);margin-bottom:.2rem;}
+.pop-pc{display:flex;gap:4px;flex-wrap:wrap;margin-top:.4rem;}
+.pop-pc span{font-size:11px;font-weight:700;color:#fff;padding:2px 7px;border-radius:10px;}
+
+/* ── FORM ── */
+.fld{margin-bottom:.9rem;}
+.fld label{display:block;font-size:13px;font-weight:700;margin-bottom:.3rem;}
+.fld input,.fld select,.fld textarea{width:100%;padding:.75rem .85rem;border:1.5px solid var(--line);border-radius:10px;
+  font-size:15px;background:#FFFDF9;color:var(--ink);font-family:inherit;outline:none;}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--main2);background:#fff;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.chk{display:flex;gap:.6rem;align-items:flex-start;font-size:14px;line-height:1.45;margin:.4rem 0 1rem;}
+.chk input{width:20px;height:20px;flex-shrink:0;margin-top:1px;accent-color:var(--main);}
+.form-msg{padding:1rem;border-radius:12px;font-size:14px;line-height:1.55;margin-top:1rem;display:none;}
+.form-msg.ok{display:block;background:#E8F5E9;color:#1B5E20;}
+.form-msg.ko{display:block;background:#FDECEA;color:#B71C1C;}
+.hp{position:absolute;left:-9999px;}
+.pc-choice{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+.fld .pc-opt{margin:0;}
+.pc-opt{border:1.5px solid var(--line);border-radius:10px;padding:.65rem .7rem;cursor:pointer;display:flex !important;justify-content:flex-start;text-align:left;gap:.5rem;align-items:center;font-size:14px;background:#FFFDF9;}
+.pc-opt input{accent-color:var(--main);}
+.pc-opt:has(input:checked){border-color:var(--main);background:#F6EEE0;font-weight:700;}
+
+/* ── DON ── */
+.don-box{background:linear-gradient(140deg,var(--don),#A51B2B);color:#fff;border-radius:18px;padding:1.4rem;text-align:center;margin:1rem 0;}
+.don-box h3{font-size:20px;margin-bottom:.3rem;}
+.don-box p{font-size:14px;opacity:.92;margin-bottom:1rem;}
+.don-box .btn{background:#fff;color:var(--don);}
+.gauge{background:#F3E6CF;border-radius:20px;height:16px;overflow:hidden;margin:.6rem 0 .4rem;}
+.gauge div{height:100%;background:linear-gradient(90deg,var(--accent),var(--don));border-radius:20px;transition:width 1s;}
+.gauge-txt{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);}
+.gauge-txt b{color:var(--ink);font-size:16px;}
+
+/* ── FAQ ── */
+.search{width:100%;padding:.8rem 1rem;border:1.5px solid var(--line);border-radius:12px;font-size:15px;background:#fff;outline:none;margin-bottom:.7rem;}
+.chips{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.4rem;margin-bottom:.6rem;scrollbar-width:none;}
+.chip{flex-shrink:0;padding:6px 13px;border-radius:20px;border:1.5px solid var(--line);background:#fff;font-size:13px;cursor:pointer;color:var(--muted);}
+.chip.on{background:var(--main);border-color:var(--main);color:#fff;font-weight:700;}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:.55rem;overflow:hidden;}
+.qa-q{width:100%;display:flex;gap:.7rem;align-items:center;padding:.95rem 1rem;border:none;background:none;text-align:left;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;}
+.qa-q::after{content:'+';margin-left:auto;font-size:22px;color:var(--main);transition:transform .2s;flex-shrink:0;}
+.qa.open .qa-q::after{transform:rotate(45deg);}
+.qa-a{display:none;padding:0 1rem 1rem;font-size:14px;line-height:1.65;color:#4A3B30;}
+.qa.open .qa-a{display:block;}
+.qa-cat{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);flex-shrink:0;}
+
+/* ── PARTENAIRES ── */
+.pt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;}
+.pt{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem .8rem;text-align:center;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.pt-logo{height:80px;width:100%;display:flex;align-items:center;justify-content:center;}
+.pt-logo img{max-height:80px;max-width:100%;object-fit:contain;}
+.pt-ini{width:70px;height:70px;border-radius:50%;background:#F3E6CF;color:var(--main);font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center;}
+.pt b{font-size:14px;line-height:1.25;}
+.pt small{font-size:12px;color:var(--muted);line-height:1.4;}
+
+/* ── SECOURS ── */
+.sos{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;margin-bottom:.6rem;text-decoration:none;color:var(--ink);}
+.sos-num{min-width:64px;height:56px;padding:0 .6rem;border-radius:12px;background:#C62828;color:#fff;font-size:22px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sos.org .sos-num{background:var(--main);font-size:13px;line-height:1.2;text-align:center;min-width:86px;}
+.sos-txt{flex:1;min-width:0;}
+.sos-txt b{display:block;font-size:15px;}
+.sos-txt small{font-size:13px;color:var(--muted);line-height:1.4;}
+.sos-call{font-size:22px;}
+.pos-box{font-family:ui-monospace,Menlo,monospace;font-size:15px;background:#F6EEE0;border-radius:10px;padding:.8rem;margin:.7rem 0;text-align:center;display:none;}
+
+/* ── DOC ── */
+.doc-frame{width:100%;height:70vh;border:1px solid var(--line);border-radius:12px;background:#fff;}
+.contact{display:flex;gap:.8rem;align-items:flex-start;padding:.55rem 0;font-size:14px;border-bottom:1px solid var(--line);}
+.contact:last-child{border-bottom:none;}
+.contact span:first-child{font-size:18px;width:24px;text-align:center;}
+.fb-frame{width:100%;max-width:500px;height:560px;border:none;border-radius:12px;display:block;margin:0 auto;background:#fff;}
+.share-row{display:flex;gap:.5rem;flex-wrap:wrap;}
+.hashtag{font-size:15px;font-weight:700;color:var(--main);background:#F6EEE0;border-radius:10px;padding:.7rem 1rem;cursor:pointer;text-align:center;}
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:.7rem 1.1rem;border-radius:12px;font-size:14px;z-index:900;transition:transform .3s;}
+.toast.on{transform:translate(-50%,0);}
+.empty{color:var(--muted);font-style:italic;font-size:14px;}
+@media(min-width:900px){.tiles{grid-template-columns:repeat(4,1fr);}}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="hdr">
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <div class="hdr-title" id="hdrTitle">Accueil</div>
+  <a class="hdr-don" href="#caritatif" id="hdrDon">❤️ Don</a>
+</header>
+
+<!-- ══ MENU BURGER ══ -->
+<div class="overlay" onclick="toggleMenu(false)"></div>
+<nav class="drawer" id="drawer" aria-label="Navigation">
+  <div class="drw-head">
+    <img src="assets/images/logo.png" alt="" onerror="this.style.display='none'">
+    <div class="drw-nom" id="drwNom"></div>
+    <div class="drw-date" id="drwDate"></div>
+  </div>
+  <div class="drw-nav" id="drwNav"></div>
+  <div class="drw-foot" id="drwFoot"></div>
+</nav>
+
+<!-- ══ 1. ACCUEIL ══ -->
+<section class="page" id="p-accueil">
+  <div class="hero">
+    <img class="hero-logo" src="assets/images/logo.png" alt="" onerror="this.style.display='none'">
+    <div class="hero-ed" id="aEd"></div>
+    <h1 class="hero-nom" id="aNom"></h1>
+    <div class="hero-sous" id="aSous"></div>
+    <div class="hero-card">
+      <div class="hero-info"><span>📅</span><div><b id="aDate"></b></div></div>
+      <div class="hero-info"><span>📍</span><div id="aLieu"></div></div>
+      <div class="cd" id="aCd"></div>
+      <div class="rich" id="aTx" style="font-size:14px"></div>
+      <div class="btns" style="margin-top:.8rem">
+        <a class="btn btn-main btn-block" href="#inscription">✍️ Je m'inscris</a>
+        <a class="btn btn-don btn-block" id="aDon" target="_blank" rel="noopener">❤️ Faire un don au Téléthon</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="sec-t">Les parcours</div>
+    <div class="card" id="aPc" style="padding:.5rem 1rem"></div>
+    <div class="sec-t">En un coup d'œil</div>
+    <div class="tiles">
+      <button class="tile" onclick="go('histoire')"><span class="tile-ico">📜</span><b>La légende</b><span>L'origine de la randonnée</span></button>
+      <button class="tile" onclick="go('carte')"><span class="tile-ico">🗺️</span><b>Carte</b><span>Tracés & ravitos</span></button>
+      <button class="tile" onclick="go('faq')"><span class="tile-ico">❓</span><b>FAQ</b><span>Horaires, VAE, chiens…</span></button>
+      <button class="tile" onclick="go('secours')"><span class="tile-ico">🚑</span><b>Secours</b><span>Numéros d'urgence</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 2. HISTOIRE ══ -->
+<section class="page" id="p-histoire">
+  <div class="wrap">
+    <h1 class="h1">Origine de la randonnée</h1>
+    <img id="hImg" alt="" style="width:100%;border-radius:var(--r);margin:.6rem 0 1rem;display:none">
+    <div class="card"><div class="rich" id="hTx"></div></div>
+    <a class="btn btn-main btn-block" href="#inscription">Suivre les traces du Père Quignon →</a>
+  </div>
+</section>
+
+<!-- ══ 3. CARTE ══ -->
+<section class="page" id="p-carte">
+  <div id="map"></div>
+  <div class="map-st" id="mapSt"></div>
+  <div class="map-btns">
+    <button class="map-btn" id="btnLoc" title="Me localiser" onclick="toggleLoc()">📍</button>
+    <button class="map-btn" title="Vue d'ensemble" onclick="fitAll()">🔍</button>
+  </div>
+  <div class="legend" id="legend">
+    <div class="lg-head" onclick="document.getElementById('legend').classList.toggle('closed')">
+      <span>Parcours & ravitaillements</span><span class="chev">▾</span>
+    </div>
+    <div class="lg-body" id="lgBody"></div>
+  </div>
+</section>
+
+<!-- ══ 4. INSCRIPTION ══ -->
+<section class="page" id="p-inscription">
+  <div class="wrap">
+    <h1 class="h1">Inscription & dons</h1>
+    <div class="card"><div class="rich" id="iTx"></div></div>
+    <div id="iExt" style="display:none" class="card">
+      <p style="font-size:14px;margin-bottom:.8rem">Inscription et paiement sécurisés en ligne :</p>
+      <a class="btn btn-main btn-block" id="iExtBtn" target="_blank" rel="noopener">✍️ S'inscrire en ligne ↗</a>
+    </div>
+    <form class="card" id="iForm" name="inscription" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none" onsubmit="return sendForm(event)">
+      <input type="hidden" name="form-name" value="inscription">
+      <p class="hp"><label>Ne pas remplir : <input name="bot-field"></label></p>
+      <div class="row2">
+        <div class="fld"><label for="f-prenom">Prénom *</label><input id="f-prenom" name="prenom" required autocomplete="given-name"></div>
+        <div class="fld"><label for="f-nom">Nom *</label><input id="f-nom" name="nom" required autocomplete="family-name"></div>
+      </div>
+      <div class="fld"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+      <div class="row2">
+        <div class="fld"><label for="f-tel">Téléphone *</label><input id="f-tel" name="telephone" type="tel" required autocomplete="tel"></div>
+        <div class="fld"><label for="f-cp">Code postal</label><input id="f-cp" name="code_postal" inputmode="numeric" autocomplete="postal-code"></div>
+      </div>
+      <input type="hidden" name="parcours" id="f-parcours">
+      <div class="fld"><label>Parcours *</label><div class="pc-choice" id="fPc"></div></div>
+      <div class="row2">
+        <div class="fld"><label for="f-adultes">Adultes</label><input id="f-adultes" name="nb_adultes" type="number" min="0" value="1"></div>
+        <div class="fld"><label for="f-enfants">Enfants (-12 ans)</label><input id="f-enfants" name="nb_enfants" type="number" min="0" value="0"></div>
+      </div>
+      <div class="row2">
+        <div class="fld"><label for="f-vae">VAE ?</label><select id="f-vae" name="vae"><option>Non</option><option>Oui</option></select></div>
+        <div class="fld"><label for="f-chien">Chien ?</label><select id="f-chien" name="chien"><option>Non</option><option>Oui</option></select></div>
+      </div>
+      <div class="fld"><label for="f-club">Club / groupe</label><input id="f-club" name="club"></div>
+      <div class="fld"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="2"></textarea></div>
+      <label class="chk"><input type="checkbox" name="reglement" value="accepté" required><span>J'ai lu et j'accepte le <a href="#reglement">règlement de la randonnée</a> *</span></label>
+      <label class="chk"><input type="checkbox" name="photos" value="accepté"><span>J'accepte d'apparaître sur les photos publiées par l'organisation</span></label>
+      <button class="btn btn-main btn-block" type="submit" id="fBtn">Valider mon inscription</button>
+      <div class="form-msg" id="fMsg"></div>
+    </form>
+    <div class="don-box">
+      <h3>Pour quelques quignons de plus…</h3>
+      <p>Vous ne pouvez pas venir, ou vous voulez aller plus loin ? Chaque euro compte pour la recherche.</p>
+      <a class="btn btn-block" id="iDon" target="_blank" rel="noopener">❤️ Faire un don au Téléthon ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5. FAQ ══ -->
+<section class="page" id="p-faq">
+  <div class="wrap">
+    <h1 class="h1">Questions fréquentes</h1>
+    <input class="search" type="search" id="qSearch" placeholder="🔍 Rechercher (chien, VAE, horaire…)" oninput="renderFaq()">
+    <div class="chips" id="qChips"></div>
+    <div id="qList"></div>
+    <div class="card" style="margin-top:1rem;font-size:14px">Pas trouvé votre réponse ? <span id="qContact"></span></div>
+  </div>
+</section>
+
+<!-- ══ 6. CARITATIF ══ -->
+<section class="page" id="p-caritatif">
+  <div class="wrap">
+    <h1 class="h1">Caritatif & dons</h1>
+    <div class="card" id="cGauge" style="display:none">
+      <div style="font-weight:700">Notre collecte</div>
+      <div class="gauge"><div id="cGaugeBar" style="width:0"></div></div>
+      <div class="gauge-txt"><span><b id="cMontant"></b> collectés</span><span>Objectif <span id="cObj"></span></span></div>
+    </div>
+    <div class="card"><div class="rich" id="cTx"></div></div>
+    <div class="don-box">
+      <h3>Je fais un don</h3>
+      <p>Directement sur notre page de collecte officielle Téléthon, avec reçu fiscal.</p>
+      <a class="btn btn-block" id="cDon" target="_blank" rel="noopener">❤️ Faire un don ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7. COMMUNICATION ══ -->
+<section class="page" id="p-communication">
+  <div class="wrap">
+    <h1 class="h1">Communication</h1>
+    <div class="card"><div class="rich" id="mTx"></div>
+      <div class="btns" id="mBtns" style="margin-top:.6rem"></div>
+    </div>
+    <div class="card" id="mTagBox" style="display:none">
+      <div style="font-weight:700;margin-bottom:.5rem">Utilisez nos hashtags</div>
+      <div class="hashtag" id="mTag" onclick="copy(this.textContent,'Hashtags copiés !')"></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:.4rem;text-align:center">Touchez pour copier</div>
+    </div>
+    <div id="mFeed"></div>
+  </div>
+</section>
+
+<!-- ══ 8. PARTENAIRES ══ -->
+<section class="page" id="p-partenaires">
+  <div class="wrap">
+    <h1 class="h1">Nos partenaires</h1>
+    <p class="lead">Merci à celles et ceux qui rendent cette journée possible.</p>
+    <div id="ptList"></div>
+  </div>
+</section>
+
+<!-- ══ 9. SECOURS ══ -->
+<section class="page" id="p-secours">
+  <div class="wrap">
+    <h1 class="h1">Secours</h1>
+    <p class="lead">Touchez un numéro pour appeler.</p>
+    <div id="sList"></div>
+    <div class="card" style="margin-top:1rem">
+      <div style="font-weight:700;margin-bottom:.3rem">📍 Ma position GPS</div>
+      <div style="font-size:13px;color:var(--muted)">À communiquer aux secours pour qu'ils vous trouvent sur le parcours.</div>
+      <div class="pos-box" id="posBox"></div>
+      <div class="btns" style="margin-top:.7rem">
+        <button class="btn btn-main btn-block" onclick="getPos()">Afficher ma position</button>
+        <div class="share-row" id="posAct" style="display:none">
+          <button class="btn btn-ghost" style="flex:1" onclick="copy(window._pos,'Position copiée')">Copier</button>
+          <a class="btn btn-ghost" style="flex:1" id="posSms">Envoyer par SMS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 10. FDCY ══ -->
+<section class="page" id="p-fdcy">
+  <div class="wrap">
+    <h1 class="h1">Chasse & cohabitation</h1>
+    <div class="card"><div class="rich" id="fTx"></div></div>
+    <div class="card" id="fContact"></div>
+  </div>
+</section>
+
+<!-- ══ 11. RÈGLEMENT ══ -->
+<section class="page" id="p-reglement">
+  <div class="wrap">
+    <h1 class="h1">Règlement de la randonnée</h1>
+    <div class="rich" id="rTx" style="margin-bottom:1rem"></div>
+    <div id="rDoc"></div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+if (location.protocol === 'file:') {
+  document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;gap:1.2rem;padding:2rem;text-align:center;font-family:sans-serif;background:#6B1E2E;color:#fff"><div style="font-size:48px">⚠️</div><h2>Serveur requis</h2><p>Dans ce dossier, lancez :</p><code style="background:rgba(255,255,255,.15);padding:10px 20px;border-radius:8px">python -m http.server 8000</code><p>Puis ouvrez <b>http://localhost:8000</b></p></div>';
+  throw new Error('file://');
+}
+
+// ── PAGES DU MENU ─────────────────────────────
+const PAGES = [
+  {id:'accueil',       ico:'🏠', lbl:'Accueil'},
+  {id:'histoire',      ico:'📜', lbl:'Origine de la randonnée'},
+  {id:'carte',         ico:'🗺️', lbl:'Carte des parcours'},
+  {id:'inscription',   ico:'✍️', lbl:'Inscription & dons'},
+  {id:'faq',           ico:'❓', lbl:'FAQ'},
+  {id:'caritatif',     ico:'❤️', lbl:'Caritatif & dons'},
+  {id:'communication', ico:'📣', lbl:'Communication'},
+  {id:'partenaires',   ico:'🤝', lbl:'Partenaires'},
+  {id:'secours',       ico:'🚑', lbl:'Secours'},
+  {id:'fdcy',          ico:'🦌', lbl:'Chasse – FDCY'},
+  {id:'reglement',     ico:'📄', lbl:'Règlement'},
+];
+
+let D = null, E = {}, MAP = null, LAYERS = {}, PTS = [], uMark = null, watchId = null, faqCat = 'Toutes';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// ── NAVIGATION (hash → liens partageables + bouton retour natif) ──
+function toggleMenu(force) {
+  const open = force ?? !document.body.classList.contains('menu-open');
+  document.body.classList.toggle('menu-open', open);
+  $('burger').setAttribute('aria-expanded', open);
+}
+function go(id) { location.hash = id; }
+function route() {
+  const id = (location.hash.slice(1) || 'accueil');
+  const p = PAGES.find(x => x.id === id) || PAGES[0];
+  document.querySelectorAll('.page').forEach(s => s.classList.toggle('active', s.id === 'p-' + p.id));
+  document.querySelectorAll('.drw-item').forEach(a => a.classList.toggle('on', a.dataset.p === p.id));
+  $('hdrTitle').textContent = p.id === 'accueil' ? (E.nom || 'Accueil') : p.lbl;
+  $('hdrDon').style.display = (p.id === 'caritatif' || p.id === 'inscription') ? 'none' : '';
+  toggleMenu(false);
+  window.scrollTo(0, 0);
+  if (p.id === 'carte') initMap();
+}
+window.addEventListener('hashchange', route);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+
+// ── INIT ──────────────────────────────────────
+async function init() {
+  try {
+    const [rd, rc] = await Promise.all([fetch('data.json', {cache:'no-cache'}), fetch('config.json', {cache:'no-cache'}).catch(() => null)]);
+    if (!rd.ok) throw new Error('data.json introuvable');
+    D = await rd.json();
+    const C = rc && rc.ok ? await rc.json() : {};
+    Object.entries(C.couleurs || {}).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
+    if (C.couleurs && C.couleurs['--main']) document.querySelector('meta[name=theme-color]').content = C.couleurs['--main'];
+    E = D.evenement || {};
+    document.title = E.nom || document.title;
+
+    $('drwNav').innerHTML = PAGES.map(p => `<a class="drw-item" data-p="${p.id}" href="#${p.id}"><span class="drw-ico">${p.ico}</span>${p.lbl}</a>`).join('');
+    $('drwNom').textContent = E.nom || '';
+    $('drwDate').textContent = [E.date_affichee, E.lieu].filter(Boolean).join(' · ');
+    $('drwFoot').innerHTML = esc(E.organisateur || '') + (E.contact_email ? `<br><a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : '');
+
+    renderAccueil(); renderHistoire(); renderInscription(); renderFaq(); renderCaritatif();
+    renderCom(); renderPartenaires(); renderSecours(); renderFdcy(); renderReglement();
+    route();
+  } catch (e) { console.error(e); document.body.insertAdjacentHTML('beforeend', `<div class="toast on">Erreur : ${esc(e.message)}</div>`); }
+}
+
+function donLinks() { ['aDon', 'iDon', 'cDon'].forEach(id => $(id).href = E.lien_don || '#caritatif'); }
+const fmtKm = p => [p.distance_km != null ? p.distance_km + ' km' : '', p.denivele_m != null ? 'D+ ' + p.denivele_m + ' m' : ''].filter(Boolean).join(' · ');
+const typeIco = t => /vtt|v[ée]lo/i.test(t || '') ? '🚵' : '🥾';
+
+// ── 1. ACCUEIL ────────────────────────────────
+function renderAccueil() {
+  $('aEd').textContent = E.edition || '';
+  $('aNom').textContent = E.nom || '';
+  $('aSous').textContent = E.sous_titre || '';
+  $('aDate').textContent = E.date_affichee || '';
+  $('aLieu').textContent = E.lieu || '';
+  $('aTx').innerHTML = E.texte_accueil || '';
+  donLinks();
+  $('aPc').innerHTML = (D.parcours || []).map(p => `
+    <div class="pc-mini"><span class="pc-dot" style="background:${esc(p.couleur)}"></span>
+      <div style="flex:1"><b style="font-size:14px">${typeIco(p.type)} ${esc(p.nom)}</b><br><small style="color:var(--muted)">${fmtKm(p)}${p.horaire_depart ? ' · départ ' + esc(p.horaire_depart) : ''}</small></div>
+      ${p.difficulte ? `<span class="tag">${esc(p.difficulte)}</span>` : ''}</div>`).join('') || '<p class="empty">Parcours à venir.</p>';
+  countdown(); setInterval(countdown, 1000 * 30);
+}
+function countdown() {
+  const el = $('aCd');
+  const t = E.date_evenement ? new Date(E.date_evenement) : null;
+  if (!t || isNaN(t)) { el.style.display = 'none'; return; }
+  let s = Math.floor((t - new Date()) / 1000);
+  if (s <= 0) { el.innerHTML = `<div style="grid-column:1/-1;padding:.8rem"><b style="font-size:17px">${s > -86400 ? "🎉 C'est aujourd'hui !" : 'Merci à tous !'}</b></div>`; return; }
+  const j = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+  el.innerHTML = [[j, 'jours'], [h, 'heures'], [m, 'min']].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('')
+    + `<div><b>🥣</b><span>soupe</span></div>`;
+}
+
+// ── 2. HISTOIRE ───────────────────────────────
+function renderHistoire() {
+  $('hTx').innerHTML = E.texte_histoire || '<p class="empty">Histoire à venir…</p>';
+  if (E.image_histoire) { $('hImg').src = E.image_histoire; $('hImg').style.display = 'block'; $('hImg').onerror = function(){ this.style.display = 'none'; }; }
+}
+
+// ── 3. CARTE ──────────────────────────────────
+const PT_STYLE = {
+  depart:  {bg:'#2E7D32', ico:'🏁', lbl:'Départ / arrivée'},
+  ravito:  {bg:'#E0A526', ico:'🍲', lbl:'Ravitaillement'},
+  point:   {bg:'#6B1E2E', ico:'⭐', lbl:'Point remarquable'},
+  secours: {bg:'#C62828', ico:'➕', lbl:'Poste de secours'},
+  parking: {bg:'#1565C0', ico:'🅿️', lbl:'Parking'},
+};
+function initMap() {
+  if (MAP) { setTimeout(() => MAP.invalidateSize(), 50); return; }
+  const c = [E.centre_lat || E.depart_lat || 47.75, E.centre_lng || E.depart_lng || 3.49];
+  MAP = L.map('map', {center: c, zoom: E.zoom_defaut || 13, zoomControl: false});
+  L.control.zoom({position: 'topleft'}).addTo(MAP);
+  const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OpenStreetMap', maxZoom: 19});
+  const topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {attribution: '© OpenTopoMap', maxZoom: 17});
+  const ign = L.tileLayer('https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&TILEMATRIXSET=PM&FORMAT=image/png&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}', {attribution: '© IGN', maxZoom: 19});
+  osm.addTo(MAP);
+  L.control.layers({'Plan': osm, 'IGN': ign, 'Topographique': topo}, null, {position: 'topleft'}).addTo(MAP);
+
+  // Légende
+  const pcs = D.parcours || [];
+  const types = [...new Set((D.points || []).map(p => p.type))].filter(t => PT_STYLE[t]);
+  $('lgBody').innerHTML = pcs.map(p => `
+    <div class="lg-row">
+      <input type="checkbox" checked onchange="togglePc('${esc(p.id)}',this.checked)" aria-label="Afficher ${esc(p.nom)}">
+      <span class="lg-line" style="background:${esc(p.couleur)}"></span>
+      <div class="lg-txt" onclick="zoomPc('${esc(p.id)}')"><b>${typeIco(p.type)} ${esc(p.nom)}</b><small>${fmtKm(p)}${p.horaire_depart ? ' · ' + esc(p.horaire_depart) : ''}</small></div>
+      ${p.gpx ? `<a class="lg-gpx" href="${esc(p.gpx)}" download>GPX ⤓</a>` : ''}
+    </div>`).join('')
+    + `<div class="lg-keys">${types.map(t => `<span>${PT_STYLE[t].ico} ${PT_STYLE[t].lbl}</span>`).join('')}</div>`;
+  if (innerWidth < 600 && pcs.length > 3) $('legend').classList.add('closed');
+
+  // Tracés GPX
+  const all = L.featureGroup();
+  pcs.forEach(p => {
+    if (!p.gpx) return;
+    fetch(p.gpx).then(r => r.ok ? r.text() : null).then(txt => {
+      if (!txt) return;
+      const pts = [...new DOMParser().parseFromString(txt, 'text/xml').querySelectorAll('trkpt,rtept')]
+        .map(n => [parseFloat(n.getAttribute('lat')), parseFloat(n.getAttribute('lon'))]);
+      if (!pts.length) return;
+      const casing = L.polyline(pts, {color: '#fff', weight: 8, opacity: .9});
+      const line = L.polyline(pts, {color: p.couleur, weight: 4.5, opacity: .95})
+        .bindPopup(`<div class="pop-t">${typeIco(p.type)} ${esc(p.nom)}</div>${fmtKm(p)}${p.difficulte ? '<br>Difficulté : ' + esc(p.difficulte) : ''}${p.horaire_depart ? '<br>Départs : ' + esc(p.horaire_depart) : ''}${p.description ? '<br><br>' + esc(p.description) : ''}`);
+      LAYERS[p.id] = L.layerGroup([casing, line]).addTo(MAP);
+      LAYERS[p.id]._line = line;
+      all.addLayer(line);
+      MAP._all = all;
+      fitAll();
+    }).catch(() => {});
+  });
+
+  // Points (ravitos, départ…)
+  const pcById = Object.fromEntries(pcs.map(p => [p.id, p]));
+  (D.points || []).forEach(pt => {
+    const st = PT_STYLE[pt.type] || PT_STYLE.point;
+    const size = pt.type === 'depart' ? 40 : 34;
+    const m = L.marker([pt.gps.lat, pt.gps.lng], {
+      zIndexOffset: 1000,
+      icon: L.divIcon({className: '', iconSize: [size, size], iconAnchor: [size / 2, size / 2],
+        html: `<div class="mk" style="width:${size}px;height:${size}px;background:${st.bg};font-size:${size * .45}px">${st.ico}</div>`})
+    }).addTo(MAP).bindPopup(`<div class="pop-t">${st.ico} ${esc(pt.nom)}</div>
+      ${pt.horaires ? '🕒 ' + esc(pt.horaires) + '<br>' : ''}${esc(pt.description)}
+      <div class="pop-pc">${pt.parcours.map(id => pcById[id] ? `<span style="background:${esc(pcById[id].couleur)}">${esc(pcById[id].nom)}</span>` : '').join('')}</div>`);
+    m._pc = pt.parcours;
+    PTS.push(m);
+  });
+  setTimeout(() => MAP.invalidateSize(), 100);
+}
+function fitAll() { if (MAP && MAP._all && MAP._all.getLayers().length) MAP.fitBounds(MAP._all.getBounds(), {padding: [30, 30], paddingBottomRight: [30, 120]}); }
+function togglePc(id, on) {
+  const l = LAYERS[id]; if (!l) return;
+  on ? l.addTo(MAP) : MAP.removeLayer(l);
+  // Masquer un point si tous ses parcours sont masqués
+  PTS.forEach(m => {
+    if (!m._pc.length) return;
+    const vis = m._pc.some(p => !LAYERS[p] || MAP.hasLayer(LAYERS[p]));
+    vis ? m.addTo(MAP) : MAP.removeLayer(m);
+  });
+}
+function zoomPc(id) {
+  const l = LAYERS[id]; if (!l) return;
+  if (!MAP.hasLayer(l)) { l.addTo(MAP); }
+  MAP.fitBounds(l._line.getBounds(), {padding: [30, 30], paddingBottomRight: [30, 140]});
+  l._line.openPopup();
+}
+function toggleLoc() {
+  const b = $('btnLoc'), st = $('mapSt');
+  if (watchId !== null) {
+    navigator.geolocation.clearWatch(watchId); watchId = null; b.classList.remove('on'); st.style.display = 'none';
+    if (uMark) { MAP.removeLayer(uMark); uMark = null; }
+    return;
+  }
+  if (!('geolocation' in navigator)) return toast('GPS non disponible');
+  b.classList.add('on'); st.style.display = 'block'; st.textContent = 'Localisation…';
+  let first = true;
+  watchId = navigator.geolocation.watchPosition(p => {
+    const ll = [p.coords.latitude, p.coords.longitude];
+    st.textContent = `GPS ±${Math.round(p.coords.accuracy)} m`;
+    if (!uMark) uMark = L.marker(ll, {zIndexOffset: 2000, icon: L.divIcon({className: '', html: '<div class="udot"></div>', iconSize: [16, 16], iconAnchor: [8, 8]})}).addTo(MAP);
+    else uMark.setLatLng(ll);
+    if (first) { MAP.setView(ll, 15); first = false; }
+  }, () => { st.textContent = 'GPS indisponible'; }, {enableHighAccuracy: true, maximumAge: 5000, timeout: 15000});
+}
+
+// ── 4. INSCRIPTION ────────────────────────────
+function renderInscription() {
+  $('iTx').innerHTML = E.texte_inscription || '';
+  const mode = (E.mode_inscription || 'formulaire').toLowerCase();
+  if ((mode === 'externe' || mode === 'les_deux') && E.lien_inscription) { $('iExt').style.display = ''; $('iExtBtn').href = E.lien_inscription; }
+  if (mode === 'formulaire' || mode === 'les_deux' || !E.lien_inscription) $('iForm').style.display = '';
+  $('fPc').innerHTML = (D.parcours || []).map((p, i) => `
+    <label class="pc-opt"><input type="radio" name="parcours_choix" value="${esc(p.nom)}" required onchange="$('f-parcours').value=this.value">
+      <span style="width:10px;height:10px;border-radius:50%;background:${esc(p.couleur)};flex-shrink:0"></span>${esc(p.nom)}</label>`).join('');
+}
+async function sendForm(ev) {
+  ev.preventDefault();
+  const f = ev.target, btn = $('fBtn'), msg = $('fMsg');
+  btn.disabled = true; btn.textContent = 'Envoi…'; msg.className = 'form-msg';
+  try {
+    const r = await fetch('/', {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(new FormData(f)).toString()});
+    if (!r.ok) throw new Error(r.status);
+    const prenom = f.prenom.value;
+    f.reset();
+    msg.className = 'form-msg ok';
+    msg.innerHTML = `<b>Merci ${esc(prenom)}, votre inscription est enregistrée !</b><br>Le règlement se fait sur place à l'accueil. Le Père Quignon vous attend…<br><br>
+      Pour aller plus loin : <a href="${esc(E.lien_don || '#caritatif')}" target="_blank" rel="noopener"><b>faire un don au Téléthon</b></a> ❤️`;
+  } catch (e) {
+    msg.className = 'form-msg ko';
+    msg.innerHTML = `L'envoi a échoué (${esc(e.message)}). Vérifiez votre connexion et réessayez${E.contact_email ? `, ou écrivez-nous à <a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : ''}.`;
+  }
+  btn.disabled = false; btn.textContent = 'Valider mon inscription';
+  return false;
+}
+
+// ── 5. FAQ ────────────────────────────────────
+function renderFaq() {
+  const items = D.faq || [];
+  const cats = ['Toutes', ...new Set(items.map(q => q.categorie))];
+  $('qChips').innerHTML = cats.map(c => `<button class="chip${c === faqCat ? ' on' : ''}" onclick="faqCat='${esc(c)}';renderFaq()">${esc(c)}</button>`).join('');
+  const s = ($('qSearch').value || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const norm = t => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const list = items.filter(q => (faqCat === 'Toutes' || q.categorie === faqCat) && (!s || norm(q.question + ' ' + q.reponse + ' ' + q.categorie).includes(s)));
+  $('qList').innerHTML = list.map(q => `
+    <div class="qa"><button class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>${esc(q.question)}</span></button>
+    <div class="qa-a"><span class="qa-cat">${esc(q.categorie)}</span><br>${q.reponse}</div></div>`).join('') || '<p class="empty">Aucune question ne correspond.</p>';
+  $('qContact').innerHTML = [E.contact_email && `<a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>`, E.contact_telephone && `<a href="tel:${esc(E.contact_telephone.replace(/\s/g, ''))}">${esc(E.contact_telephone)}</a>`].filter(Boolean).join(' · ');
+}
+
+// ── 6. CARITATIF ──────────────────────────────
+function renderCaritatif() {
+  $('cTx').innerHTML = E.texte_caritatif || '';
+  if (E.objectif_dons) {
+    const m = E.montant_collecte || 0, pct = Math.min(100, m / E.objectif_dons * 100);
+    const eur = v => v.toLocaleString('fr-FR', {style: 'currency', currency: 'EUR', maximumFractionDigits: 0});
+    $('cGauge').style.display = ''; $('cMontant').textContent = eur(m); $('cObj').textContent = eur(E.objectif_dons);
+    setTimeout(() => $('cGaugeBar').style.width = Math.max(pct, 2) + '%', 300);
+  }
+}
+
+// ── 7. COMMUNICATION ──────────────────────────
+function renderCom() {
+  $('mTx').innerHTML = E.texte_communication || '';
+  const b = [];
+  if (E.lien_facebook_evenement) b.push(`<a class="btn btn-block" style="background:#1877F2;color:#fff" href="${esc(E.lien_facebook_evenement)}" target="_blank" rel="noopener">📅 Événement Facebook ↗</a>`);
+  if (E.lien_facebook_page) b.push(`<a class="btn btn-ghost btn-block" href="${esc(E.lien_facebook_page)}" target="_blank" rel="noopener">👍 Page Facebook ↗</a>`);
+  if (E.lien_instagram) b.push(`<a class="btn btn-ghost btn-block" href="${esc(E.lien_instagram)}" target="_blank" rel="noopener">📸 Instagram ↗</a>`);
+  b.push(`<button class="btn btn-acc btn-block" onclick="share()">🔗 Partager l'application</button>`);
+  $('mBtns').innerHTML = b.join('');
+  if (E.hashtag) { $('mTagBox').style.display = ''; $('mTag').textContent = E.hashtag; }
+  if (E.lien_facebook_page) {
+    $('mFeed').innerHTML = `<div class="sec-t">Actualités</div><iframe class="fb-frame" loading="lazy" allow="encrypted-media"
+      src="https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(E.lien_facebook_page)}&tabs=timeline&width=500&height=560&small_header=true&adapt_container_width=true&hide_cover=false"></iframe>`;
+  }
+}
+async function share() {
+  const data = {title: E.nom, text: `${E.nom} — ${E.date_affichee || ''} au profit du Téléthon`, url: location.origin + location.pathname};
+  if (navigator.share) { try { await navigator.share(data); } catch (e) {} }
+  else copy(data.url, 'Lien copié !');
+}
+
+// ── 8. PARTENAIRES ────────────────────────────
+function renderPartenaires() {
+  const pts = D.partenaires || [];
+  if (!pts.length) { $('ptList').innerHTML = '<p class="empty">Partenaires à venir.</p>'; return; }
+  const cats = [...new Set(pts.map(p => p.categorie || 'Partenaires'))];
+  const ini = n => n.split(/\s+/).filter(w => w.length > 2 || /^[A-Z]/.test(w)).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+  $('ptList').innerHTML = cats.map(c => `<div class="sec-t">${esc(c)}</div><div class="pt-grid">` +
+    pts.filter(p => (p.categorie || 'Partenaires') === c).map(p => {
+      const tag = p.lien ? 'a' : 'div';
+      const logo = p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.nom)}" onerror="this.outerHTML='<div class=pt-ini>${esc(ini(p.nom))}</div>'">` : `<div class="pt-ini">${esc(ini(p.nom))}</div>`;
+      return `<${tag} class="pt" ${p.lien ? `href="${esc(p.lien)}" target="_blank" rel="noopener"` : ''}>
+        <div class="pt-logo">${logo}</div><b>${esc(p.nom)}</b>${p.description ? `<small>${esc(p.description)}</small>` : ''}</${tag}>`;
+    }).join('') + '</div>').join('');
+}
+
+// ── 9. SECOURS ────────────────────────────────
+function renderSecours() {
+  $('sList').innerHTML = (D.secours || []).map(s => `
+    <a class="sos ${s.type === 'organisation' ? 'org' : ''}" href="tel:${esc(s.numero.replace(/\s/g, ''))}">
+      <div class="sos-num">${esc(s.numero)}</div>
+      <div class="sos-txt"><b>${esc(s.libelle)}</b><small>${esc(s.description)}</small></div>
+      <span class="sos-call">📞</span></a>`).join('');
+}
+function getPos() {
+  if (!('geolocation' in navigator)) return toast('GPS non disponible');
+  const box = $('posBox'); box.style.display = 'block'; box.textContent = 'Localisation…';
+  navigator.geolocation.getCurrentPosition(p => {
+    const la = p.coords.latitude.toFixed(5), lo = p.coords.longitude.toFixed(5);
+    window._pos = `${la}, ${lo}`;
+    box.innerHTML = `${la}, ${lo}<br><small style="color:var(--muted)">précision ±${Math.round(p.coords.accuracy)} m</small>`;
+    $('posAct').style.display = 'flex';
+    const org = (D.secours || []).find(s => s.type === 'organisation');
+    const body = encodeURIComponent(`${E.nom || 'Randonnée'} – besoin d'aide. Ma position : ${la}, ${lo} https://maps.google.com/?q=${la},${lo}`);
+    $('posSms').href = `sms:${org ? org.numero.replace(/\s/g, '') : ''}?&body=${body}`;
+  }, () => { box.textContent = 'Position indisponible — activez la localisation.'; }, {enableHighAccuracy: true, timeout: 15000});
+}
+
+// ── 10. FDCY ──────────────────────────────────
+function renderFdcy() {
+  $('fTx').innerHTML = E.texte_fdcy || '';
+  const c = [
+    E.fdcy_adresse && ['🏢', esc(E.fdcy_adresse)],
+    E.fdcy_telephone && ['📞', `<a href="tel:${esc(E.fdcy_telephone.replace(/\s/g, ''))}">${esc(E.fdcy_telephone)}</a>`],
+    E.fdcy_email && ['✉️', `<a href="mailto:${esc(E.fdcy_email)}">${esc(E.fdcy_email)}</a>`],
+    E.fdcy_site && ['🌐', `<a href="${esc(E.fdcy_site)}" target="_blank" rel="noopener">${esc(E.fdcy_site.replace(/^https?:\/\/(www\.)?|\/$/g, ''))}</a>`],
+  ].filter(Boolean);
+  $('fContact').innerHTML = `<div style="font-weight:700;margin-bottom:.4rem">Fédération des chasseurs de l'Yonne</div>` + c.map(([i, t]) => `<div class="contact"><span>${i}</span><span>${t}</span></div>`).join('');
+}
+
+// ── 11. RÈGLEMENT ─────────────────────────────
+function drivePreview(u) {
+  const m = u.match(/\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/);
+  if (!m) return u;
+  if (/docs\.google\.com\/document/.test(u)) return `https://docs.google.com/document/d/${m[1]}/preview`;
+  return `https://drive.google.com/file/d/${m[1]}/preview`;
+}
+function renderReglement() {
+  $('rTx').innerHTML = E.texte_reglement || '';
+  const u = E.lien_reglement;
+  $('rDoc').innerHTML = u
+    ? `<iframe class="doc-frame" src="${esc(drivePreview(u))}" loading="lazy" allow="autoplay"></iframe>
+       <a class="btn btn-main btn-block" style="margin-top:.8rem" href="${esc(u)}" target="_blank" rel="noopener">📄 Ouvrir / télécharger le règlement ↗</a>`
+    : '<div class="card empty">Le règlement sera publié prochainement.</div>';
+}
+
+// ── OUTILS ────────────────────────────────────
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('on'), 2200); }
+function copy(t, ok) { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast(ok || 'Copié'), () => toast(t)); }
+
+init();
+</script>
+</body>
+</html>

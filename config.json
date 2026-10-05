@@ -1,0 +1,15 @@
+{
+  "couleurs": {
+    "--main": "#6B1E2E",
+    "--main2": "#8E2C3F",
+    "--accent": "#E0A526",
+    "--bg": "#FAF6EF",
+    "--ink": "#2A1E17",
+    "--muted": "#7A6A5C",
+    "--don": "#D62839"
+  },
+  "images": {
+    "logo.png": "assets/images/logo.png",
+    "logo2.png": "assets/images/logo2.png"
+  }
+}
