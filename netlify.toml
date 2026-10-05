@@ -1,5 +1,7 @@
-# Netlify : site statique, aucune commande de build nécessaire
+# Netlify : site statique, rien à compiler.
+# La commande ci-dessous remplace celle saisie dans l'interface Netlify (ex. "Hugo").
 [build]
+  command = "echo 'Site statique - pas de build'"
   publish = "."
 
 # Toujours servir la dernière version des données
