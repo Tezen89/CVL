@@ -4,7 +4,7 @@
     "sous_titre": "Randonnée VTT & marche d'hiver au profit du Téléthon",
     "edition": "1re édition",
     "date_evenement": "2026-11-22T07:30",
-    "date_affichee": "Dimanche 29 novembre 2026",
+    "date_affichee": "Dimanche 22 novembre 2026",
     "lieu": "Salle des fêtes, Chevannes (89)",
     "depart_lat": 47.7512,
     "depart_lng": 3.4921,
@@ -44,8 +44,8 @@
       "type": "VTT",
       "couleur": "#C0392B",
       "gpx": "assets/gpx/vtt35.gpx",
-      "distance_km": 19.1,
-      "denivele_m": 309,
+      "distance_km": 35,
+      "denivele_m": 800,
       "difficulte": "Difficile",
       "horaire_depart": "7h30 – 9h00",
       "description": "Le grand tour par Vauluisant et les bois."
@@ -56,8 +56,8 @@
       "type": "VTT",
       "couleur": "#E67E22",
       "gpx": "assets/gpx/vtt22.gpx",
-      "distance_km": 10.7,
-      "denivele_m": 185,
+      "distance_km": 22,
+      "denivele_m": 600,
       "difficulte": "Moyen",
       "horaire_depart": "7h30 – 9h30",
       "description": "Boucle roulante, idéale en famille sportive."
@@ -68,8 +68,8 @@
       "type": "Marche",
       "couleur": "#2E86C1",
       "gpx": "assets/gpx/marche12.gpx",
-      "distance_km": 7.4,
-      "denivele_m": 98,
+      "distance_km": 12,
+      "denivele_m": 200,
       "difficulte": "Moyen",
       "horaire_depart": "8h00 – 10h00",
       "description": "Par les vignes et les hameaux."
@@ -80,8 +80,8 @@
       "type": "Marche",
       "couleur": "#27AE60",
       "gpx": "assets/gpx/marche7.gpx",
-      "distance_km": 3.0,
-      "denivele_m": 60,
+      "distance_km": 7,
+      "denivele_m": 100,
       "difficulte": "Facile",
       "horaire_depart": "8h00 – 10h30",
       "description": "Petite boucle accessible à tous."
@@ -249,32 +249,39 @@
       "categorie": "Institutionnel",
       "logo": "",
       "lien": "",
-      "description": "Mise à disposition de la salle et des chemins."
+      "description": ""
+    },
+    {
+      "nom": "Communauté d'Agglomération de l'Auxerrois",
+      "categorie": "Institutionnel",
+      "logo": "assets/partenaires/Agglo.jpg",
+      "lien": "https://www.agglo-auxerrois.fr/",
+      "description": ""
     },
     {
       "nom": "AFM-Téléthon",
       "categorie": "Caritatif",
       "logo": "",
       "lien": "https://www.afm-telethon.fr/",
-      "description": "Bénéficiaire de la manifestation."
+      "description": ""
     },
     {
-      "nom": "Boulangerie du village",
-      "categorie": "Ravitaillement",
-      "logo": "",
-      "lien": "",
-      "description": "Le pain des quignons !"
+      "nom": "Boulangerie Patisserie Bisson",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/Bisson.jpg",
+      "lien": "https://www.facebook.com/BoulangeriePatisserieLaurentBisson",
+      "description": ""
     },
     {
-      "nom": "Domaine viticole",
-      "categorie": "Ravitaillement",
+      "nom": "Domaine de l'érable",
+      "categorie": "Partenaire",
       "logo": "",
       "lien": "",
-      "description": "Le vin chaud du Père Quignon."
+      "description": ""
     },
     {
       "nom": "Partenaire 5",
-      "categorie": "Sponsor",
+      "categorie": "Partenaire",
       "logo": "",
       "lien": "",
       "description": ""
