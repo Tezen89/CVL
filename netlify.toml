@@ -1,8 +1,10 @@
 # Netlify : site statique, rien à compiler.
-# La commande ci-dessous remplace celle saisie dans l'interface Netlify (ex. "Hugo").
+# Le site a été créé avec un réglage "Hugo" qui impose le dossier "public" :
+# on copie donc les fichiers utiles de l'app dans "public" et on publie ce dossier.
+# (Bonus : l'Excel et les scripts Python ne sont pas mis en ligne.)
 [build]
-  command = "echo 'Site statique - pas de build'"
-  publish = "."
+  command = "rm -rf public && mkdir public && cp -r index.html manifest.json data.json config.json assets public/"
+  publish = "public"
 
 # Toujours servir la dernière version des données
 [[headers]]
