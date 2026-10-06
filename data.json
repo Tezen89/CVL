@@ -37,13 +37,16 @@
     "affiche": "assets/images/Affiche.jpg",
     "facebook_embed": "<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FCaSePasseAChevannes%2Fposts%2Fpfbid0gv1cBWWadWKN1wr7jWSi1oAXvukg2SpfixoUEzTzT9iGYpQh849WQyn9mvzDophYl&show_text=true&width=500\" width=\"500\" height=\"0\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>",
     "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements gourmands vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération) et boissons chaudes</li>\n<li>Pain, fruits secs, pain d'épices, eau</li>\n</ul>\n<p>À l'arrivée, un dernier bol vous attend à la salle polyvalente.</p>",
-    "images_ravitaillement": [],
+    "images_ravitaillement": [
+      "assets/images/soupe.jpg",
+      "assets/images/vin.jpg"
+    ],
     "texte_venir": "<p>La randonnée part de la <strong>salle polyvalente de Chevannes</strong>, à une dizaine de minutes au sud d'Auxerre.</p>\n<ul>\n<li><strong>Depuis Auxerre</strong> : suivre la direction de Chevannes.</li>\n<li><strong>Stationnement</strong> : parking à proximité de la salle, suivre les indications des bénévoles.</li>\n</ul>\n<p>Pensez au <strong>covoiturage</strong> : moins de voitures, plus de places de parking… et un geste pour la planète !</p>",
     "venir_nom": "Salle polyvalente de Chevannes",
     "venir_adresse": "Chevannes (89240)",
     "venir_lat": 47.7520014345828,
     "venir_lng": 3.49034751759745,
-    "covoiturage": "<iframe style=\"border:none; width:100%; height:73px;\" src=\"https://togetzer.com/widget.php?params=YTo0OntzOjExOiJhcHBsaWVkVHlwZSI7czo1OiJldmVudCI7czo0OiJ0eXBlIjtzOjU6ImxpZ25lIjtzOjI6ImlkIjtzOjU6IjgyODYzIjtzOjc6Im9wdGlvbnMiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoxOntzOjg6IgAqAGl0ZW1zIjthOjI6e3M6NToiY29sb3IiO3M6NDoibm9pciI7czo2OiJib3JkZXIiO3M6NzoiYXJyb25kaSI7fX19\"></iframe>",
+    "covoiturage": "<iframe style=\"border:none; width:412px; height:172px\" src=\"https://togetzer.com/widget.php?params=YTo0OntzOjExOiJhcHBsaWVkVHlwZSI7czo1OiJldmVudCI7czo0OiJ0eXBlIjtzOjU6ImNhcnJlIjtzOjI6ImlkIjtzOjU6IjgyODYzIjtzOjc6Im9wdGlvbnMiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoxOntzOjg6IgAqAGl0ZW1zIjthOjI6e3M6NToiY29sb3IiO3M6NDoibm9pciI7czo2OiJib3JkZXIiO3M6NzoiYXJyb25kaSI7fX19\"></iframe>",
     "texte_dormir": "<p>Vous venez de loin ou vous souhaitez prolonger le plaisir ? Voici quelques adresses à Chevannes et alentour pour <strong>dormir</strong> et <strong>manger</strong>.</p>"
   },
   "menu": [
@@ -451,24 +454,79 @@
   ],
   "faq": [
     {
+      "categorie": "Animaux",
+      "question": "Puis-je venir avec mon chien ?",
+      "reponse": "Oui, tenu en laisse sur l'ensemble du parcours (la saison de chasse est ouverte et des troupeaux peuvent être présents). Des gamelles seront présentes sur les ravitaillements et à l'arrivée."
+    },
+    {
+      "categorie": "Dons",
+      "question": "Comment faire un don sans participer ?",
+      "reponse": "Via le bouton « Faire un don » de l'application : il mène directement à notre page de collecte Téléthon."
+    },
+    {
       "categorie": "Horaires",
       "question": "À quelle heure ouvre l'accueil ?",
-      "reponse": "L'accueil ouvre à 7h30 à la salle des fêtes. Les départs sont libres selon les plages horaires de chaque parcours (voir la page Carte)."
+      "reponse": "L'accueil ouvre à 7h30 à la salle polyvalente."
+    },
+    {
+      "categorie": "Horaires",
+      "question": "Quels sont les horaires pour chaque parcours ?",
+      "reponse": "Les départs sont libres jusqu'à 10h."
     },
     {
       "categorie": "Horaires",
       "question": "Jusqu'à quelle heure puis-je partir ?",
-      "reponse": "Derniers départs : 9h00 pour le grand VTT, 9h30 pour le petit VTT, 10h00 / 10h30 pour les marches. Les ravitaillements ferment vers midi."
+      "reponse": "Les départs peuvent se faire jusqu'à 10h."
     },
     {
       "categorie": "Inscription",
       "question": "Puis-je m'inscrire sur place ?",
-      "reponse": "Oui, avec une majoration de 2 €. L'inscription en ligne nous aide à prévoir les ravitaillements !"
+      "reponse": "Oui, avec une majoration de 2 €. Cette majoration ira rejoindre la cagnotte de dons."
     },
     {
       "categorie": "Inscription",
       "question": "Les mineurs peuvent-ils participer ?",
       "reponse": "Oui, accompagnés d'un adulte responsable. Gratuit pour les moins de 12 ans."
+    },
+    {
+      "categorie": "Marche",
+      "question": "Les bâtons de marche sont-ils autorisés ?",
+      "reponse": "Bien sûr ! Ils sont même conseillés sur les terrains boueux."
+    },
+    {
+      "categorie": "Météo",
+      "question": "La randonnée est-elle maintenue en cas de pluie ?",
+      "reponse": "Oui, sauf alerte météo (vigilance orange). En cas d'annulation, l'information sera publiée sur Facebook et dans l'application."
+    },
+    {
+      "categorie": "Pratique",
+      "question": "Où se garer ?",
+      "reponse": "4 Zones de Parking sont à votre disposition à proximité de la salle polyvalente. Vous retrouverez ces zones dans la rubrique \"Venir à Chevannes\". Des bénévoles peuvent vous orienter, merci de suivre leurs indications."
+    },
+    {
+      "categorie": "Pratique",
+      "question": "Y a-t-il des toilettes ?",
+      "reponse": "Toilettes au départ et à l'arrivée"
+    },
+    {
+      "categorie": "Pratique",
+      "question": "Y a-t-il des douches ?",
+      "reponse": "Des douches collectives hommes et femmes séparées seront mises à disposition, merci de respecter les autres participants."
+    },
+    {
+      "categorie": "Pratique",
+      "question": "Quelle tenue prévoir ?",
+      "reponse": "Fin novembre, il peut faire froid et humide : vêtements chauds, coupe-vent, gants, et une couleur vive (saison de chasse)."
+    },
+    {
+      "categorie": "Pratique",
+      "question": "Les parcours sont-ils balisés ?",
+      "reponse": "Oui, chaque parcours est fléché. Les parcours se séparent en fonction des distances au fur et à mesure. Vous pouvez aussi suivre votre position en direct sur la carte de l'application."
+    },
+    {
+      "categorie": "Pratique",
+      "question": "Peut-on faire les petits parcours avec une poussette ?",
+      "reponse": "Nos parcours ne sont pas particulièrement utilisables avec une poussette. Nous vous le déconseillons fortement."
     },
     {
       "categorie": "VTT",
@@ -484,46 +542,6 @@
       "categorie": "VTT",
       "question": "Y a-t-il un point de lavage des vélos ?",
       "reponse": "Un point de lavage est prévu à l'arrivée."
-    },
-    {
-      "categorie": "Marche",
-      "question": "Les bâtons de marche sont-ils autorisés ?",
-      "reponse": "Bien sûr ! Ils sont même conseillés sur les terrains boueux."
-    },
-    {
-      "categorie": "Animaux",
-      "question": "Puis-je venir avec mon chien ?",
-      "reponse": "Oui, tenu en laisse sur l'ensemble du parcours (la saison de chasse est ouverte et des troupeaux peuvent être présents). Pensez à son eau."
-    },
-    {
-      "categorie": "Pratique",
-      "question": "Où se garer ?",
-      "reponse": "Parking à proximité de la salle des fêtes. Merci de suivre les indications des bénévoles."
-    },
-    {
-      "categorie": "Pratique",
-      "question": "Y a-t-il des toilettes et des vestiaires ?",
-      "reponse": "Toilettes au départ. Pas de douches."
-    },
-    {
-      "categorie": "Pratique",
-      "question": "Quelle tenue prévoir ?",
-      "reponse": "Fin novembre, il peut faire froid et humide : vêtements chauds, coupe-vent, gants, et une couleur vive (saison de chasse)."
-    },
-    {
-      "categorie": "Pratique",
-      "question": "Les parcours sont-ils balisés ?",
-      "reponse": "Oui, chaque parcours est fléché avec sa couleur. Vous pouvez aussi suivre votre position en direct sur la carte de l'application."
-    },
-    {
-      "categorie": "Dons",
-      "question": "Comment faire un don sans participer ?",
-      "reponse": "Via le bouton « Faire un don » de l'application : il mène directement à notre page de collecte Téléthon."
-    },
-    {
-      "categorie": "Météo",
-      "question": "La randonnée est-elle maintenue en cas de pluie ?",
-      "reponse": "Oui, sauf alerte météo (vigilance orange). En cas d'annulation, l'information sera publiée sur Facebook et dans l'application."
     }
   ],
   "partenaires": [
