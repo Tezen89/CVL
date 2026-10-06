@@ -13,9 +13,8 @@
     "zoom_defaut": 13,
     "texte_accueil": "<p>Une randonnée <strong>VTT et marche</strong> d'hiver sur les chemins de Chevannes, avec des ravitaillements gourmands : <strong>soupe à l'oignon</strong> et <strong>vin chaud</strong>.</p>\n<p>Tous les bénéfices sont reversés au <strong>Téléthon</strong>.</p>",
     "texte_histoire": "<h2>La légende du Père Quignon</h2>\n<p>Bien avant que le phylloxéra ne ravage les vignes de l'Auxerrois, vivait à l'écart, au hameau de <strong>Vauluisant</strong> — aujourd'hui en ruines —, un vigneron bourru que tout Chevannes appelait <strong>le Père Quignon</strong>.</p>\n<p>Avare de mots comme de sous, il ne partageait rien : ni son vin, ni son pain, ni le secret de cette <strong>soupe à l'oignon</strong> dont l'odeur, dit-on, descendait jusqu'au village les soirs de gel.</p>\n<p>Un hiver plus rude que les autres, des marcheurs égarés frappèrent à sa porte. Contre toute attente, le vieil homme leur servit sa soupe… et leur apprit à y verser un trait de vin rouge : le <strong>chabrot</strong>. Au matin, les voyageurs repartirent ragaillardis, comme portés par une force mystérieuse.</p>\n<p>Depuis ce jour, le Père Quignon ne fut plus jamais le même. Chaque fin novembre, il parcourait les chemins pour offrir soupe et vin chaud à quiconque passait.</p>\n<h2>Aujourd'hui</h2>\n<p>Nous reprenons sa tournée. Les chemins sont les siens, les ravitaillements aussi — et chaque quignon de pain partagé devient un geste pour le <strong>Téléthon</strong>. <em>Pour quelques quignons de plus…</em></p>\n<p style=\"font-size:13px;color:#888\"><em>Légende librement inspirée de l'histoire locale.</em></p>",
-    "image_histoire": "assets/images/Affiche.jpg",
+    "image_histoire": "",
     "texte_inscription": "<p><strong>Tarifs</strong> : VTT 8 € · Marche 6 € · Gratuit pour les moins de 12 ans.<br>\nRavitaillements compris. Inscription possible sur place le jour J (+2 €).</p>\n<p><strong>Accueil et départs</strong> : salle des fêtes de Chevannes, à partir de 7h30. Départs libres jusqu'à 10h.</p>",
-    "mode_inscription": "",
     "lien_inscription": "https://chevannes-vtt.sumupstore.com/",
     "lien_don": "https://chevannes-vtt.sumupstore.com/",
     "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<li><strong>Frais d'inscription</strong> : intégralement reversés au Téléthon (hors frais de ravitaillement couverts par nos partenaires).</li>\n<li><strong>Dons en ligne</strong> : versés directement sur notre page de collecte officielle, avec reçu fiscal.</li>\n<li><strong>Dons sur place</strong> : urne au départ et aux ravitaillements.</li>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur (voir le reçu fiscal).</p>",
@@ -25,7 +24,6 @@
     "lien_facebook_evenement": "https://www.facebook.com/events/",
     "lien_facebook_page": "https://www.facebook.com/ChevannesVtt/",
     "lien_instagram": "https://www.instagram.com/chevannesvtt",
-    "hashtag": "#PereQuignon #Telethon2026",
     "texte_fdcy": "<h2>Randonneurs et chasseurs : partager la nature</h2>\n<p>Fin novembre, la <strong>saison de chasse</strong> bat son plein dans l'Yonne. Les parcours empruntent des chemins ouverts au public, mais traversent ou longent des territoires de chasse.</p>\n<p>L'organisation informe les sociétés de chasse locales de la date et des tracés de la manifestation.</p>\n<h3>Les bons réflexes</h3>\n<ul>\n<li>Restez <strong>sur les chemins balisés</strong>, ne coupez pas à travers bois ou cultures.</li>\n<li>Respectez les <strong>panneaux « Chasse en cours »</strong> et les consignes des signaleurs.</li>\n<li>Portez une <strong>couleur vive</strong> (gilet fluo conseillé).</li>\n<li>Tenez votre <strong>chien en laisse</strong>.</li>\n<li>Restez courtois : chacun a sa place dans la nature.</li>\n</ul>\n<h3>La Fédération départementale des chasseurs de l'Yonne</h3>\n<p>La FDC 89 coordonne l'activité cynégétique du département, la gestion de la faune sauvage et la sécurité à la chasse. Elle mène aussi des actions en faveur des habitats et de la biodiversité.</p>",
     "fdcy_adresse": "20 avenue de la Paix, 89000 Saint-Georges-sur-Baulche",
     "fdcy_telephone": "03 86 94 22 94",
@@ -35,7 +33,220 @@
     "texte_reglement": "<p>La participation implique l'acceptation pleine et entière du règlement ci-dessous.</p>",
     "contact_email": "chevannesvtt@gmail.com",
     "contact_telephone": "06 70 52 40 11",
-    "organisateur": "Chevannes VTT Loisirs"
+    "organisateur": "Chevannes VTT Loisirs",
+    "affiche": "assets/images/Affiche.jpg",
+    "facebook_embed": "",
+    "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements gourmands vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération) et boissons chaudes</li>\n<li>Pain, fruits secs, pain d'épices, eau</li>\n</ul>\n<p>À l'arrivée, un dernier bol vous attend à la salle polyvalente.</p>",
+    "images_ravitaillement": [],
+    "texte_venir": "<p>La randonnée part de la <strong>salle polyvalente de Chevannes</strong>, à une dizaine de minutes au sud d'Auxerre.</p>\n<ul>\n<li><strong>Depuis Auxerre</strong> : suivre la direction de Chevannes.</li>\n<li><strong>Stationnement</strong> : parking à proximité de la salle, suivre les indications des bénévoles.</li>\n</ul>\n<p>Pensez au <strong>covoiturage</strong> : moins de voitures, plus de places de parking… et un geste pour la planète !</p>",
+    "venir_nom": "Salle polyvalente de Chevannes",
+    "venir_adresse": "Chevannes (89240)",
+    "venir_lat": 47.7520014345828,
+    "venir_lng": 3.49034751759745,
+    "covoiturage": "",
+    "texte_dormir": "<p>Vous venez de loin ou vous souhaitez prolonger le plaisir ? Voici quelques adresses à Chevannes et alentour pour <strong>dormir</strong> et <strong>manger</strong>.</p>"
+  },
+  "menu": [
+    {
+      "id": "accueil",
+      "titre": "Accueil",
+      "icone": "🏠",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "histoire",
+      "titre": "Origine de la randonnée",
+      "icone": "📜",
+      "visible": true,
+      "tuile": true
+    },
+    {
+      "id": "carte",
+      "titre": "Carte des parcours",
+      "icone": "🗺️",
+      "visible": true,
+      "tuile": true
+    },
+    {
+      "id": "ravitaillement",
+      "titre": "Ravitaillement",
+      "icone": "🍲",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "inscription",
+      "titre": "Inscription & dons",
+      "icone": "✍️",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "venir",
+      "titre": "Venir à Chevannes",
+      "icone": "🚗",
+      "visible": true,
+      "tuile": true
+    },
+    {
+      "id": "dormir",
+      "titre": "Dormir & manger",
+      "icone": "🛏️",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "faq",
+      "titre": "FAQ",
+      "icone": "❓",
+      "visible": true,
+      "tuile": true
+    },
+    {
+      "id": "caritatif",
+      "titre": "Caritatif & dons",
+      "icone": "❤️",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "communication",
+      "titre": "Communication",
+      "icone": "📣",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "partenaires",
+      "titre": "Partenaires",
+      "icone": "🤝",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "secours",
+      "titre": "Secours",
+      "icone": "🚑",
+      "visible": true,
+      "tuile": true
+    },
+    {
+      "id": "fdcy",
+      "titre": "Chasse – FDCY",
+      "icone": "🦌",
+      "visible": true,
+      "tuile": false
+    },
+    {
+      "id": "reglement",
+      "titre": "Règlement",
+      "icone": "📄",
+      "visible": true,
+      "tuile": false
+    }
+  ],
+  "icones": {
+    "depart": {
+      "icone": "🏁",
+      "libelle": "Départ / arrivée",
+      "couleur": "#2E7D32"
+    },
+    "ravito": {
+      "icone": "🍲",
+      "libelle": "Ravitaillement",
+      "couleur": "#E0A526"
+    },
+    "point": {
+      "icone": "⭐",
+      "libelle": "Point remarquable",
+      "couleur": "#6B1E2E"
+    },
+    "secours": {
+      "icone": "➕",
+      "libelle": "Poste de secours",
+      "couleur": "#C62828"
+    },
+    "parking": {
+      "icone": "🅿️",
+      "libelle": "Parking",
+      "couleur": "#1565C0"
+    },
+    "vtt": {
+      "icone": "🚵",
+      "libelle": "VTT",
+      "couleur": ""
+    },
+    "marche": {
+      "icone": "🥾",
+      "libelle": "Marche",
+      "couleur": ""
+    },
+    "don": {
+      "icone": "❤️",
+      "libelle": "Don",
+      "couleur": ""
+    },
+    "inscription": {
+      "icone": "✍️",
+      "libelle": "Inscription",
+      "couleur": ""
+    },
+    "localiser": {
+      "icone": "📍",
+      "libelle": "Me localiser",
+      "couleur": ""
+    },
+    "vue": {
+      "icone": "🔍",
+      "libelle": "Vue d'ensemble",
+      "couleur": ""
+    },
+    "telephone": {
+      "icone": "📞",
+      "libelle": "Téléphone",
+      "couleur": ""
+    },
+    "date": {
+      "icone": "📅",
+      "libelle": "Date",
+      "couleur": ""
+    },
+    "lieu": {
+      "icone": "📍",
+      "libelle": "Lieu",
+      "couleur": ""
+    },
+    "facebook": {
+      "icone": "📅",
+      "libelle": "Facebook",
+      "couleur": ""
+    },
+    "instagram": {
+      "icone": "📸",
+      "libelle": "Instagram",
+      "couleur": ""
+    },
+    "partager": {
+      "icone": "🔗",
+      "libelle": "Partager",
+      "couleur": ""
+    },
+    "wc": {
+      "icone": "🚾",
+      "libelle": "WC",
+      "couleur": "#1565C0"
+    },
+    "douche": {
+      "icone": "🚿",
+      "libelle": "Douche",
+      "couleur": "#1565C0"
+    },
+    "lavage": {
+      "icone": "💧",
+      "libelle": "Point de lavage",
+      "couleur": "#1565C0"
+    }
   },
   "parcours": [
     {
@@ -164,6 +375,78 @@
       ],
       "horaires": "",
       "description": "Le hameau du Père Quignon."
+    },
+    {
+      "id": "P2",
+      "nom": "Point de lavage",
+      "type": "lavage",
+      "gps": {
+        "lat": 47.7517708927271,
+        "lng": 3.48993445154713
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": ""
+    },
+    {
+      "id": "P3",
+      "nom": "WC",
+      "type": "wc",
+      "gps": {
+        "lat": 47.7518395187861,
+        "lng": 3.48978613005564
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": ""
+    },
+    {
+      "id": "P4",
+      "nom": "Parking 1",
+      "type": "parking",
+      "gps": {
+        "lat": 47.751702266437,
+        "lng": 3.49063140085897
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": ""
+    },
+    {
+      "id": "P5",
+      "nom": "Parking 2",
+      "type": "parking",
+      "gps": {
+        "lat": 47.7521172402421,
+        "lng": 3.48966013734221
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": ""
+    },
+    {
+      "id": "P6",
+      "nom": "Parking 3",
+      "type": "parking",
+      "gps": {
+        "lat": 47.7508594397033,
+        "lng": 3.49044320890228
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": ""
+    },
+    {
+      "id": "P6",
+      "nom": "Parking 4",
+      "type": "parking",
+      "gps": {
+        "lat": 47.7510835508791,
+        "lng": 3.49247185993056
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": ""
     }
   ],
   "faq": [
@@ -247,7 +530,7 @@
     {
       "nom": "Commune de Chevannes",
       "categorie": "Institutionnel",
-      "logo": "assets/partenaires/Mairie.jpg",
+      "logo": "assets/partenaires/Mairie.png",
       "lien": "https://chevannes-yonne.fr/",
       "description": ""
     },
@@ -284,6 +567,53 @@
       "categorie": "Partenaire",
       "logo": "",
       "lien": "",
+      "description": ""
+    }
+  ],
+  "dormir": [
+    {
+      "nom": "Château de Ribourdin",
+      "categorie": "Dormir",
+      "logo": "",
+      "lien": "https://www.chateauderibourdin.com/fr",
+      "adresse": "Chevannes",
+      "telephone": "",
+      "description": "Gîte 6 personnes"
+    },
+    {
+      "nom": "Chambre d'hôtes exemple",
+      "categorie": "Dormir",
+      "logo": "",
+      "lien": "",
+      "adresse": "",
+      "telephone": "",
+      "description": ""
+    },
+    {
+      "nom": "Maison Lobies",
+      "categorie": "Manger",
+      "logo": "",
+      "lien": "https://latable-lobies.fr/",
+      "adresse": "",
+      "telephone": "",
+      "description": ""
+    },
+    {
+      "nom": "Restaurant L'évidence",
+      "categorie": "Manger",
+      "logo": "",
+      "lien": "https://www.facebook.com/profile.php?id=100063481655517#",
+      "adresse": "",
+      "telephone": "",
+      "description": "Cuisine du terroir"
+    },
+    {
+      "nom": "Boulangerie Patisserie Bisson",
+      "categorie": "Manger",
+      "logo": "assets/partenaires/Bisson.jpg",
+      "lien": "https://www.facebook.com/BoulangeriePatisserieLaurentBisson",
+      "adresse": "",
+      "telephone": "",
       "description": ""
     }
   ],

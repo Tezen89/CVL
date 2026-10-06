@@ -213,6 +213,48 @@ body.menu-open .drawer{transform:none;}
 .hashtag{font-size:15px;font-weight:700;color:var(--main);background:#F6EEE0;border-radius:10px;padding:.7rem 1rem;cursor:pointer;text-align:center;}
 .toast{position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:.7rem 1.1rem;border-radius:12px;font-size:14px;z-index:900;transition:transform .3s;}
 .toast.on{transform:translate(-50%,0);}
+/* icônes perso */
+.ic{display:inline-flex;align-items:center;justify-content:center;line-height:1;}
+.ic img{width:1.25em;height:1.25em;object-fit:contain;display:block;}
+.drw-ico .ic img,.tile-ico .ic img{width:24px;height:24px;}
+.mk .ic img{width:62%;height:62%;}
+.map-btn .ic img{width:22px;height:22px;}
+/* affiche */
+.affiche{display:block;width:100%;max-width:520px;margin:1.2rem auto 0;border-radius:14px;box-shadow:0 10px 30px rgba(60,20,10,.22);cursor:zoom-in;}
+/* carrousel */
+.car{position:relative;border-radius:var(--r);overflow:hidden;margin-bottom:1rem;background:#000;}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
+.car-track::-webkit-scrollbar{display:none;}
+.car-track img{flex:0 0 100%;width:100%;height:min(62vw,380px);object-fit:cover;scroll-snap-align:center;cursor:zoom-in;}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.85);font-size:20px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+.car-btn.p{left:.6rem}.car-btn.n{right:.6rem}
+.car-dots{position:absolute;bottom:.6rem;left:0;right:0;display:flex;justify-content:center;gap:6px;}
+.car-dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);}
+.car-dots span.on{background:#fff;}
+.single-img{width:100%;border-radius:var(--r);margin-bottom:1rem;display:block;cursor:zoom-in;}
+.rv{display:flex;gap:.8rem;align-items:flex-start;}
+.rv-ico{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:950;display:none;align-items:center;justify-content:center;}
+.lb.open{display:flex;}
+.lb img{max-width:96vw;max-height:92vh;object-fit:contain;}
+.lb button{position:absolute;top:calc(1rem + var(--safe-t));right:1rem;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;}
+/* venir */
+.nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.9rem .5rem;border-radius:12px;border:1.5px solid var(--line);background:#fff;text-decoration:none;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.nav-btn i{font-style:normal;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:900;}
+.mini-map{height:200px;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-top:.8rem;}
+.embed{width:100%;border:none;border-radius:12px;background:#fff;display:block;}
+.embed-wrap iframe{max-width:100%;border:none;border-radius:12px;display:block;margin:0 auto;}
+/* dormir */
+.dm{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.9rem;display:flex;gap:.9rem;margin-bottom:.6rem;}
+.dm-logo{width:64px;height:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.dm-logo img{max-width:64px;max-height:64px;object-fit:contain;border-radius:8px;}
+.dm-logo .pt-ini{width:56px;height:56px;font-size:18px;}
+.dm-b{flex:1;min-width:0;font-size:13px;color:var(--muted);line-height:1.5;}
+.dm-b b{font-size:15px;color:var(--ink);display:block;margin-bottom:.15rem;}
+.dm-links{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.45rem;}
+.dm-links a{font-size:12px;font-weight:700;padding:5px 10px;border-radius:8px;border:1px solid var(--line);text-decoration:none;color:var(--main);background:#FFFDF9;}
 .empty{color:var(--muted);font-style:italic;font-size:14px;}
 @media(min-width:900px){.tiles{grid-template-columns:repeat(4,1fr);}}
 </style>
@@ -223,7 +265,7 @@ body.menu-open .drawer{transform:none;}
 <header class="hdr">
   <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   <div class="hdr-title" id="hdrTitle">Accueil</div>
-  <a class="hdr-don" href="#caritatif" id="hdrDon">❤️ Don</a>
+  <a class="hdr-don" href="#caritatif" id="hdrDon"><span data-ic="don">❤️</span> Don</a>
 </header>
 
 <!-- ══ MENU BURGER ══ -->
@@ -245,34 +287,28 @@ body.menu-open .drawer{transform:none;}
     <div class="hero-ed" id="aEd"></div>
     <h1 class="hero-nom" id="aNom"></h1>
     <div class="hero-sous" id="aSous"></div>
+    <img class="affiche" id="aAffiche" alt="Affiche de l'événement" style="display:none" onclick="lightbox(this.src)">
     <div class="hero-card">
-      <div class="hero-info"><span>📅</span><div><b id="aDate"></b></div></div>
-      <div class="hero-info"><span>📍</span><div id="aLieu"></div></div>
+      <div class="hero-info"><span data-ic="date">📅</span><div><b id="aDate"></b></div></div>
+      <div class="hero-info"><span data-ic="lieu">📍</span><div id="aLieu"></div></div>
       <div class="cd" id="aCd"></div>
       <div class="rich" id="aTx" style="font-size:14px"></div>
       <div class="btns" style="margin-top:.8rem">
-        <a class="btn btn-main btn-block" href="#inscription">✍️ Je m'inscris</a>
-        <a class="btn btn-don btn-block" id="aDon" target="_blank" rel="noopener">❤️ Faire un don au Téléthon</a>
+        <a class="btn btn-main btn-block" id="aInsc" href="#inscription"><span data-ic="inscription">✍️</span> Je m'inscris</a>
+        <a class="btn btn-don btn-block" id="aDon" target="_blank" rel="noopener"><span data-ic="don">❤️</span> Faire un don au Téléthon</a>
       </div>
     </div>
   </div>
-  <div class="wrap">
-    <div class="sec-t">Les parcours</div>
-    <div class="card" id="aPc" style="padding:.5rem 1rem"></div>
+  <div class="wrap" id="aTilesWrap">
     <div class="sec-t">En un coup d'œil</div>
-    <div class="tiles">
-      <button class="tile" onclick="go('histoire')"><span class="tile-ico">📜</span><b>La légende</b><span>L'origine de la randonnée</span></button>
-      <button class="tile" onclick="go('carte')"><span class="tile-ico">🗺️</span><b>Carte</b><span>Tracés & ravitos</span></button>
-      <button class="tile" onclick="go('faq')"><span class="tile-ico">❓</span><b>FAQ</b><span>Horaires, VAE, chiens…</span></button>
-      <button class="tile" onclick="go('secours')"><span class="tile-ico">🚑</span><b>Secours</b><span>Numéros d'urgence</span></button>
-    </div>
+    <div class="tiles" id="aTiles"></div>
   </div>
 </section>
 
 <!-- ══ 2. HISTOIRE ══ -->
 <section class="page" id="p-histoire">
   <div class="wrap">
-    <h1 class="h1">Origine de la randonnée</h1>
+    <h1 class="h1" data-title="histoire">Origine de la randonnée</h1>
     <img id="hImg" alt="" style="width:100%;border-radius:var(--r);margin:.6rem 0 1rem;display:none">
     <div class="card"><div class="rich" id="hTx"></div></div>
     <a class="btn btn-main btn-block" href="#inscription">Suivre les traces du Père Quignon →</a>
@@ -284,8 +320,8 @@ body.menu-open .drawer{transform:none;}
   <div id="map"></div>
   <div class="map-st" id="mapSt"></div>
   <div class="map-btns">
-    <button class="map-btn" id="btnLoc" title="Me localiser" onclick="toggleLoc()">📍</button>
-    <button class="map-btn" title="Vue d'ensemble" onclick="fitAll()">🔍</button>
+    <button class="map-btn" id="btnLoc" title="Me localiser" onclick="toggleLoc()"><span data-ic="localiser">📍</span></button>
+    <button class="map-btn" title="Vue d'ensemble" onclick="fitAll()"><span data-ic="vue">🔍</span></button>
   </div>
   <div class="legend" id="legend">
     <div class="lg-head" onclick="document.getElementById('legend').classList.toggle('closed')">
@@ -298,53 +334,59 @@ body.menu-open .drawer{transform:none;}
 <!-- ══ 4. INSCRIPTION ══ -->
 <section class="page" id="p-inscription">
   <div class="wrap">
-    <h1 class="h1">Inscription & dons</h1>
+    <h1 class="h1" data-title="inscription">Inscription & dons</h1>
     <div class="card"><div class="rich" id="iTx"></div></div>
     <div id="iExt" style="display:none" class="card">
       <p style="font-size:14px;margin-bottom:.8rem">Inscription et paiement sécurisés en ligne :</p>
-      <a class="btn btn-main btn-block" id="iExtBtn" target="_blank" rel="noopener">✍️ S'inscrire en ligne ↗</a>
+      <a class="btn btn-main btn-block" id="iExtBtn" target="_blank" rel="noopener"><span data-ic="inscription">✍️</span> S'inscrire en ligne ↗</a>
     </div>
-    <form class="card" id="iForm" name="inscription" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none" onsubmit="return sendForm(event)">
-      <input type="hidden" name="form-name" value="inscription">
-      <p class="hp"><label>Ne pas remplir : <input name="bot-field"></label></p>
-      <div class="row2">
-        <div class="fld"><label for="f-prenom">Prénom *</label><input id="f-prenom" name="prenom" required autocomplete="given-name"></div>
-        <div class="fld"><label for="f-nom">Nom *</label><input id="f-nom" name="nom" required autocomplete="family-name"></div>
-      </div>
-      <div class="fld"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-      <div class="row2">
-        <div class="fld"><label for="f-tel">Téléphone *</label><input id="f-tel" name="telephone" type="tel" required autocomplete="tel"></div>
-        <div class="fld"><label for="f-cp">Code postal</label><input id="f-cp" name="code_postal" inputmode="numeric" autocomplete="postal-code"></div>
-      </div>
-      <input type="hidden" name="parcours" id="f-parcours">
-      <div class="fld"><label>Parcours *</label><div class="pc-choice" id="fPc"></div></div>
-      <div class="row2">
-        <div class="fld"><label for="f-adultes">Adultes</label><input id="f-adultes" name="nb_adultes" type="number" min="0" value="1"></div>
-        <div class="fld"><label for="f-enfants">Enfants (-12 ans)</label><input id="f-enfants" name="nb_enfants" type="number" min="0" value="0"></div>
-      </div>
-      <div class="row2">
-        <div class="fld"><label for="f-vae">VAE ?</label><select id="f-vae" name="vae"><option>Non</option><option>Oui</option></select></div>
-        <div class="fld"><label for="f-chien">Chien ?</label><select id="f-chien" name="chien"><option>Non</option><option>Oui</option></select></div>
-      </div>
-      <div class="fld"><label for="f-club">Club / groupe</label><input id="f-club" name="club"></div>
-      <div class="fld"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="2"></textarea></div>
-      <label class="chk"><input type="checkbox" name="reglement" value="accepté" required><span>J'ai lu et j'accepte le <a href="#reglement">règlement de la randonnée</a> *</span></label>
-      <label class="chk"><input type="checkbox" name="photos" value="accepté"><span>J'accepte d'apparaître sur les photos publiées par l'organisation</span></label>
-      <button class="btn btn-main btn-block" type="submit" id="fBtn">Valider mon inscription</button>
-      <div class="form-msg" id="fMsg"></div>
-    </form>
     <div class="don-box">
       <h3>Pour quelques quignons de plus…</h3>
       <p>Vous ne pouvez pas venir, ou vous voulez aller plus loin ? Chaque euro compte pour la recherche.</p>
-      <a class="btn btn-block" id="iDon" target="_blank" rel="noopener">❤️ Faire un don au Téléthon ↗</a>
+      <a class="btn btn-block" id="iDon" target="_blank" rel="noopener"><span data-ic="don">❤️</span> Faire un don au Téléthon ↗</a>
     </div>
+  </div>
+</section>
+
+<!-- ══ RAVITAILLEMENT ══ -->
+<section class="page" id="p-ravitaillement">
+  <div class="wrap">
+    <h1 class="h1" data-title="ravitaillement">Ravitaillement</h1>
+    <div id="rvImgs"></div>
+    <div class="card"><div class="rich" id="rvTx"></div></div>
+    <div id="rvList"></div>
+  </div>
+</section>
+
+<!-- ══ VENIR ══ -->
+<section class="page" id="p-venir">
+  <div class="wrap">
+    <h1 class="h1" data-title="venir">Venir à Chevannes</h1>
+    <div class="card"><div class="rich" id="vTx"></div></div>
+    <div class="card">
+      <div style="font-weight:800;font-size:16px" id="vNom"></div>
+      <div style="font-size:14px;color:var(--muted)" id="vAdr"></div>
+      <div style="font-size:13px;color:var(--muted);margin:.2rem 0 .8rem;font-family:ui-monospace,Menlo,monospace" id="vGps"></div>
+      <div class="nav-grid" id="vNav"></div>
+      <div class="mini-map" id="vMap"></div>
+    </div>
+    <div id="vCov"></div>
+  </div>
+</section>
+
+<!-- ══ DORMIR & MANGER ══ -->
+<section class="page" id="p-dormir">
+  <div class="wrap">
+    <h1 class="h1" data-title="dormir">Dormir & manger</h1>
+    <div class="card"><div class="rich" id="dTx"></div></div>
+    <div id="dList"></div>
   </div>
 </section>
 
 <!-- ══ 5. FAQ ══ -->
 <section class="page" id="p-faq">
   <div class="wrap">
-    <h1 class="h1">Questions fréquentes</h1>
+    <h1 class="h1" data-title="faq">Questions fréquentes</h1>
     <input class="search" type="search" id="qSearch" placeholder="🔍 Rechercher (chien, VAE, horaire…)" oninput="renderFaq()">
     <div class="chips" id="qChips"></div>
     <div id="qList"></div>
@@ -355,7 +397,7 @@ body.menu-open .drawer{transform:none;}
 <!-- ══ 6. CARITATIF ══ -->
 <section class="page" id="p-caritatif">
   <div class="wrap">
-    <h1 class="h1">Caritatif & dons</h1>
+    <h1 class="h1" data-title="caritatif">Caritatif & dons</h1>
     <div class="card" id="cGauge" style="display:none">
       <div style="font-weight:700">Notre collecte</div>
       <div class="gauge"><div id="cGaugeBar" style="width:0"></div></div>
@@ -365,7 +407,7 @@ body.menu-open .drawer{transform:none;}
     <div class="don-box">
       <h3>Je fais un don</h3>
       <p>Directement sur notre page de collecte officielle Téléthon, avec reçu fiscal.</p>
-      <a class="btn btn-block" id="cDon" target="_blank" rel="noopener">❤️ Faire un don ↗</a>
+      <a class="btn btn-block" id="cDon" target="_blank" rel="noopener"><span data-ic="don">❤️</span> Faire un don ↗</a>
     </div>
   </div>
 </section>
@@ -373,14 +415,9 @@ body.menu-open .drawer{transform:none;}
 <!-- ══ 7. COMMUNICATION ══ -->
 <section class="page" id="p-communication">
   <div class="wrap">
-    <h1 class="h1">Communication</h1>
+    <h1 class="h1" data-title="communication">Communication</h1>
     <div class="card"><div class="rich" id="mTx"></div>
       <div class="btns" id="mBtns" style="margin-top:.6rem"></div>
-    </div>
-    <div class="card" id="mTagBox" style="display:none">
-      <div style="font-weight:700;margin-bottom:.5rem">Utilisez nos hashtags</div>
-      <div class="hashtag" id="mTag" onclick="copy(this.textContent,'Hashtags copiés !')"></div>
-      <div style="font-size:12px;color:var(--muted);margin-top:.4rem;text-align:center">Touchez pour copier</div>
     </div>
     <div id="mFeed"></div>
   </div>
@@ -389,7 +426,7 @@ body.menu-open .drawer{transform:none;}
 <!-- ══ 8. PARTENAIRES ══ -->
 <section class="page" id="p-partenaires">
   <div class="wrap">
-    <h1 class="h1">Nos partenaires</h1>
+    <h1 class="h1" data-title="partenaires">Nos partenaires</h1>
     <p class="lead">Merci à celles et ceux qui rendent cette journée possible.</p>
     <div id="ptList"></div>
   </div>
@@ -398,7 +435,7 @@ body.menu-open .drawer{transform:none;}
 <!-- ══ 9. SECOURS ══ -->
 <section class="page" id="p-secours">
   <div class="wrap">
-    <h1 class="h1">Secours</h1>
+    <h1 class="h1" data-title="secours">Secours</h1>
     <p class="lead">Touchez un numéro pour appeler.</p>
     <div id="sList"></div>
     <div class="card" style="margin-top:1rem">
@@ -419,7 +456,7 @@ body.menu-open .drawer{transform:none;}
 <!-- ══ 10. FDCY ══ -->
 <section class="page" id="p-fdcy">
   <div class="wrap">
-    <h1 class="h1">Chasse & cohabitation</h1>
+    <h1 class="h1" data-title="fdcy">Chasse & cohabitation</h1>
     <div class="card"><div class="rich" id="fTx"></div></div>
     <div class="card" id="fContact"></div>
   </div>
@@ -428,13 +465,14 @@ body.menu-open .drawer{transform:none;}
 <!-- ══ 11. RÈGLEMENT ══ -->
 <section class="page" id="p-reglement">
   <div class="wrap">
-    <h1 class="h1">Règlement de la randonnée</h1>
+    <h1 class="h1" data-title="reglement">Règlement de la randonnée</h1>
     <div class="rich" id="rTx" style="margin-bottom:1rem"></div>
     <div id="rDoc"></div>
   </div>
 </section>
 
 <div class="toast" id="toast"></div>
+<div class="lb" id="lb" onclick="if(event.target===this)closeLb()"><img id="lbImg" alt=""><button onclick="closeLb()" aria-label="Fermer">✕</button></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -443,24 +481,44 @@ if (location.protocol === 'file:') {
   throw new Error('file://');
 }
 
-// ── PAGES DU MENU ─────────────────────────────
-const PAGES = [
-  {id:'accueil',       ico:'🏠', lbl:'Accueil'},
-  {id:'histoire',      ico:'📜', lbl:'Origine de la randonnée'},
-  {id:'carte',         ico:'🗺️', lbl:'Carte des parcours'},
-  {id:'inscription',   ico:'✍️', lbl:'Inscription & dons'},
-  {id:'faq',           ico:'❓', lbl:'FAQ'},
-  {id:'caritatif',     ico:'❤️', lbl:'Caritatif & dons'},
-  {id:'communication', ico:'📣', lbl:'Communication'},
-  {id:'partenaires',   ico:'🤝', lbl:'Partenaires'},
-  {id:'secours',       ico:'🚑', lbl:'Secours'},
-  {id:'fdcy',          ico:'🦌', lbl:'Chasse – FDCY'},
-  {id:'reglement',     ico:'📄', lbl:'Règlement'},
+// ── PAGES DU MENU (valeurs par défaut, remplacées par l'onglet Menu de l'Excel) ──
+let PAGES = [
+  {id:'accueil',        icone:'🏠', titre:'Accueil'},
+  {id:'histoire',       icone:'📜', titre:'Origine de la randonnée', tuile:true},
+  {id:'carte',          icone:'🗺️', titre:'Carte des parcours', tuile:true},
+  {id:'ravitaillement', icone:'🍲', titre:'Ravitaillement'},
+  {id:'inscription',    icone:'✍️', titre:'Inscription & dons'},
+  {id:'venir',          icone:'🚗', titre:'Venir à Chevannes', tuile:true},
+  {id:'dormir',         icone:'🛏️', titre:'Dormir & manger'},
+  {id:'faq',            icone:'❓', titre:'FAQ', tuile:true},
+  {id:'caritatif',      icone:'❤️', titre:'Caritatif & dons'},
+  {id:'communication',  icone:'📣', titre:'Communication'},
+  {id:'partenaires',    icone:'🤝', titre:'Partenaires'},
+  {id:'secours',        icone:'🚑', titre:'Secours', tuile:true},
+  {id:'fdcy',           icone:'🦌', titre:'Chasse – FDCY'},
+  {id:'reglement',      icone:'📄', titre:'Règlement'},
 ];
+// Icônes par défaut (remplacées par l'onglet Icones)
+let IC = {
+  depart:{icone:'🏁',couleur:'#2E7D32',libelle:'Départ / arrivée'}, ravito:{icone:'🍲',couleur:'#E0A526',libelle:'Ravitaillement'},
+  point:{icone:'⭐',couleur:'#6B1E2E',libelle:'Point remarquable'}, secours:{icone:'➕',couleur:'#C62828',libelle:'Poste de secours'},
+  parking:{icone:'🅿️',couleur:'#1565C0',libelle:'Parking'}, vtt:{icone:'🚵'}, marche:{icone:'🥾'}, don:{icone:'❤️'},
+  inscription:{icone:'✍️'}, localiser:{icone:'📍'}, vue:{icone:'🔍'}, telephone:{icone:'📞'}, date:{icone:'📅'}, lieu:{icone:'📍'},
+  facebook:{icone:'📅'}, instagram:{icone:'📸'}, partager:{icone:'🔗'},
+};
 
-let D = null, E = {}, MAP = null, LAYERS = {}, PTS = [], uMark = null, watchId = null, faqCat = 'Toutes';
+let D = null, E = {}, MAP = null, VMAP = null, LAYERS = {}, PTS = [], uMark = null, watchId = null, faqCat = 'Toutes';
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isImg = v => /\.(png|jpe?g|svg|webp|gif)(\?.*)?$/i.test(v || '');
+// Rend une icône : emoji/texte, ou image (assets/icons/…)
+function icon(v) {
+  if (!v) return '';
+  return isImg(v) ? `<span class="ic"><img src="${esc(v)}" alt=""></span>` : `<span class="ic">${esc(v)}</span>`;
+}
+const ic = k => icon((IC[k] || {}).icone);
+const tel = n => 'tel:' + String(n || '').replace(/[^\d+]/g, '');
+const pageOf = id => PAGES.find(p => p.id === id) || {};
 
 // ── NAVIGATION (hash → liens partageables + bouton retour natif) ──
 function toggleMenu(force) {
@@ -470,18 +528,20 @@ function toggleMenu(force) {
 }
 function go(id) { location.hash = id; }
 function route() {
+  const vis = PAGES.filter(p => p.visible !== false);
   const id = (location.hash.slice(1) || 'accueil');
-  const p = PAGES.find(x => x.id === id) || PAGES[0];
+  const p = vis.find(x => x.id === id) || vis[0];
   document.querySelectorAll('.page').forEach(s => s.classList.toggle('active', s.id === 'p-' + p.id));
   document.querySelectorAll('.drw-item').forEach(a => a.classList.toggle('on', a.dataset.p === p.id));
-  $('hdrTitle').textContent = p.id === 'accueil' ? (E.nom || 'Accueil') : p.lbl;
+  $('hdrTitle').textContent = p.id === 'accueil' ? (E.nom || p.titre) : p.titre;
   $('hdrDon').style.display = (p.id === 'caritatif' || p.id === 'inscription') ? 'none' : '';
-  toggleMenu(false);
+  toggleMenu(false); closeLb();
   window.scrollTo(0, 0);
   if (p.id === 'carte') initMap();
+  if (p.id === 'venir') initVMap();
 }
 window.addEventListener('hashchange', route);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { toggleMenu(false); closeLb(); } });
 
 // ── INIT ──────────────────────────────────────
 async function init() {
@@ -495,22 +555,32 @@ async function init() {
     E = D.evenement || {};
     document.title = E.nom || document.title;
 
-    $('drwNav').innerHTML = PAGES.map(p => `<a class="drw-item" data-p="${p.id}" href="#${p.id}"><span class="drw-ico">${p.ico}</span>${p.lbl}</a>`).join('');
+    // Menu et icônes depuis l'Excel
+    if (D.menu && D.menu.length) {
+      const def = Object.fromEntries(PAGES.map(p => [p.id, p]));
+      PAGES = D.menu.filter(m => def[m.id]).map(m => ({...def[m.id], ...m, icone: m.icone || def[m.id].icone}));
+      if (!PAGES.length) PAGES = Object.values(def);
+    }
+    Object.entries(D.icones || {}).forEach(([k, v]) => { IC[k] = {...(IC[k] || {}), ...Object.fromEntries(Object.entries(v).filter(([, x]) => x))}; });
+    document.querySelectorAll('[data-ic]').forEach(el => { const v = (IC[el.dataset.ic] || {}).icone; if (v) el.outerHTML = icon(v); });
+    document.querySelectorAll('[data-title]').forEach(el => { const p = pageOf(el.dataset.title); if (p.titre) el.textContent = p.titre; });
+
+    $('drwNav').innerHTML = PAGES.filter(p => p.visible !== false).map(p => `<a class="drw-item" data-p="${p.id}" href="#${p.id}"><span class="drw-ico">${icon(p.icone)}</span>${esc(p.titre)}</a>`).join('');
     $('drwNom').textContent = E.nom || '';
     $('drwDate').textContent = [E.date_affichee, E.lieu].filter(Boolean).join(' · ');
     $('drwFoot').innerHTML = esc(E.organisateur || '') + (E.contact_email ? `<br><a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : '');
 
-    renderAccueil(); renderHistoire(); renderInscription(); renderFaq(); renderCaritatif();
-    renderCom(); renderPartenaires(); renderSecours(); renderFdcy(); renderReglement();
+    renderAccueil(); renderHistoire(); renderRavito(); renderInscription(); renderVenir(); renderDormir();
+    renderFaq(); renderCaritatif(); renderCom(); renderPartenaires(); renderSecours(); renderFdcy(); renderReglement();
     route();
   } catch (e) { console.error(e); document.body.insertAdjacentHTML('beforeend', `<div class="toast on">Erreur : ${esc(e.message)}</div>`); }
 }
 
 function donLinks() { ['aDon', 'iDon', 'cDon'].forEach(id => $(id).href = E.lien_don || '#caritatif'); }
 const fmtKm = p => [p.distance_km != null ? p.distance_km + ' km' : '', p.denivele_m != null ? 'D+ ' + p.denivele_m + ' m' : ''].filter(Boolean).join(' · ');
-const typeIco = t => /vtt|v[ée]lo/i.test(t || '') ? '🚵' : '🥾';
+const typeIco = t => /vtt|v[ée]lo/i.test(t || '') ? ic('vtt') : ic('marche');
 
-// ── 1. ACCUEIL ────────────────────────────────
+// ── ACCUEIL ───────────────────────────────────
 function renderAccueil() {
   $('aEd').textContent = E.edition || '';
   $('aNom').textContent = E.nom || '';
@@ -518,11 +588,12 @@ function renderAccueil() {
   $('aDate').textContent = E.date_affichee || '';
   $('aLieu').textContent = E.lieu || '';
   $('aTx').innerHTML = E.texte_accueil || '';
+  if (E.affiche) { const a = $('aAffiche'); a.src = E.affiche; a.style.display = 'block'; a.onerror = () => a.style.display = 'none'; }
+  if (E.lien_inscription) { $('aInsc').href = E.lien_inscription; $('aInsc').target = '_blank'; $('aInsc').rel = 'noopener'; }
   donLinks();
-  $('aPc').innerHTML = (D.parcours || []).map(p => `
-    <div class="pc-mini"><span class="pc-dot" style="background:${esc(p.couleur)}"></span>
-      <div style="flex:1"><b style="font-size:14px">${typeIco(p.type)} ${esc(p.nom)}</b><br><small style="color:var(--muted)">${fmtKm(p)}${p.horaire_depart ? ' · départ ' + esc(p.horaire_depart) : ''}</small></div>
-      ${p.difficulte ? `<span class="tag">${esc(p.difficulte)}</span>` : ''}</div>`).join('') || '<p class="empty">Parcours à venir.</p>';
+  const tiles = PAGES.filter(p => p.tuile && p.visible !== false && p.id !== 'accueil');
+  $('aTiles').innerHTML = tiles.map(p => `<button class="tile" onclick="go('${p.id}')"><span class="tile-ico">${icon(p.icone)}</span><b>${esc(p.titre)}</b></button>`).join('');
+  $('aTilesWrap').style.display = tiles.length ? '' : 'none';
   countdown(); setInterval(countdown, 1000 * 30);
 }
 function countdown() {
@@ -533,23 +604,18 @@ function countdown() {
   if (s <= 0) { el.innerHTML = `<div style="grid-column:1/-1;padding:.8rem"><b style="font-size:17px">${s > -86400 ? "🎉 C'est aujourd'hui !" : 'Merci à tous !'}</b></div>`; return; }
   const j = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
   el.innerHTML = [[j, 'jours'], [h, 'heures'], [m, 'min']].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('')
-    + `<div><b>🥣</b><span>soupe</span></div>`;
+    + `<div><b>${ic('ravito') || '🥣'}</b><span>soupe</span></div>`;
 }
 
-// ── 2. HISTOIRE ───────────────────────────────
+// ── HISTOIRE ──────────────────────────────────
 function renderHistoire() {
   $('hTx').innerHTML = E.texte_histoire || '<p class="empty">Histoire à venir…</p>';
-  if (E.image_histoire) { $('hImg').src = E.image_histoire; $('hImg').style.display = 'block'; $('hImg').onerror = function(){ this.style.display = 'none'; }; }
+  if (E.image_histoire) { const i = $('hImg'); i.src = E.image_histoire; i.style.display = 'block'; i.style.cursor = 'zoom-in'; i.onclick = () => lightbox(i.src); i.onerror = () => i.style.display = 'none'; }
 }
 
-// ── 3. CARTE ──────────────────────────────────
-const PT_STYLE = {
-  depart:  {bg:'#2E7D32', ico:'🏁', lbl:'Départ / arrivée'},
-  ravito:  {bg:'#E0A526', ico:'🍲', lbl:'Ravitaillement'},
-  point:   {bg:'#6B1E2E', ico:'⭐', lbl:'Point remarquable'},
-  secours: {bg:'#C62828', ico:'➕', lbl:'Poste de secours'},
-  parking: {bg:'#1565C0', ico:'🅿️', lbl:'Parking'},
-};
+// ── CARTE ─────────────────────────────────────
+const PT_TYPES = ['depart', 'ravito', 'point', 'secours', 'parking'];
+const ptSt = t => IC[t] && PT_TYPES.includes(t) ? IC[t] : IC.point;
 function initMap() {
   if (MAP) { setTimeout(() => MAP.invalidateSize(), 50); return; }
   const c = [E.centre_lat || E.depart_lat || 47.75, E.centre_lng || E.depart_lng || 3.49];
@@ -561,9 +627,8 @@ function initMap() {
   osm.addTo(MAP);
   L.control.layers({'Plan': osm, 'IGN': ign, 'Topographique': topo}, null, {position: 'topleft'}).addTo(MAP);
 
-  // Légende
   const pcs = D.parcours || [];
-  const types = [...new Set((D.points || []).map(p => p.type))].filter(t => PT_STYLE[t]);
+  const types = [...new Set((D.points || []).map(p => p.type))].filter(t => PT_TYPES.includes(t));
   $('lgBody').innerHTML = pcs.map(p => `
     <div class="lg-row">
       <input type="checkbox" checked onchange="togglePc('${esc(p.id)}',this.checked)" aria-label="Afficher ${esc(p.nom)}">
@@ -571,10 +636,9 @@ function initMap() {
       <div class="lg-txt" onclick="zoomPc('${esc(p.id)}')"><b>${typeIco(p.type)} ${esc(p.nom)}</b><small>${fmtKm(p)}${p.horaire_depart ? ' · ' + esc(p.horaire_depart) : ''}</small></div>
       ${p.gpx ? `<a class="lg-gpx" href="${esc(p.gpx)}" download>GPX ⤓</a>` : ''}
     </div>`).join('')
-    + `<div class="lg-keys">${types.map(t => `<span>${PT_STYLE[t].ico} ${PT_STYLE[t].lbl}</span>`).join('')}</div>`;
+    + `<div class="lg-keys">${types.map(t => `<span>${ic(t)} ${esc(IC[t].libelle || t)}</span>`).join('')}</div>`;
   if (innerWidth < 600 && pcs.length > 3) $('legend').classList.add('closed');
 
-  // Tracés GPX
   const all = L.featureGroup();
   pcs.forEach(p => {
     if (!p.gpx) return;
@@ -588,25 +652,23 @@ function initMap() {
         .bindPopup(`<div class="pop-t">${typeIco(p.type)} ${esc(p.nom)}</div>${fmtKm(p)}${p.difficulte ? '<br>Difficulté : ' + esc(p.difficulte) : ''}${p.horaire_depart ? '<br>Départs : ' + esc(p.horaire_depart) : ''}${p.description ? '<br><br>' + esc(p.description) : ''}`);
       LAYERS[p.id] = L.layerGroup([casing, line]).addTo(MAP);
       LAYERS[p.id]._line = line;
-      all.addLayer(line);
-      MAP._all = all;
+      all.addLayer(line); MAP._all = all;
       fitAll();
     }).catch(() => {});
   });
 
-  // Points (ravitos, départ…)
   const pcById = Object.fromEntries(pcs.map(p => [p.id, p]));
   (D.points || []).forEach(pt => {
-    const st = PT_STYLE[pt.type] || PT_STYLE.point;
+    const st = ptSt(pt.type);
     const size = pt.type === 'depart' ? 40 : 34;
     const m = L.marker([pt.gps.lat, pt.gps.lng], {
       zIndexOffset: 1000,
       icon: L.divIcon({className: '', iconSize: [size, size], iconAnchor: [size / 2, size / 2],
-        html: `<div class="mk" style="width:${size}px;height:${size}px;background:${st.bg};font-size:${size * .45}px">${st.ico}</div>`})
-    }).addTo(MAP).bindPopup(`<div class="pop-t">${st.ico} ${esc(pt.nom)}</div>
+        html: `<div class="mk" style="width:${size}px;height:${size}px;background:${esc(st.couleur || '#6B1E2E')};font-size:${size * .45}px">${icon(st.icone)}</div>`})
+    }).addTo(MAP).bindPopup(`<div class="pop-t">${icon(st.icone)} ${esc(pt.nom)}</div>
       ${pt.horaires ? '🕒 ' + esc(pt.horaires) + '<br>' : ''}${esc(pt.description)}
       <div class="pop-pc">${pt.parcours.map(id => pcById[id] ? `<span style="background:${esc(pcById[id].couleur)}">${esc(pcById[id].nom)}</span>` : '').join('')}</div>`);
-    m._pc = pt.parcours;
+    m._pc = pt.parcours; m._id = pt.id;
     PTS.push(m);
   });
   setTimeout(() => MAP.invalidateSize(), 100);
@@ -615,7 +677,6 @@ function fitAll() { if (MAP && MAP._all && MAP._all.getLayers().length) MAP.fitB
 function togglePc(id, on) {
   const l = LAYERS[id]; if (!l) return;
   on ? l.addTo(MAP) : MAP.removeLayer(l);
-  // Masquer un point si tous ses parcours sont masqués
   PTS.forEach(m => {
     if (!m._pc.length) return;
     const vis = m._pc.some(p => !LAYERS[p] || MAP.hasLayer(LAYERS[p]));
@@ -624,9 +685,14 @@ function togglePc(id, on) {
 }
 function zoomPc(id) {
   const l = LAYERS[id]; if (!l) return;
-  if (!MAP.hasLayer(l)) { l.addTo(MAP); }
+  if (!MAP.hasLayer(l)) l.addTo(MAP);
   MAP.fitBounds(l._line.getBounds(), {padding: [30, 30], paddingBottomRight: [30, 140]});
   l._line.openPopup();
+}
+// Ouvre la carte centrée sur un point (depuis la page Ravitaillement)
+function showPt(id) {
+  go('carte');
+  setTimeout(() => { const m = PTS.find(x => x._id === id); if (m) { MAP.setView(m.getLatLng(), 15); m.openPopup(); } }, 600);
 }
 function toggleLoc() {
   const b = $('btnLoc'), st = $('mapSt');
@@ -647,52 +713,138 @@ function toggleLoc() {
   }, () => { st.textContent = 'GPS indisponible'; }, {enableHighAccuracy: true, maximumAge: 5000, timeout: 15000});
 }
 
-// ── 4. INSCRIPTION ────────────────────────────
+// ── RAVITAILLEMENT ────────────────────────────
+function renderRavito() {
+  $('rvTx').innerHTML = E.texte_ravitaillement || '';
+  $('rvImgs').innerHTML = gallery(E.images_ravitaillement || []);
+  bindCarousels($('rvImgs'));
+  const pcById = Object.fromEntries((D.parcours || []).map(p => [p.id, p]));
+  const rv = (D.points || []).filter(p => p.type === 'ravito' || p.type === 'depart');
+  $('rvList').innerHTML = rv.length ? `<div class="sec-t">Les points de ravitaillement</div>` + rv.map(p => {
+    const st = ptSt(p.type);
+    return `<div class="card rv"><div class="rv-ico" style="background:${esc(st.couleur || '#E0A526')}">${icon(st.icone)}</div>
+      <div style="flex:1;min-width:0"><b style="font-size:15px">${esc(p.nom)}</b>
+      ${p.horaires ? `<div style="font-size:13px;color:var(--muted)">🕒 ${esc(p.horaires)}</div>` : ''}
+      ${p.description ? `<div style="font-size:14px;margin-top:.25rem">${esc(p.description)}</div>` : ''}
+      <div class="pop-pc">${p.parcours.map(id => pcById[id] ? `<span style="background:${esc(pcById[id].couleur)}">${esc(pcById[id].nom)}</span>` : '').join('')}</div>
+      <a href="javascript:showPt('${esc(p.id)}')" style="font-size:13px;font-weight:700;display:inline-block;margin-top:.5rem">Voir sur la carte →</a></div></div>`;
+  }).join('') : '';
+}
+// 1 image = image simple · 2+ = carrousel
+function gallery(imgs) {
+  if (!imgs.length) return '';
+  if (imgs.length === 1) return `<img class="single-img" src="${esc(imgs[0])}" alt="" onclick="lightbox(this.src)" onerror="this.remove()">`;
+  return `<div class="car"><div class="car-track">${imgs.map(u => `<img src="${esc(u)}" alt="" loading="lazy" onclick="lightbox(this.src)">`).join('')}</div>
+    <button class="car-btn p" aria-label="Précédente">‹</button><button class="car-btn n" aria-label="Suivante">›</button>
+    <div class="car-dots">${imgs.map((_, i) => `<span class="${i ? '' : 'on'}"></span>`).join('')}</div></div>`;
+}
+function bindCarousels(root) {
+  root.querySelectorAll('.car').forEach(car => {
+    const tr = car.querySelector('.car-track'), dots = [...car.querySelectorAll('.car-dots span')];
+    const idx = () => Math.round(tr.scrollLeft / tr.clientWidth);
+    const goTo = i => tr.scrollTo({left: ((i + dots.length) % dots.length) * tr.clientWidth, behavior: 'smooth'});
+    car.querySelector('.p').onclick = () => goTo(idx() - 1);
+    car.querySelector('.n').onclick = () => goTo(idx() + 1);
+    tr.addEventListener('scroll', () => { const i = idx(); dots.forEach((d, j) => d.classList.toggle('on', i === j)); }, {passive: true});
+  });
+}
+function lightbox(src) { if (!src) return; $('lbImg').src = src; $('lb').classList.add('open'); }
+function closeLb() { $('lb') && $('lb').classList.remove('open'); }
+
+// ── INSCRIPTION ───────────────────────────────
 function renderInscription() {
   $('iTx').innerHTML = E.texte_inscription || '';
-  const mode = (E.mode_inscription || 'formulaire').toLowerCase();
-  if ((mode === 'externe' || mode === 'les_deux') && E.lien_inscription) { $('iExt').style.display = ''; $('iExtBtn').href = E.lien_inscription; }
-  if (mode === 'formulaire' || mode === 'les_deux' || !E.lien_inscription) $('iForm').style.display = '';
-  $('fPc').innerHTML = (D.parcours || []).map((p, i) => `
-    <label class="pc-opt"><input type="radio" name="parcours_choix" value="${esc(p.nom)}" required onchange="$('f-parcours').value=this.value">
-      <span style="width:10px;height:10px;border-radius:50%;background:${esc(p.couleur)};flex-shrink:0"></span>${esc(p.nom)}</label>`).join('');
-}
-async function sendForm(ev) {
-  ev.preventDefault();
-  const f = ev.target, btn = $('fBtn'), msg = $('fMsg');
-  btn.disabled = true; btn.textContent = 'Envoi…'; msg.className = 'form-msg';
-  try {
-    const r = await fetch('/', {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: new URLSearchParams(new FormData(f)).toString()});
-    if (!r.ok) throw new Error(r.status);
-    const prenom = f.prenom.value;
-    f.reset();
-    msg.className = 'form-msg ok';
-    msg.innerHTML = `<b>Merci ${esc(prenom)}, votre inscription est enregistrée !</b><br>Le règlement se fait sur place à l'accueil. Le Père Quignon vous attend…<br><br>
-      Pour aller plus loin : <a href="${esc(E.lien_don || '#caritatif')}" target="_blank" rel="noopener"><b>faire un don au Téléthon</b></a> ❤️`;
-  } catch (e) {
-    msg.className = 'form-msg ko';
-    msg.innerHTML = `L'envoi a échoué (${esc(e.message)}). Vérifiez votre connexion et réessayez${E.contact_email ? `, ou écrivez-nous à <a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : ''}.`;
-  }
-  btn.disabled = false; btn.textContent = 'Valider mon inscription';
-  return false;
+  if (E.lien_inscription) { $('iExt').style.display = ''; $('iExtBtn').href = E.lien_inscription; }
 }
 
-// ── 5. FAQ ────────────────────────────────────
+// ── VENIR ─────────────────────────────────────
+function renderVenir() {
+  $('vTx').innerHTML = E.texte_venir || '';
+  const la = E.venir_lat, lo = E.venir_lng;
+  $('vNom').textContent = E.venir_nom || E.lieu || '';
+  $('vAdr').textContent = E.venir_adresse || '';
+  if (!la || !lo) { $('vNav').innerHTML = '<p class="empty">Coordonnées à venir.</p>'; $('vMap').style.display = 'none'; }
+  else {
+    $('vGps').textContent = `GPS : ${(+la).toFixed(5)}, ${(+lo).toFixed(5)}`;
+    const lbl = encodeURIComponent(E.venir_nom || E.nom || 'Destination');
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const btns = [
+      ['Google Maps', '#4285F4', 'G', `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`],
+      ['Waze', '#33CCFF', 'W', `https://waze.com/ul?ll=${la},${lo}&navigate=yes`],
+      ['Plans (Apple)', '#555', '', `https://maps.apple.com/?daddr=${la},${lo}&q=${lbl}`],
+      ios ? ['Coyote / autre', '#E3001B', 'C', `javascript:copyGps()`]
+          : ['Coyote / autre', '#E3001B', 'C', `geo:${la},${lo}?q=${la},${lo}(${lbl})`],
+    ];
+    $('vNav').innerHTML = btns.map(([n, c, l, u]) => `<a class="nav-btn" href="${u}" ${u.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}><i style="background:${c}">${l}</i>${n}</a>`).join('')
+      + `<button class="nav-btn" style="grid-column:1/-1;flex-direction:row;justify-content:center" onclick="copyGps()">📋 Copier les coordonnées GPS</button>`;
+  }
+  // Covoiturage : code iframe collé, ou simple lien
+  const cv = (E.covoiturage || '').trim();
+  if (cv) {
+    const isCode = cv.startsWith('<');
+    const url = isCode ? ((cv.match(/src=["']([^"']+)/) || [])[1] || '') : cv;
+    $('vCov').innerHTML = `<div class="sec-t">Covoiturage</div><div class="card">
+      ${isCode ? `<div class="embed-wrap">${sanitizeEmbed(cv)}</div>` : `<iframe class="embed" src="${esc(cv)}" style="height:640px" loading="lazy"></iframe>`}
+      ${url ? `<a class="btn btn-ghost btn-block" style="margin-top:.7rem" href="${esc(url)}" target="_blank" rel="noopener">🚗 Ouvrir le covoiturage ↗</a>` : ''}</div>`;
+  }
+}
+function copyGps() { copy(`${E.venir_lat}, ${E.venir_lng}`, 'Coordonnées copiées — collez-les dans votre appli GPS'); }
+function initVMap() {
+  if (VMAP || !E.venir_lat || typeof L === 'undefined') { VMAP && setTimeout(() => VMAP.invalidateSize(), 50); return; }
+  VMAP = L.map('vMap', {center: [E.venir_lat, E.venir_lng], zoom: 14, scrollWheelZoom: false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OpenStreetMap', maxZoom: 19}).addTo(VMAP);
+  const st = IC.depart;
+  L.marker([E.venir_lat, E.venir_lng], {icon: L.divIcon({className: '', iconSize: [38, 38], iconAnchor: [19, 19],
+    html: `<div class="mk" style="width:38px;height:38px;background:${esc(st.couleur || '#2E7D32')};font-size:17px">${icon(st.icone)}</div>`})}).addTo(VMAP);
+  setTimeout(() => VMAP.invalidateSize(), 150);
+}
+// N'autorise que des <iframe> dans le code collé (sécurité)
+function sanitizeEmbed(code) {
+  const tpl = document.createElement('template'); tpl.innerHTML = code;
+  return [...tpl.content.querySelectorAll('iframe')].map(f => {
+    const src = f.getAttribute('src') || '';
+    if (!/^https:\/\//.test(src)) return '';
+    const h = parseInt(f.getAttribute('height')) || 600, w = f.getAttribute('width');
+    return `<iframe src="${esc(src)}" style="width:100%;${w && !/%/.test(w) ? 'max-width:' + parseInt(w) + 'px;' : ''}height:${h}px" loading="lazy" allow="encrypted-media; clipboard-write" allowfullscreen></iframe>`;
+  }).join('');
+}
+
+// ── DORMIR & MANGER ───────────────────────────
+function renderDormir() {
+  $('dTx').innerHTML = E.texte_dormir || '';
+  const items = D.dormir || [];
+  if (!items.length) { $('dList').innerHTML = '<p class="empty">Adresses à venir.</p>'; return; }
+  const cats = [...new Set(items.map(p => p.categorie || 'Autres'))];
+  const catIco = c => /dorm|h[ée]berg|nuit/i.test(c) ? '🛏️' : /mang|rest|repas/i.test(c) ? '🍽️' : '📍';
+  $('dList').innerHTML = cats.map(c => `<div class="sec-t">${catIco(c)} ${esc(c)}</div>` + items.filter(p => (p.categorie || 'Autres') === c).map(p => {
+    const logo = p.logo ? `<img src="${esc(p.logo)}" alt="" onerror="this.outerHTML='<div class=pt-ini>${esc(ini(p.nom))}</div>'">` : `<div class="pt-ini">${esc(ini(p.nom))}</div>`;
+    const links = [
+      p.telephone && `<a href="${tel(p.telephone)}">${ic('telephone')} ${esc(p.telephone)}</a>`,
+      p.adresse && `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.nom + ' ' + p.adresse)}" target="_blank" rel="noopener">🗺️ Itinéraire</a>`,
+      p.lien && `<a href="${esc(p.lien)}" target="_blank" rel="noopener">🌐 Site</a>`,
+    ].filter(Boolean).join('');
+    return `<div class="dm"><div class="dm-logo">${logo}</div><div class="dm-b"><b>${esc(p.nom)}</b>
+      ${p.description ? esc(p.description) + '<br>' : ''}${p.adresse ? '📍 ' + esc(p.adresse) : ''}
+      ${links ? `<div class="dm-links">${links}</div>` : ''}</div></div>`;
+  }).join('')).join('');
+}
+const ini = n => String(n).split(/\s+/).filter(w => w.length > 2 || /^[A-Z]/.test(w)).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+
+// ── FAQ ───────────────────────────────────────
 function renderFaq() {
   const items = D.faq || [];
   const cats = ['Toutes', ...new Set(items.map(q => q.categorie))];
   $('qChips').innerHTML = cats.map(c => `<button class="chip${c === faqCat ? ' on' : ''}" onclick="faqCat='${esc(c)}';renderFaq()">${esc(c)}</button>`).join('');
-  const s = ($('qSearch').value || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   const norm = t => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const s = norm($('qSearch').value || '');
   const list = items.filter(q => (faqCat === 'Toutes' || q.categorie === faqCat) && (!s || norm(q.question + ' ' + q.reponse + ' ' + q.categorie).includes(s)));
   $('qList').innerHTML = list.map(q => `
     <div class="qa"><button class="qa-q" onclick="this.parentElement.classList.toggle('open')"><span>${esc(q.question)}</span></button>
     <div class="qa-a"><span class="qa-cat">${esc(q.categorie)}</span><br>${q.reponse}</div></div>`).join('') || '<p class="empty">Aucune question ne correspond.</p>';
-  $('qContact').innerHTML = [E.contact_email && `<a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>`, E.contact_telephone && `<a href="tel:${esc(E.contact_telephone.replace(/\s/g, ''))}">${esc(E.contact_telephone)}</a>`].filter(Boolean).join(' · ');
+  $('qContact').innerHTML = [E.contact_email && `<a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>`, E.contact_telephone && `<a href="${tel(E.contact_telephone)}">${esc(E.contact_telephone)}</a>`].filter(Boolean).join(' · ');
 }
 
-// ── 6. CARITATIF ──────────────────────────────
+// ── CARITATIF ─────────────────────────────────
 function renderCaritatif() {
   $('cTx').innerHTML = E.texte_caritatif || '';
   if (E.objectif_dons) {
@@ -703,20 +855,21 @@ function renderCaritatif() {
   }
 }
 
-// ── 7. COMMUNICATION ──────────────────────────
+// ── COMMUNICATION ─────────────────────────────
 function renderCom() {
   $('mTx').innerHTML = E.texte_communication || '';
   const b = [];
-  if (E.lien_facebook_evenement) b.push(`<a class="btn btn-block" style="background:#1877F2;color:#fff" href="${esc(E.lien_facebook_evenement)}" target="_blank" rel="noopener">📅 Événement Facebook ↗</a>`);
+  const evOk = E.lien_facebook_evenement && !/facebook\.com\/events\/?$/.test(E.lien_facebook_evenement);
+  if (evOk) b.push(`<a class="btn btn-block" style="background:#1877F2;color:#fff" href="${esc(E.lien_facebook_evenement)}" target="_blank" rel="noopener">${ic('facebook')} Événement Facebook ↗</a>`);
   if (E.lien_facebook_page) b.push(`<a class="btn btn-ghost btn-block" href="${esc(E.lien_facebook_page)}" target="_blank" rel="noopener">👍 Page Facebook ↗</a>`);
-  if (E.lien_instagram) b.push(`<a class="btn btn-ghost btn-block" href="${esc(E.lien_instagram)}" target="_blank" rel="noopener">📸 Instagram ↗</a>`);
-  b.push(`<button class="btn btn-acc btn-block" onclick="share()">🔗 Partager l'application</button>`);
+  if (E.lien_instagram) b.push(`<a class="btn btn-ghost btn-block" href="${esc(E.lien_instagram)}" target="_blank" rel="noopener">${ic('instagram')} Instagram ↗</a>`);
+  b.push(`<button class="btn btn-acc btn-block" onclick="share()">${ic('partager')} Partager l'application</button>`);
   $('mBtns').innerHTML = b.join('');
-  if (E.hashtag) { $('mTagBox').style.display = ''; $('mTag').textContent = E.hashtag; }
-  if (E.lien_facebook_page) {
-    $('mFeed').innerHTML = `<div class="sec-t">Actualités</div><iframe class="fb-frame" loading="lazy" allow="encrypted-media"
-      src="https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(E.lien_facebook_page)}&tabs=timeline&width=500&height=560&small_header=true&adapt_container_width=true&hide_cover=false"></iframe>`;
-  }
+  // Intégration de l'événement : code <iframe> collé, sinon onglet « Évènements » de la page Facebook
+  let embed = '';
+  if ((E.facebook_embed || '').trim().startsWith('<')) embed = sanitizeEmbed(E.facebook_embed);
+  else if (E.lien_facebook_page) embed = `<iframe src="https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(E.lien_facebook_page)}&tabs=events&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false" style="width:100%;max-width:500px;height:600px" loading="lazy" allow="encrypted-media"></iframe>`;
+  $('mFeed').innerHTML = embed ? `<div class="sec-t">L'événement</div><div class="card embed-wrap" style="padding:.6rem">${embed}</div>` : '';
 }
 async function share() {
   const data = {title: E.nom, text: `${E.nom} — ${E.date_affichee || ''} au profit du Téléthon`, url: location.origin + location.pathname};
@@ -724,12 +877,11 @@ async function share() {
   else copy(data.url, 'Lien copié !');
 }
 
-// ── 8. PARTENAIRES ────────────────────────────
+// ── PARTENAIRES ───────────────────────────────
 function renderPartenaires() {
   const pts = D.partenaires || [];
   if (!pts.length) { $('ptList').innerHTML = '<p class="empty">Partenaires à venir.</p>'; return; }
   const cats = [...new Set(pts.map(p => p.categorie || 'Partenaires'))];
-  const ini = n => n.split(/\s+/).filter(w => w.length > 2 || /^[A-Z]/.test(w)).slice(0, 2).map(w => w[0].toUpperCase()).join('');
   $('ptList').innerHTML = cats.map(c => `<div class="sec-t">${esc(c)}</div><div class="pt-grid">` +
     pts.filter(p => (p.categorie || 'Partenaires') === c).map(p => {
       const tag = p.lien ? 'a' : 'div';
@@ -739,13 +891,13 @@ function renderPartenaires() {
     }).join('') + '</div>').join('');
 }
 
-// ── 9. SECOURS ────────────────────────────────
+// ── SECOURS ───────────────────────────────────
 function renderSecours() {
   $('sList').innerHTML = (D.secours || []).map(s => `
-    <a class="sos ${s.type === 'organisation' ? 'org' : ''}" href="tel:${esc(s.numero.replace(/\s/g, ''))}">
+    <a class="sos ${s.type === 'organisation' ? 'org' : ''}" href="${tel(s.numero)}">
       <div class="sos-num">${esc(s.numero)}</div>
       <div class="sos-txt"><b>${esc(s.libelle)}</b><small>${esc(s.description)}</small></div>
-      <span class="sos-call">📞</span></a>`).join('');
+      <span class="sos-call">${ic('telephone')}</span></a>`).join('');
 }
 function getPos() {
   if (!('geolocation' in navigator)) return toast('GPS non disponible');
@@ -761,19 +913,19 @@ function getPos() {
   }, () => { box.textContent = 'Position indisponible — activez la localisation.'; }, {enableHighAccuracy: true, timeout: 15000});
 }
 
-// ── 10. FDCY ──────────────────────────────────
+// ── FDCY ──────────────────────────────────────
 function renderFdcy() {
   $('fTx').innerHTML = E.texte_fdcy || '';
   const c = [
     E.fdcy_adresse && ['🏢', esc(E.fdcy_adresse)],
-    E.fdcy_telephone && ['📞', `<a href="tel:${esc(E.fdcy_telephone.replace(/\s/g, ''))}">${esc(E.fdcy_telephone)}</a>`],
+    E.fdcy_telephone && [ic('telephone'), `<a href="${tel(E.fdcy_telephone)}">${esc(E.fdcy_telephone)}</a>`],
     E.fdcy_email && ['✉️', `<a href="mailto:${esc(E.fdcy_email)}">${esc(E.fdcy_email)}</a>`],
     E.fdcy_site && ['🌐', `<a href="${esc(E.fdcy_site)}" target="_blank" rel="noopener">${esc(E.fdcy_site.replace(/^https?:\/\/(www\.)?|\/$/g, ''))}</a>`],
   ].filter(Boolean);
   $('fContact').innerHTML = `<div style="font-weight:700;margin-bottom:.4rem">Fédération des chasseurs de l'Yonne</div>` + c.map(([i, t]) => `<div class="contact"><span>${i}</span><span>${t}</span></div>`).join('');
 }
 
-// ── 11. RÈGLEMENT ─────────────────────────────
+// ── RÈGLEMENT ─────────────────────────────────
 function drivePreview(u) {
   const m = u.match(/\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/);
   if (!m) return u;
@@ -790,7 +942,7 @@ function renderReglement() {
 }
 
 // ── OUTILS ────────────────────────────────────
-function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('on'), 2200); }
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('on'), 2600); }
 function copy(t, ok) { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast(ok || 'Copié'), () => toast(t)); }
 
 init();
