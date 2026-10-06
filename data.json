@@ -13,7 +13,7 @@
     "zoom_defaut": 13,
     "texte_accueil": "<p>Une randonnée <strong>VTT et marche</strong> d'hiver sur les chemins de Chevannes, avec des ravitaillements gourmands : <strong>soupe à l'oignon</strong> et <strong>vin chaud</strong>.</p>\n<p>Tous les bénéfices sont reversés au <strong>Téléthon</strong>.</p>",
     "texte_histoire": "<h2>La légende du Père Quignon</h2>\n<p>Bien avant que le phylloxéra ne ravage les vignes de l'Auxerrois, vivait à l'écart, au hameau de <strong>Vauluisant</strong> — aujourd'hui en ruines —, un vigneron bourru que tout Chevannes appelait <strong>le Père Quignon</strong>.</p>\n<p>Avare de mots comme de sous, il ne partageait rien : ni son vin, ni son pain, ni le secret de cette <strong>soupe à l'oignon</strong> dont l'odeur, dit-on, descendait jusqu'au village les soirs de gel.</p>\n<p>Un hiver plus rude que les autres, des marcheurs égarés frappèrent à sa porte. Contre toute attente, le vieil homme leur servit sa soupe… et leur apprit à y verser un trait de vin rouge : le <strong>chabrot</strong>. Au matin, les voyageurs repartirent ragaillardis, comme portés par une force mystérieuse.</p>\n<p>Depuis ce jour, le Père Quignon ne fut plus jamais le même. Chaque fin novembre, il parcourait les chemins pour offrir soupe et vin chaud à quiconque passait.</p>\n<h2>Aujourd'hui</h2>\n<p>Nous reprenons sa tournée. Les chemins sont les siens, les ravitaillements aussi — et chaque quignon de pain partagé devient un geste pour le <strong>Téléthon</strong>. <em>Pour quelques quignons de plus…</em></p>\n<p style=\"font-size:13px;color:#888\"><em>Légende librement inspirée de l'histoire locale.</em></p>",
-    "image_histoire": "",
+    "image_histoire": "assets/images/Wanted.jpg",
     "texte_inscription": "<p><strong>Tarifs</strong> : VTT 8 € · Marche 6 € · Gratuit pour les moins de 12 ans.<br>\nRavitaillements compris. Inscription possible sur place le jour J (+2 €).</p>\n<p><strong>Accueil et départs</strong> : salle des fêtes de Chevannes, à partir de 7h30. Départs libres jusqu'à 10h.</p>",
     "lien_inscription": "https://chevannes-vtt.sumupstore.com/",
     "lien_don": "https://chevannes-vtt.sumupstore.com/",
@@ -35,7 +35,7 @@
     "contact_telephone": "06 70 52 40 11",
     "organisateur": "Chevannes VTT Loisirs",
     "affiche": "assets/images/Affiche.jpg",
-    "facebook_embed": "",
+    "facebook_embed": "<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FCaSePasseAChevannes%2Fposts%2Fpfbid0gv1cBWWadWKN1wr7jWSi1oAXvukg2SpfixoUEzTzT9iGYpQh849WQyn9mvzDophYl&show_text=true&width=500\" width=\"500\" height=\"0\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>",
     "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements gourmands vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération) et boissons chaudes</li>\n<li>Pain, fruits secs, pain d'épices, eau</li>\n</ul>\n<p>À l'arrivée, un dernier bol vous attend à la salle polyvalente.</p>",
     "images_ravitaillement": [],
     "texte_venir": "<p>La randonnée part de la <strong>salle polyvalente de Chevannes</strong>, à une dizaine de minutes au sud d'Auxerre.</p>\n<ul>\n<li><strong>Depuis Auxerre</strong> : suivre la direction de Chevannes.</li>\n<li><strong>Stationnement</strong> : parking à proximité de la salle, suivre les indications des bénévoles.</li>\n</ul>\n<p>Pensez au <strong>covoiturage</strong> : moins de voitures, plus de places de parking… et un geste pour la planète !</p>",
@@ -43,7 +43,7 @@
     "venir_adresse": "Chevannes (89240)",
     "venir_lat": 47.7520014345828,
     "venir_lng": 3.49034751759745,
-    "covoiturage": "",
+    "covoiturage": "<iframe style=\"border:none; width:100%; height:73px;\" src=\"https://togetzer.com/widget.php?params=YTo0OntzOjExOiJhcHBsaWVkVHlwZSI7czo1OiJldmVudCI7czo0OiJ0eXBlIjtzOjU6ImxpZ25lIjtzOjI6ImlkIjtzOjU6IjgyODYzIjtzOjc6Im9wdGlvbnMiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoxOntzOjg6IgAqAGl0ZW1zIjthOjI6e3M6NToiY29sb3IiO3M6NDoibm9pciI7czo2OiJib3JkZXIiO3M6NzoiYXJyb25kaSI7fX19\"></iframe>",
     "texte_dormir": "<p>Vous venez de loin ou vous souhaitez prolonger le plaisir ? Voici quelques adresses à Chevannes et alentour pour <strong>dormir</strong> et <strong>manger</strong>.</p>"
   },
   "menu": [
