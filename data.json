@@ -1,41 +1,41 @@
 {
   "evenement": {
     "nom": "Le Père Quignon",
-    "sous_titre": "Randonnée VTT & marche d'hiver au profit du Téléthon",
+    "sous_titre": "Randonnée VTT & Marche",
     "edition": "1re édition",
     "date_evenement": "2026-11-22T07:30",
     "date_affichee": "Dimanche 22 novembre 2026",
-    "lieu": "Salle des fêtes, Chevannes (89)",
-    "depart_lat": 47.7512,
-    "depart_lng": 3.4921,
+    "lieu": "Salle Polyvalente, Chevannes (89)",
+    "depart_lat": 47.7520014345828,
+    "depart_lng": 3.49034751759745,
     "centre_lat": 47.7512,
     "centre_lng": 3.4921,
     "zoom_defaut": 13,
     "texte_accueil": "<p>Une randonnée <strong>VTT et marche</strong> d'hiver sur les chemins de Chevannes, avec des ravitaillements gourmands : <strong>soupe à l'oignon</strong> et <strong>vin chaud</strong>.</p>\n<p>Tous les bénéfices sont reversés au <strong>Téléthon</strong>.</p>",
     "texte_histoire": "<h2>La légende du Père Quignon</h2>\n<p>Bien avant que le phylloxéra ne ravage les vignes de l'Auxerrois, vivait à l'écart, au hameau de <strong>Vauluisant</strong> — aujourd'hui en ruines —, un vigneron bourru que tout Chevannes appelait <strong>le Père Quignon</strong>.</p>\n<p>Avare de mots comme de sous, il ne partageait rien : ni son vin, ni son pain, ni le secret de cette <strong>soupe à l'oignon</strong> dont l'odeur, dit-on, descendait jusqu'au village les soirs de gel.</p>\n<p>Un hiver plus rude que les autres, des marcheurs égarés frappèrent à sa porte. Contre toute attente, le vieil homme leur servit sa soupe… et leur apprit à y verser un trait de vin rouge : le <strong>chabrot</strong>. Au matin, les voyageurs repartirent ragaillardis, comme portés par une force mystérieuse.</p>\n<p>Depuis ce jour, le Père Quignon ne fut plus jamais le même. Chaque fin novembre, il parcourait les chemins pour offrir soupe et vin chaud à quiconque passait.</p>\n<h2>Aujourd'hui</h2>\n<p>Nous reprenons sa tournée. Les chemins sont les siens, les ravitaillements aussi — et chaque quignon de pain partagé devient un geste pour le <strong>Téléthon</strong>. <em>Pour quelques quignons de plus…</em></p>\n<p style=\"font-size:13px;color:#888\"><em>Légende librement inspirée de l'histoire locale.</em></p>",
-    "image_histoire": "",
+    "image_histoire": "assets/images/Affiche.jpg",
     "texte_inscription": "<p><strong>Tarifs</strong> : VTT 8 € · Marche 6 € · Gratuit pour les moins de 12 ans.<br>\nRavitaillements compris. Inscription possible sur place le jour J (+2 €).</p>\n<p><strong>Accueil et départs</strong> : salle des fêtes de Chevannes, à partir de 7h30. Départs libres jusqu'à 10h.</p>",
     "mode_inscription": "",
     "lien_inscription": "https://chevannes-vtt.sumupstore.com/",
-    "lien_don": "https://soutenir.afm-telethon.fr/",
+    "lien_don": "https://chevannes-vtt.sumupstore.com/",
     "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<li><strong>Frais d'inscription</strong> : intégralement reversés au Téléthon (hors frais de ravitaillement couverts par nos partenaires).</li>\n<li><strong>Dons en ligne</strong> : versés directement sur notre page de collecte officielle, avec reçu fiscal.</li>\n<li><strong>Dons sur place</strong> : urne au départ et aux ravitaillements.</li>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur (voir le reçu fiscal).</p>",
-    "objectif_dons": null,
-    "montant_collecte": 250.0,
+    "objectif_dons": 500.0,
+    "montant_collecte": 100.0,
     "texte_communication": "<p>Suivez l'événement, partagez-le, invitez vos amis : plus nous serons nombreux, plus la collecte sera belle !</p>",
     "lien_facebook_evenement": "https://www.facebook.com/events/",
-    "lien_facebook_page": "",
-    "lien_instagram": "",
+    "lien_facebook_page": "https://www.facebook.com/ChevannesVtt/",
+    "lien_instagram": "https://www.instagram.com/chevannesvtt",
     "hashtag": "#PereQuignon #Telethon2026",
     "texte_fdcy": "<h2>Randonneurs et chasseurs : partager la nature</h2>\n<p>Fin novembre, la <strong>saison de chasse</strong> bat son plein dans l'Yonne. Les parcours empruntent des chemins ouverts au public, mais traversent ou longent des territoires de chasse.</p>\n<p>L'organisation informe les sociétés de chasse locales de la date et des tracés de la manifestation.</p>\n<h3>Les bons réflexes</h3>\n<ul>\n<li>Restez <strong>sur les chemins balisés</strong>, ne coupez pas à travers bois ou cultures.</li>\n<li>Respectez les <strong>panneaux « Chasse en cours »</strong> et les consignes des signaleurs.</li>\n<li>Portez une <strong>couleur vive</strong> (gilet fluo conseillé).</li>\n<li>Tenez votre <strong>chien en laisse</strong>.</li>\n<li>Restez courtois : chacun a sa place dans la nature.</li>\n</ul>\n<h3>La Fédération départementale des chasseurs de l'Yonne</h3>\n<p>La FDC 89 coordonne l'activité cynégétique du département, la gestion de la faune sauvage et la sécurité à la chasse. Elle mène aussi des actions en faveur des habitats et de la biodiversité.</p>",
     "fdcy_adresse": "20 avenue de la Paix, 89000 Saint-Georges-sur-Baulche",
     "fdcy_telephone": "03 86 94 22 94",
     "fdcy_email": "fdc89@fdc89.fr",
     "fdcy_site": "https://www.chasseurdelyonne.fr/",
-    "lien_reglement": "",
+    "lien_reglement": "https://drive.google.com/file/d/1mfFQJxHRWocYCTcoM5lSao23VP8VB_Ws/view?usp=drive_link",
     "texte_reglement": "<p>La participation implique l'acceptation pleine et entière du règlement ci-dessous.</p>",
-    "contact_email": "contact@exemple.fr",
-    "contact_telephone": "06 00 00 00 00",
-    "organisateur": "Association organisatrice"
+    "contact_email": "chevannesvtt@gmail.com",
+    "contact_telephone": "06 70 52 40 11",
+    "organisateur": "Chevannes VTT Loisirs"
   },
   "parcours": [
     {
@@ -47,7 +47,7 @@
       "distance_km": 35,
       "denivele_m": 800,
       "difficulte": "Difficile",
-      "horaire_depart": "7h30 – 9h00",
+      "horaire_depart": "7h30 – 10h00",
       "description": "Le grand tour par Vauluisant et les bois."
     },
     {
@@ -59,7 +59,7 @@
       "distance_km": 22,
       "denivele_m": 600,
       "difficulte": "Moyen",
-      "horaire_depart": "7h30 – 9h30",
+      "horaire_depart": "7h30 – 10h00",
       "description": "Boucle roulante, idéale en famille sportive."
     },
     {
@@ -71,7 +71,7 @@
       "distance_km": 12,
       "denivele_m": 200,
       "difficulte": "Moyen",
-      "horaire_depart": "8h00 – 10h00",
+      "horaire_depart": "7h30 – 10h00",
       "description": "Par les vignes et les hameaux."
     },
     {
@@ -83,7 +83,7 @@
       "distance_km": 7,
       "denivele_m": 100,
       "difficulte": "Facile",
-      "horaire_depart": "8h00 – 10h30",
+      "horaire_depart": "7h30 – 10h00",
       "description": "Petite boucle accessible à tous."
     }
   ],
@@ -93,8 +93,8 @@
       "nom": "Départ / Arrivée",
       "type": "depart",
       "gps": {
-        "lat": 47.7512,
-        "lng": 3.4921
+        "lat": 47.7520014345828,
+        "lng": 3.49034751759745
       },
       "parcours": [
         "V35",
@@ -103,7 +103,7 @@
         "M7"
       ],
       "horaires": "7h30 – 13h",
-      "description": "Accueil, inscriptions, café. Soupe à l'oignon à l'arrivée !"
+      "description": "Accueil, inscriptions, Arrivée"
     },
     {
       "id": "R1",
@@ -247,8 +247,8 @@
     {
       "nom": "Commune de Chevannes",
       "categorie": "Institutionnel",
-      "logo": "",
-      "lien": "",
+      "logo": "assets/partenaires/Mairie.jpg",
+      "lien": "https://chevannes-yonne.fr/",
       "description": ""
     },
     {
@@ -326,7 +326,7 @@
     },
     {
       "libelle": "Poste de secours Ravitaillement 1",
-      "numero": "06 00 00 00 01",
+      "numero": "06 70 52 40 11",
       "description": "Équipe de premiers secours de la manifestation.",
       "type": "organisation"
     },
