@@ -254,6 +254,8 @@ body.menu-open .drawer{transform:none;}
 .nav-btn{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.9rem .5rem;border-radius:12px;border:1.5px solid var(--line);background:#fff;text-decoration:none;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
 .nav-btn i{font-style:normal;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:900;}
 .mini-map{height:200px;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-top:.8rem;}
+.fb-full{margin:0 -.8rem;display:flex;justify-content:center;min-height:120px;}
+.fb-full #fbBox{width:100%;max-width:500px;display:flex;justify-content:center;}
 .embed{width:100%;border:none;border-radius:12px;background:#fff;display:block;}
 .embed-wrap iframe{max-width:100%;border:none;border-radius:12px;display:block;margin:0 auto;}
 /* dormir */
@@ -566,6 +568,7 @@ function route() {
   window.scrollTo(0, 0);
   if (p.id === 'carte') initMap();
   if (p.id === 'venir') initVMap();
+  if (p.id === 'communication') setTimeout(renderFbPost, 50);
 }
 window.addEventListener('hashchange', route);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { toggleMenu(false); closeLb(); } });
@@ -907,6 +910,13 @@ function renderCom() {
   $('mBtns').innerHTML = b.join('');
   // Intégration de l'événement : code <iframe> collé, sinon onglet « Évènements » de la page Facebook
   let embed = '';
+  FB_HREF = fbHref(E.facebook_embed);
+  if (FB_HREF) {
+    // Publication Facebook : rendue avec le SDK officiel (largeur adaptée à l'écran, hauteur automatique)
+    $('mFeed').innerHTML = `<div class="sec-t">L'événement</div><div class="fb-full"><div id="fbBox"><div class="empty" style="padding:1rem;text-align:center">Chargement de la publication…</div></div></div>
+      <a class="btn btn-ghost btn-block" style="margin-top:.7rem" href="${esc(FB_HREF)}" target="_blank" rel="noopener">${ic('facebook')} Voir la publication sur Facebook ↗</a>`;
+    return;
+  }
   if ((E.facebook_embed || '').trim().startsWith('<')) embed = sanitizeEmbed(E.facebook_embed);
   else if (E.lien_facebook_page) embed = `<iframe src="https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(E.lien_facebook_page)}&tabs=events&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false" style="width:100%;max-width:500px;height:600px" loading="lazy" allow="encrypted-media"></iframe>`;
   $('mFeed').innerHTML = embed ? `<div class="sec-t">L'événement</div><div class="card embed-wrap" style="padding:.6rem">${embed}</div>` : '';
@@ -915,6 +925,44 @@ async function share() {
   const data = {title: E.nom, text: `${E.nom} — ${E.date_affichee || ''} au profit du Téléthon`, url: location.origin + location.pathname};
   if (navigator.share) { try { await navigator.share(data); } catch (e) {} }
   else copy(data.url, 'Lien copié !');
+}
+
+// ── PUBLICATION FACEBOOK ──
+let FB_HREF = '', fbDone = false;
+// Extrait l'adresse de la publication depuis le code <iframe> collé (ou un simple lien de publication)
+function fbHref(code) {
+  code = (code || '').trim(); if (!code) return '';
+  const src = code.startsWith('<') ? ((code.match(/src=["']([^"']+)/) || [])[1] || '') : code;
+  if (/facebook\.com\/plugins\/(post|video)\.php/.test(src)) {
+    try { return new URL(src.replace(/&amp;/g, '&')).searchParams.get('href') || ''; } catch (e) { return ''; }
+  }
+  return /facebook\.com\/.+\/(posts|videos|events|permalink)|fb\.watch|facebook\.com\/share/.test(src) ? src : '';
+}
+function loadFbSdk() {
+  if (window.FB) return Promise.resolve(true);
+  return new Promise(res => {
+    window.fbAsyncInit = () => { FB.init({xfbml: false, version: 'v25.0'}); res(true); };
+    const sc = document.createElement('script');
+    sc.src = 'https://connect.facebook.net/fr_FR/sdk.js'; sc.async = true; sc.crossOrigin = 'anonymous';
+    sc.onerror = () => res(false);
+    document.body.appendChild(sc);
+    setTimeout(() => res(!!window.FB), 8000);
+  });
+}
+// Appelé quand la page Réseaux sociaux devient visible (le SDK ne sait pas mesurer un bloc masqué)
+async function renderFbPost() {
+  const box = $('fbBox'); if (!FB_HREF || !box || fbDone) return;
+  fbDone = true;
+  const w = Math.max(320, Math.min(500, Math.floor(box.clientWidth || innerWidth - 20)));
+  const ok = await loadFbSdk();
+  if (ok && window.FB) {
+    box.innerHTML = `<div class="fb-post" data-href="${esc(FB_HREF)}" data-width="${w}" data-show-text="true"></div>`;
+    try { FB.XFBML.parse(box); } catch (e) {}
+    setTimeout(() => { if (!box.querySelector('iframe')) fbIframe(box, w); }, 6000);
+  } else fbIframe(box, w); // SDK bloqué (bloqueur de pub, protection anti-pistage) → iframe simple
+}
+function fbIframe(box, w) {
+  box.innerHTML = `<iframe src="https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(FB_HREF)}&show_text=true&width=${w}" style="width:${w}px;max-width:100%;height:${Math.round(w * 1.45)}px;border:none;overflow:hidden;display:block;margin:0 auto;background:#fff;border-radius:12px" scrolling="no" allow="encrypted-media; clipboard-write; web-share" allowfullscreen></iframe>`;
 }
 
 // ── PARTENAIRES ───────────────────────────────
