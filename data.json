@@ -2,7 +2,7 @@
   "evenement": {
     "nom": "Le Père Quignon",
     "sous_titre": "Randonnée VTT & Marche",
-    "edition": "1re édition",
+    "edition": "By Chevannes VTT",
     "date_evenement": "2026-11-22T07:30",
     "date_affichee": "Dimanche 22 novembre 2026",
     "lieu": "Salle Polyvalente, Chevannes (89)",
@@ -36,12 +36,12 @@
     "organisateur": "Chevannes VTT Loisirs",
     "affiche": "assets/images/Affiche.jpg",
     "facebook_embed": "<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FCaSePasseAChevannes%2Fposts%2Fpfbid0gv1cBWWadWKN1wr7jWSi1oAXvukg2SpfixoUEzTzT9iGYpQh849WQyn9mvzDophYl&show_text=true&width=500\" width=\"500\" height=\"0\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>",
-    "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements gourmands vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération) et boissons chaudes</li>\n<li>Pain, fruits secs, pain d'épices, eau</li>\n</ul>\n<p>À l'arrivée, un dernier bol vous attend à la salle polyvalente.</p>",
+    "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements gourmands vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération) et boissons chaudes</li>\n<li>Pain, fruits secs, pain d'épices, eau</li>\n</ul>\n<p>À l'arrivée, un dernier bol vous attend à la salle polyvalente. Pensez à votre gobelet</p>",
     "images_ravitaillement": [
       "assets/images/soupe.jpg",
       "assets/images/vin.jpg"
     ],
-    "texte_venir": "<p>La randonnée part de la <strong>salle polyvalente de Chevannes</strong>, à une dizaine de minutes au sud d'Auxerre.</p>\n<ul>\n<li><strong>Depuis Auxerre</strong> : suivre la direction de Chevannes.</li>\n<li><strong>Stationnement</strong> : parking à proximité de la salle, suivre les indications des bénévoles.</li>\n</ul>\n<p>Pensez au <strong>covoiturage</strong> : moins de voitures, plus de places de parking… et un geste pour la planète !</p>",
+    "texte_venir": "<p>La randonnée part de la <strong>salle polyvalente de Chevannes</strong>, à une dizaine de minutes au sud d'Auxerre.</p>\n<ul>\n<li><strong>Par l'A6</strong> (Paris / Lyon) : sortie [à préciser], puis direction Chevannes.</li>\n<li><strong>Par l'A77</strong> (Nevers / Montargis) : sortie [à préciser], puis direction Auxerre / Chevannes.</li>\n<li><strong>Depuis Auxerre</strong> : suivre la direction de Chevannes.</li>\n<li><strong>Stationnement</strong> : parking à proximité de la salle, suivre les indications des bénévoles.</li>\n</ul>\n<p>Pensez au <strong>covoiturage</strong> : moins de voitures, plus de places de parking… et un geste pour la planète !</p>",
     "venir_nom": "Salle polyvalente de Chevannes",
     "venir_adresse": "Chevannes (89240)",
     "venir_lat": 47.7520014345828,
@@ -55,98 +55,128 @@
       "titre": "Accueil",
       "icone": "🏠",
       "visible": true,
-      "tuile": false
+      "tuile": false,
+      "sous_menu": false
     },
     {
       "id": "histoire",
-      "titre": "Origine de la randonnée",
+      "titre": "Origine",
       "icone": "📜",
       "visible": true,
-      "tuile": true
+      "tuile": true,
+      "sous_menu": false
+    },
+    {
+      "id": "groupe",
+      "titre": "L'évènement",
+      "icone": "🚵",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": false
+    },
+    {
+      "id": "inscription",
+      "titre": "Inscription",
+      "icone": "✍️",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": true
     },
     {
       "id": "carte",
-      "titre": "Carte des parcours",
+      "titre": "Parcours",
       "icone": "🗺️",
       "visible": true,
-      "tuile": true
+      "tuile": true,
+      "sous_menu": true
     },
     {
       "id": "ravitaillement",
       "titre": "Ravitaillement",
       "icone": "🍲",
       "visible": true,
-      "tuile": false
-    },
-    {
-      "id": "inscription",
-      "titre": "Inscription & dons",
-      "icone": "✍️",
-      "visible": true,
-      "tuile": false
-    },
-    {
-      "id": "venir",
-      "titre": "Venir à Chevannes",
-      "icone": "🚗",
-      "visible": true,
-      "tuile": true
-    },
-    {
-      "id": "dormir",
-      "titre": "Dormir & manger",
-      "icone": "🛏️",
-      "visible": true,
-      "tuile": false
-    },
-    {
-      "id": "faq",
-      "titre": "FAQ",
-      "icone": "❓",
-      "visible": true,
-      "tuile": true
-    },
-    {
-      "id": "caritatif",
-      "titre": "Caritatif & dons",
-      "icone": "❤️",
-      "visible": true,
-      "tuile": false
-    },
-    {
-      "id": "communication",
-      "titre": "Communication",
-      "icone": "📣",
-      "visible": true,
-      "tuile": false
-    },
-    {
-      "id": "partenaires",
-      "titre": "Partenaires",
-      "icone": "🤝",
-      "visible": true,
-      "tuile": false
-    },
-    {
-      "id": "secours",
-      "titre": "Secours",
-      "icone": "🚑",
-      "visible": true,
-      "tuile": true
-    },
-    {
-      "id": "fdcy",
-      "titre": "Chasse – FDCY",
-      "icone": "🦌",
-      "visible": true,
-      "tuile": false
+      "tuile": false,
+      "sous_menu": true
     },
     {
       "id": "reglement",
       "titre": "Règlement",
       "icone": "📄",
       "visible": true,
-      "tuile": false
+      "tuile": false,
+      "sous_menu": true
+    },
+    {
+      "id": "groupe",
+      "titre": "Infos pratiques",
+      "icone": "ℹ️",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": false
+    },
+    {
+      "id": "venir",
+      "titre": "Transport & covoiturage",
+      "icone": "🚗",
+      "visible": true,
+      "tuile": true,
+      "sous_menu": true
+    },
+    {
+      "id": "dormir",
+      "titre": "Hébergement",
+      "icone": "🛏️",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": true
+    },
+    {
+      "id": "faq",
+      "titre": "FAQ",
+      "icone": "❓",
+      "visible": true,
+      "tuile": true,
+      "sous_menu": true
+    },
+    {
+      "id": "secours",
+      "titre": "Secours",
+      "icone": "🚑",
+      "visible": true,
+      "tuile": true,
+      "sous_menu": true
+    },
+    {
+      "id": "fdcy",
+      "titre": "Chasse – FDCY",
+      "icone": "🦌",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": true
+    },
+    {
+      "id": "caritatif",
+      "titre": "Téléthon",
+      "icone": "❤️",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": false
+    },
+    {
+      "id": "communication",
+      "titre": "Réseaux sociaux",
+      "icone": "📣",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": false
+    },
+    {
+      "id": "partenaires",
+      "titre": "Partenaires",
+      "icone": "🤝",
+      "visible": true,
+      "tuile": false,
+      "sous_menu": false
     }
   ],
   "icones": {
@@ -519,12 +549,12 @@
       "reponse": "Fin novembre, il peut faire froid et humide : vêtements chauds, coupe-vent, gants, et une couleur vive (saison de chasse)."
     },
     {
-      "categorie": "Pratique",
+      "categorie": "Parcours",
       "question": "Les parcours sont-ils balisés ?",
       "reponse": "Oui, chaque parcours est fléché. Les parcours se séparent en fonction des distances au fur et à mesure. Vous pouvez aussi suivre votre position en direct sur la carte de l'application."
     },
     {
-      "categorie": "Pratique",
+      "categorie": "Parcours",
       "question": "Peut-on faire les petits parcours avec une poussette ?",
       "reponse": "Nos parcours ne sont pas particulièrement utilisables avec une poussette. Nous vous le déconseillons fortement."
     },
@@ -542,6 +572,11 @@
       "categorie": "VTT",
       "question": "Y a-t-il un point de lavage des vélos ?",
       "reponse": "Un point de lavage est prévu à l'arrivée."
+    },
+    {
+      "categorie": "Ravitaillement",
+      "question": "Doit-on emmener son propre gobelet réutilisable ?",
+      "reponse": "Oui. En cas d'oubli, nous pourrons vous en mettre un à disposition contre une consigne."
     }
   ],
   "partenaires": [

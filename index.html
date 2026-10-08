@@ -55,6 +55,16 @@ body.menu-open .drawer{transform:none;}
 .drw-item.on{color:var(--main);font-weight:700;background:#F6EEE0;}
 .drw-item.on::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--main);}
 .drw-ico{width:26px;text-align:center;font-size:19px;}
+.drw-grp{display:flex;align-items:center;gap:.9rem;width:100%;padding:.8rem 1.3rem;border:none;background:none;font-size:15px;color:var(--ink);cursor:pointer;text-align:left;font-weight:600;}
+.drw-grp:hover{background:#F6EEE0;}
+.drw-grp.on{color:var(--main);}
+.drw-grp .chev{margin-left:auto;font-size:12px;color:var(--muted);transition:transform .2s;}
+.drw-sub{display:none;padding:.15rem 0 .35rem;background:#FCF8F1;border-top:1px solid #F1E7D6;border-bottom:1px solid #F1E7D6;}
+.drw-g.open .drw-sub{display:block;}
+.drw-g.open .chev{transform:rotate(180deg);}
+.drw-sub .drw-item{padding:.62rem 1.3rem .62rem 3.2rem;font-size:14.5px;}
+.drw-sub .drw-ico{width:22px;font-size:16px;}
+.drw-sub .drw-ico .ic img{width:20px;height:20px;}
 .drw-foot{padding:.9rem 1.3rem 1.3rem;border-top:1px solid var(--line);font-size:12px;color:var(--muted);}
 
 /* ── PAGES ── */
@@ -507,7 +517,7 @@ let IC = {
   facebook:{icone:'📅'}, instagram:{icone:'📸'}, partager:{icone:'🔗'},
 };
 
-let D = null, E = {}, MAP = null, VMAP = null, LAYERS = {}, PTS = [], uMark = null, watchId = null, faqCat = 'Toutes';
+let MENU = null, D = null, E = {}, MAP = null, VMAP = null, LAYERS = {}, PTS = [], uMark = null, watchId = null, faqCat = 'Toutes';
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isImg = v => /\.(png|jpe?g|svg|webp|gif)(\?.*)?$/i.test(v || '');
@@ -519,6 +529,22 @@ function icon(v) {
 const ic = k => icon((IC[k] || {}).icone);
 const tel = n => 'tel:' + String(n || '').replace(/[^\d+]/g, '');
 const pageOf = id => PAGES.find(p => p.id === id) || {};
+
+// ── MENU BURGER (avec sous-menus) ─────────────
+function renderMenu() {
+  const item = p => `<a class="drw-item" data-p="${p.id}" href="#${p.id}"><span class="drw-ico">${icon(p.icone)}</span>${esc(p.titre)}</a>`;
+  const tree = MENU || PAGES;
+  // Une page masquée dans un groupe masqué disparaît aussi (et n'est plus accessible)
+  tree.forEach(n => { if (n.groupe && !n.visible) n.items.forEach(p => p.visible = false); });
+  $('drwNav').innerHTML = tree.map((n, i) => {
+    if (!n.groupe) return n.visible === false ? '' : item(n);
+    const its = n.items.filter(p => p.visible !== false);
+    if (!its.length) return '';
+    return `<div class="drw-g" data-g="${i}"><button class="drw-grp" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
+      <span class="drw-ico">${icon(n.icone)}</span>${esc(n.titre)}<span class="chev">▼</span></button>
+      <div class="drw-sub">${its.map(item).join('')}</div></div>`;
+  }).join('');
+}
 
 // ── NAVIGATION (hash → liens partageables + bouton retour natif) ──
 function toggleMenu(force) {
@@ -533,6 +559,7 @@ function route() {
   const p = vis.find(x => x.id === id) || vis[0];
   document.querySelectorAll('.page').forEach(s => s.classList.toggle('active', s.id === 'p-' + p.id));
   document.querySelectorAll('.drw-item').forEach(a => a.classList.toggle('on', a.dataset.p === p.id));
+  document.querySelectorAll('.drw-g').forEach(g => { const has = !!g.querySelector(`[data-p="${p.id}"]`); g.querySelector('.drw-grp').classList.toggle('on', has); if (has) g.classList.add('open'); });
   $('hdrTitle').textContent = p.id === 'accueil' ? (E.nom || p.titre) : p.titre;
   $('hdrDon').style.display = (p.id === 'caritatif' || p.id === 'inscription') ? 'none' : '';
   toggleMenu(false); closeLb();
@@ -558,14 +585,23 @@ async function init() {
     // Menu et icônes depuis l'Excel
     if (D.menu && D.menu.length) {
       const def = Object.fromEntries(PAGES.map(p => [p.id, p]));
-      PAGES = D.menu.filter(m => def[m.id]).map(m => ({...def[m.id], ...m, icone: m.icone || def[m.id].icone}));
-      if (!PAGES.length) PAGES = Object.values(def);
+      const pages = D.menu.filter(m => def[m.id]).map(m => ({...def[m.id], ...m, icone: m.icone || def[m.id].icone}));
+      if (pages.length) {
+        // Arborescence : lignes « groupe » = sous-menus, pages sous_menu=oui rangées dans le dernier groupe
+        MENU = []; let g = null;
+        D.menu.forEach(m => {
+          if (m.id === 'groupe') { g = {groupe: true, titre: m.titre, icone: m.icone, visible: m.visible !== false, items: []}; MENU.push(g); return; }
+          const p = pages.find(x => x.id === m.id); if (!p) return;
+          if (m.sous_menu && g) g.items.push(p); else { g = null; MENU.push(p); }
+        });
+        PAGES = pages;
+      }
     }
     Object.entries(D.icones || {}).forEach(([k, v]) => { IC[k] = {...(IC[k] || {}), ...Object.fromEntries(Object.entries(v).filter(([, x]) => x))}; });
     document.querySelectorAll('[data-ic]').forEach(el => { const v = (IC[el.dataset.ic] || {}).icone; if (v) el.outerHTML = icon(v); });
     document.querySelectorAll('[data-title]').forEach(el => { const p = pageOf(el.dataset.title); if (p.titre) el.textContent = p.titre; });
 
-    $('drwNav').innerHTML = PAGES.filter(p => p.visible !== false).map(p => `<a class="drw-item" data-p="${p.id}" href="#${p.id}"><span class="drw-ico">${icon(p.icone)}</span>${esc(p.titre)}</a>`).join('');
+    renderMenu();
     $('drwNom').textContent = E.nom || '';
     $('drwDate').textContent = [E.date_affichee, E.lieu].filter(Boolean).join(' · ');
     $('drwFoot').innerHTML = esc(E.organisateur || '') + (E.contact_email ? `<br><a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : '');
@@ -615,7 +651,8 @@ function renderHistoire() {
 
 // ── CARTE ─────────────────────────────────────
 const PT_TYPES = ['depart', 'ravito', 'point', 'secours', 'parking'];
-const ptSt = t => IC[t] && PT_TYPES.includes(t) ? IC[t] : IC.point;
+const isPtType = t => PT_TYPES.includes(t) || !!(IC[t] && IC[t].couleur);
+const ptSt = t => isPtType(t) ? IC[t] : IC.point;
 function initMap() {
   if (MAP) { setTimeout(() => MAP.invalidateSize(), 50); return; }
   const c = [E.centre_lat || E.depart_lat || 47.75, E.centre_lng || E.depart_lng || 3.49];
@@ -628,7 +665,7 @@ function initMap() {
   L.control.layers({'Plan': osm, 'IGN': ign, 'Topographique': topo}, null, {position: 'topleft'}).addTo(MAP);
 
   const pcs = D.parcours || [];
-  const types = [...new Set((D.points || []).map(p => p.type))].filter(t => PT_TYPES.includes(t));
+  const types = [...new Set((D.points || []).map(p => p.type))].filter(isPtType);
   $('lgBody').innerHTML = pcs.map(p => `
     <div class="lg-row">
       <input type="checkbox" checked onchange="togglePc('${esc(p.id)}',this.checked)" aria-label="Afficher ${esc(p.nom)}">
@@ -782,7 +819,7 @@ function renderVenir() {
   const cv = (E.covoiturage || '').trim();
   if (cv) {
     const isCode = cv.startsWith('<');
-    const url = isCode ? ((cv.match(/src=["']([^"']+)/) || [])[1] || '') : cv;
+    const url = isCode ? '' : cv; // un widget collé se suffit à lui-même
     $('vCov').innerHTML = `<div class="sec-t">Covoiturage</div><div class="card">
       ${isCode ? `<div class="embed-wrap">${sanitizeEmbed(cv)}</div>` : `<iframe class="embed" src="${esc(cv)}" style="height:640px" loading="lazy"></iframe>`}
       ${url ? `<a class="btn btn-ghost btn-block" style="margin-top:.7rem" href="${esc(url)}" target="_blank" rel="noopener">🚗 Ouvrir le covoiturage ↗</a>` : ''}</div>`;
@@ -804,8 +841,11 @@ function sanitizeEmbed(code) {
   return [...tpl.content.querySelectorAll('iframe')].map(f => {
     const src = f.getAttribute('src') || '';
     if (!/^https:\/\//.test(src)) return '';
-    const h = parseInt(f.getAttribute('height')) || 600, w = f.getAttribute('width');
-    return `<iframe src="${esc(src)}" style="width:100%;${w && !/%/.test(w) ? 'max-width:' + parseInt(w) + 'px;' : ''}height:${h}px" loading="lazy" allow="encrypted-media; clipboard-write" allowfullscreen></iframe>`;
+    const st = f.getAttribute('style') || '';
+    const px = (re, attr) => parseInt((st.match(re) || [])[1]) || parseInt(f.getAttribute(attr)) || 0;
+    const h = px(/(?:^|;)\s*height\s*:\s*(\d+)px/i, 'height') || (/facebook/.test(src) ? 680 : 600);
+    const w = px(/(?:^|;)\s*width\s*:\s*(\d+)px/i, 'width');
+    return `<iframe src="${esc(src)}" style="width:100%;${w ? 'max-width:' + w + 'px;' : ''}height:${h}px" scrolling="no" loading="lazy" allow="encrypted-media; clipboard-write; web-share" allowfullscreen></iframe>`;
   }).join('');
 }
 
