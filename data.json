@@ -597,7 +597,7 @@
     {
       "nom": "AFM-Téléthon",
       "categorie": "Caritatif",
-      "logo": "",
+      "logo": "assets/partenaires/AFM_Telethon.svg",
       "lien": "https://www.afm-telethon.fr/",
       "description": ""
     },
