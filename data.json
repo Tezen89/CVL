@@ -20,6 +20,7 @@
     "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<li><strong>Frais d'inscription</strong> : intégralement reversés au Téléthon (hors frais de ravitaillement couverts par nos partenaires).</li>\n<li><strong>Dons en ligne</strong> : versés directement sur notre page de collecte officielle, avec reçu fiscal.</li>\n<li><strong>Dons sur place</strong> : urne au départ et aux ravitaillements.</li>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur (voir le reçu fiscal).</p>",
     "objectif_dons": 500.0,
     "montant_collecte": 100.0,
+    "lien_dons_sheet": "https://docs.google.com/spreadsheets/d/1-ZvihBi6Ipn9fab4IiThdNw7iSamsoTX/edit?usp=sharing&ouid=105238376964693146148&rtpof=true&sd=true",
     "texte_communication": "<p>Suivez l'événement, partagez-le, invitez vos amis : plus nous serons nombreux, plus la collecte sera belle !</p>",
     "lien_facebook_evenement": "https://www.facebook.com/events/",
     "lien_facebook_page": "https://www.facebook.com/ChevannesVtt/",
@@ -597,7 +598,7 @@
     {
       "nom": "AFM-Téléthon",
       "categorie": "Caritatif",
-      "logo": "assets/partenaires/AFM_Telethon.svg",
+      "logo": "",
       "lien": "https://www.afm-telethon.fr/",
       "description": ""
     },

@@ -890,12 +890,41 @@ function renderFaq() {
 // ── CARITATIF ─────────────────────────────────
 function renderCaritatif() {
   $('cTx').innerHTML = E.texte_caritatif || '';
-  if (E.objectif_dons) {
-    const m = E.montant_collecte || 0, pct = Math.min(100, m / E.objectif_dons * 100);
-    const eur = v => v.toLocaleString('fr-FR', {style: 'currency', currency: 'EUR', maximumFractionDigits: 0});
-    $('cGauge').style.display = ''; $('cMontant').textContent = eur(m); $('cObj').textContent = eur(E.objectif_dons);
-    setTimeout(() => $('cGaugeBar').style.width = Math.max(pct, 2) + '%', 300);
-  }
+  showGauge(E.objectif_dons, E.montant_collecte);
+  // Montant en direct depuis un Google Sheet (sans repasser par GitHub)
+  if (E.lien_dons_sheet) loadDons(E.lien_dons_sheet).then(v => { if (v) showGauge(v.objectif ?? E.objectif_dons, v.montant ?? E.montant_collecte); }).catch(() => {});
+}
+function showGauge(obj, m) {
+  obj = +obj || 0; m = +m || 0;
+  if (!obj) { $('cGauge').style.display = 'none'; return; }
+  const pct = Math.min(100, m / obj * 100);
+  const eur = v => v.toLocaleString('fr-FR', {style: 'currency', currency: 'EUR', maximumFractionDigits: 0});
+  $('cGauge').style.display = ''; $('cMontant').textContent = eur(m); $('cObj').textContent = eur(obj);
+  setTimeout(() => $('cGaugeBar').style.width = Math.max(pct, 2) + '%', 300);
+}
+// Accepte un lien « Publier sur le Web » au format CSV, ou un lien de partage classique du Google Sheet
+function sheetCsvUrl(u) {
+  u = (u || '').trim();
+  if (/output=csv|format=csv|tqx=out:csv/.test(u)) return u;
+  let m = u.match(/\/spreadsheets\/d\/e\/([\w-]+)/);
+  if (m) return `https://docs.google.com/spreadsheets/d/e/${m[1]}/pub?output=csv`;
+  m = u.match(/\/spreadsheets\/d\/([\w-]+)/);
+  if (m) { const gid = (u.match(/[#&?]gid=(\d+)/) || [])[1]; return `https://docs.google.com/spreadsheets/d/${m[1]}/gviz/tq?tqx=out:csv${gid ? '&gid=' + gid : ''}`; }
+  return u; // simple fichier CSV
+}
+async function loadDons(u) {
+  const url = sheetCsvUrl(u);
+  const r = await fetch(url + (url.includes('?') ? '&' : '?') + '_=' + Date.now(), {cache: 'no-store'});
+  if (!r.ok) return null;
+  const rows = (await r.text()).trim().split(/\r?\n/).map(l => l.split(/[,;\t](?=(?:[^"]*"[^"]*")*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim()));
+  const num = v => { const n = parseFloat(String(v || '').replace(/[^\d,.-]/g, '').replace(/\s/g, '').replace(',', '.')); return isNaN(n) ? null : n; };
+  const out = {};
+  const norm = k => (k || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  // Format « clé ; valeur » (une ligne par info)
+  rows.forEach(([k, v]) => { k = norm(k); if (/objectif/.test(k)) out.objectif = num(v); else if (/montant|collect|total/.test(k)) out.montant = num(v); });
+  // Format « en-têtes en ligne 1, valeurs en ligne 2 »
+  if (out.objectif == null && out.montant == null && rows.length > 1) rows[0].forEach((h, i) => { h = norm(h); if (/objectif/.test(h)) out.objectif = num(rows[1][i]); else if (/montant|collect|total/.test(h)) out.montant = num(rows[1][i]); });
+  return (out.objectif != null || out.montant != null) ? out : null;
 }
 
 // ── COMMUNICATION ─────────────────────────────
