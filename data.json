@@ -59,7 +59,7 @@
     {
       "id": "accueil",
       "titre": "Accueil",
-      "icone": "🏠",
+      "icone": "assets/icons/accueil.png",
       "visible": true,
       "tuile": false,
       "sous_menu": false
@@ -67,7 +67,7 @@
     {
       "id": "histoire",
       "titre": "Origine",
-      "icone": "📜",
+      "icone": "assets/icons/origine.png",
       "visible": true,
       "tuile": true,
       "sous_menu": false
@@ -75,7 +75,7 @@
     {
       "id": "groupe",
       "titre": "L'évènement",
-      "icone": "🚵",
+      "icone": "assets/icons/evenement.png",
       "visible": true,
       "tuile": false,
       "sous_menu": false
@@ -83,7 +83,7 @@
     {
       "id": "inscription",
       "titre": "Inscription",
-      "icone": "✍️",
+      "icone": "assets/icons/inscription.png",
       "visible": true,
       "tuile": false,
       "sous_menu": true
@@ -91,7 +91,7 @@
     {
       "id": "carte",
       "titre": "Parcours",
-      "icone": "🗺️",
+      "icone": "assets/icons/parcours.png",
       "visible": true,
       "tuile": true,
       "sous_menu": true
@@ -99,7 +99,7 @@
     {
       "id": "ravitaillement",
       "titre": "Ravitaillement",
-      "icone": "🍲",
+      "icone": "assets/icons/ravito.png",
       "visible": true,
       "tuile": false,
       "sous_menu": true
@@ -107,7 +107,7 @@
     {
       "id": "reglement",
       "titre": "Règlement",
-      "icone": "📄",
+      "icone": "assets/icons/reglement.png",
       "visible": true,
       "tuile": false,
       "sous_menu": true
@@ -115,7 +115,7 @@
     {
       "id": "groupe",
       "titre": "Infos pratiques",
-      "icone": "ℹ️",
+      "icone": "assets/icons/information.png",
       "visible": true,
       "tuile": false,
       "sous_menu": false
@@ -123,7 +123,7 @@
     {
       "id": "venir",
       "titre": "Transport & covoiturage",
-      "icone": "🚗",
+      "icone": "assets/icons/venir.png",
       "visible": true,
       "tuile": true,
       "sous_menu": true
@@ -131,7 +131,7 @@
     {
       "id": "dormir",
       "titre": "Hébergement",
-      "icone": "🛏️",
+      "icone": "assets/icons/dormir.png",
       "visible": true,
       "tuile": false,
       "sous_menu": true
@@ -139,7 +139,7 @@
     {
       "id": "faq",
       "titre": "FAQ",
-      "icone": "❓",
+      "icone": "assets/icons/faq.png",
       "visible": true,
       "tuile": true,
       "sous_menu": true
@@ -147,7 +147,7 @@
     {
       "id": "secours",
       "titre": "Secours",
-      "icone": "🚑",
+      "icone": "assets/icons/secours.png",
       "visible": true,
       "tuile": true,
       "sous_menu": true
@@ -155,7 +155,7 @@
     {
       "id": "fdcy",
       "titre": "Chasse – FDCY",
-      "icone": "🦌",
+      "icone": "assets/icons/chasse.png",
       "visible": true,
       "tuile": false,
       "sous_menu": true
@@ -163,7 +163,7 @@
     {
       "id": "caritatif",
       "titre": "Téléthon",
-      "icone": "❤️",
+      "icone": "assets/icons/don.png",
       "visible": true,
       "tuile": false,
       "sous_menu": false
@@ -171,7 +171,7 @@
     {
       "id": "communication",
       "titre": "Réseaux sociaux",
-      "icone": "📣",
+      "icone": "assets/icons/reseaux.png",
       "visible": true,
       "tuile": false,
       "sous_menu": false
@@ -179,7 +179,7 @@
     {
       "id": "partenaires",
       "titre": "Partenaires",
-      "icone": "🤝",
+      "icone": "assets/icons/partenaire.png",
       "visible": true,
       "tuile": false,
       "sous_menu": false
@@ -292,19 +292,19 @@
       "icone": "🚾",
       "libelle": "WC",
       "couleur": "#1565C0",
-      "page": "les_deux"
+      "page": "transport"
     },
     "douche": {
       "icone": "🚿",
       "libelle": "Douche",
       "couleur": "#1565C0",
-      "page": "les_deux"
+      "page": "transport"
     },
     "lavage": {
       "icone": "💧",
       "libelle": "Point de lavage",
       "couleur": "#1565C0",
-      "page": "transport"
+      "page": "parcours"
     }
   },
   "parcours": [
