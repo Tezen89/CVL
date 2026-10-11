@@ -715,17 +715,17 @@
       "description": ""
     },
     {
-      "nom": "Valérie Clerc Réflexologue",
+      "nom": "Valérie Clert Réflexologue",
       "categorie": "Partenaire",
-      "logo": "",
-      "lien": "",
+      "logo": "assets/partenaires/clert.jpg",
+      "lien": "https://www.facebook.com/reflexo.89",
       "description": ""
     },
     {
       "nom": "Apagelec",
       "categorie": "Partenaire",
-      "logo": "",
-      "lien": "",
+      "logo": "assets/partenaires/apagelec.png",
+      "lien": "https://www.apagelec.fr/",
       "description": ""
     },
     {
