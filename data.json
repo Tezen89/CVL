@@ -17,7 +17,7 @@
     "texte_inscription": "<p><strong>Tarifs</strong> :<br> \nVTT 9 €<br>\nMarche 6 €<br>\n1€ pour les moins de 12 ans.<br>\nVotre don en sus.<br>\nInscription possible sur place le jour J (+2 € sous forme de don).</p>\n<p><strong>Chevannes VTT reverse 1 € par participants auquel s'ajoute vos dons</p>\n<p><strong>Accueil et départs</strong> : salle des fêtes de Chevannes, à partir de 7h30. Départs libres jusqu'à 10h.</p>",
     "lien_inscription": "https://chevannes-vtt.sumupstore.com/",
     "lien_don": "https://pay.sumup.com/b2c/QTCNEEZ2",
-    "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<li><strong>Chevannes VTT reverse 1 € par participants + votre don.</li>\n<li><strong>Dons sans participer </strong> : versés directement sur notre page de collecte officielle</li>\n<li><strong>Dons sur place</strong> : urne au départ</li>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur</p>",
+    "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<li><strong>Chevannes VTT verse 1 € pour chaque participant</li>\n<li><strong>Chevannes VTT reverse vos dons</li>\n<li><strong>Vous ne participez pas mais souhaitez donner </strong> : versés directement sur notre lien de collecte le montant que vous souhaitez</li>\n<li><strong>Dons sur place</strong> : une urneau sera également présente au départ</li>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur</p>",
     "objectif_dons": 500.0,
     "montant_collecte": 100.0,
     "lien_dons_sheet": "https://docs.google.com/spreadsheets/d/1-ZvihBi6Ipn9fab4IiThdNw7iSamsoTX/edit?usp=sharing&ouid=105238376964693146148&rtpof=true&sd=true",
@@ -584,8 +584,8 @@
     },
     {
       "categorie": "Parcours",
-      "question": "Peut-on faire les petits parcours avec une poussette ?",
-      "reponse": "Nos parcours ne sont pas particulièrement utilisables avec une poussette. Nous vous le déconseillons fortement."
+      "question": "Peut-on faire les petits parcours avec une poussette ou avec une personne à mobilité réduite ?",
+      "reponse": "Nos parcours ne sont pas accessible aux poussettes et aux personnes à mobilité réduite (PMR)."
     },
     {
       "categorie": "VTT",
