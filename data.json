@@ -624,10 +624,17 @@
       "description": ""
     },
     {
-      "nom": "AFM-Téléthon",
-      "categorie": "Caritatif",
-      "logo": "",
-      "lien": "https://www.afm-telethon.fr/",
+      "nom": "Conseil Départemental de l'Yonne",
+      "categorie": "Institutionnel",
+      "logo": "assets/partenaires/Logo_Departement_89.png",
+      "lien": "https://www.yonne.fr/",
+      "description": ""
+    },
+    {
+      "nom": "FFVélo",
+      "categorie": "Institutionnel",
+      "logo": "assets/partenaires/ffv.svg",
+      "lien": "https://ffvelo.fr/",
       "description": ""
     },
     {
@@ -638,17 +645,122 @@
       "description": ""
     },
     {
+      "nom": "Ici Auxerre",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/Ici_Auxerre_2025.svg",
+      "lien": "https://www.ici.fr/radio/auxerre",
+      "description": ""
+    },
+    {
+      "nom": "Crédit Agricole",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/logo-cacb-couleurRVB-page.svg",
+      "lien": "https://www.credit-agricole.fr/ca-cb/particulier.html",
+      "description": ""
+    },
+    {
+      "nom": "AuxR'M le Bus",
+      "categorie": "Partenaire",
+      "logo": "",
+      "lien": "https://www.auxrmlebus.com/",
+      "description": ""
+    },
+    {
       "nom": "Domaine de l'érable",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/erable.avif",
+      "lien": "https://www.chablis-erable.fr/",
+      "description": ""
+    },
+    {
+      "nom": "Bastide Auxerre Matériel Médical",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/bastide.jpg",
+      "lien": "https://www.bastideleconfortmedical.com/bastide-le-confort-medical-auxerre.html",
+      "description": ""
+    },
+    {
+      "nom": "YLTP",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/yltp.jpg",
+      "lien": "https://www.facebook.com/profile.php?id=61573338220989",
+      "description": ""
+    },
+    {
+      "nom": "Roland Paysage",
       "categorie": "Partenaire",
       "logo": "",
       "lien": "",
       "description": ""
     },
     {
-      "nom": "Partenaire 5",
+      "nom": "Epitête",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/epitete.jpg",
+      "lien": "https://www.facebook.com/profile.php?id=100063817411158&locale=fr_FR",
+      "description": ""
+    },
+    {
+      "nom": "La Table Lobies",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/lobies",
+      "lien": "https://latable-lobies.fr/",
+      "description": ""
+    },
+    {
+      "nom": "L'évidence",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/evidence",
+      "lien": "https://www.facebook.com/profile.php?id=100063481655517&locale=fr_FR",
+      "description": ""
+    },
+    {
+      "nom": "Valérie Clerc Réflexologue",
       "categorie": "Partenaire",
       "logo": "",
       "lien": "",
+      "description": ""
+    },
+    {
+      "nom": "Apagelec",
+      "categorie": "Partenaire",
+      "logo": "",
+      "lien": "",
+      "description": ""
+    },
+    {
+      "nom": "Les Bobines Dés Fils",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/bobine.jpg",
+      "lien": "https://www.facebook.com/profile.php?id=61566387925102",
+      "description": ""
+    },
+    {
+      "nom": "Les Fromentines",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/fromentines.png",
+      "lien": "https://www.les-fromentines.com/",
+      "description": ""
+    },
+    {
+      "nom": "Cave de Toucy",
+      "categorie": "Partenaire",
+      "logo": "",
+      "lien": "",
+      "description": ""
+    },
+    {
+      "nom": "Axion Numerik",
+      "categorie": "Partenaire",
+      "logo": "assets/partenaires/Axion.png",
+      "lien": "https://axionnumerik.fr/",
+      "description": ""
+    },
+    {
+      "nom": "AFM-Téléthon",
+      "categorie": "Caritatif",
+      "logo": "assets/partenaires/AFM_TELETHON_Q.jfif",
+      "lien": "https://www.afm-telethon.fr/",
       "description": ""
     }
   ],
