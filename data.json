@@ -17,7 +17,7 @@
     "texte_inscription": "<div id=\"rendered-md\"><p><strong>Tarifs</strong> :<br/>\nVTT 9 &euro;<br/>\nMarche 6 &euro;<br/>\n1&euro; pour les moins de 12 ans.<br/>\nVotre don en sus.<br/>\nInscription possible sur place le jour J (+2 &euro; sous forme de don).</p>\n<p><strong>Chevannes VTT :</strong><br/>\n- organise la collecte<br/>\n- verse 1 &euro; pour chaque participant<br/>\n- reverse vos dons</p>\n<p><strong>Accueil et d&eacute;parts</strong> : salle des f&ecirc;tes de Chevannes, &agrave; partir de 7h30. D&eacute;parts libres jusqu&apos;&agrave; 10h.</p>\n</div></div>",
     "lien_inscription": "https://chevannes-vtt.sumupstore.com/",
     "lien_don": "https://pay.sumup.com/b2c/QTCNEEZ2",
-    "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<li><strong>Chevannes VTT verse 1 € pour chaque participant</li>\n<li><strong>Chevannes VTT reverse vos dons</li>\n<li><strong>Vous ne participez pas mais souhaitez donner </strong> : versés directement sur notre lien de collecte le montant que vous souhaitez</li>\n<li><strong>Dons sur place</strong> : une urneau sera également présente au départ</li>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur</p>",
+    "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<li><strong>Chevannes VTT verse 1 € pour chaque participant</li>\n<li><strong>Chevannes VTT reverse vos dons</li>\n<li><strong>Vous ne participez pas mais souhaitez donner </strong> : versés directement sur notre lien de collecte le montant que vous souhaitez</li>\n<li><strong>Dons sur place</strong> : une urne sera également présente au départ</li>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur</p>",
     "objectif_dons": 500.0,
     "montant_collecte": 100.0,
     "lien_dons_sheet": "https://docs.google.com/spreadsheets/d/1-ZvihBi6Ipn9fab4IiThdNw7iSamsoTX/edit?usp=sharing&ouid=105238376964693146148&rtpof=true&sd=true",
@@ -520,7 +520,7 @@
     {
       "categorie": "Dons",
       "question": "Comment faire un don sans participer ?",
-      "reponse": "Via le bouton « Faire un don » de l'application : il mène directement à notre page de collecte Téléthon."
+      "reponse": "Via le bouton « Faire un don » de l'application : il mène directement à notre page de collecte Téléthon. Une urne sera également présente au départ pour les dons sur place."
     },
     {
       "categorie": "Horaires",
@@ -545,7 +545,7 @@
     {
       "categorie": "Inscription",
       "question": "Les mineurs peuvent-ils participer ?",
-      "reponse": "Oui, accompagnés et sous la responsabilit d'un adulte."
+      "reponse": "Oui, accompagnés et sous la responsabilité d'un adulte."
     },
     {
       "categorie": "Marche",
