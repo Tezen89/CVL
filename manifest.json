@@ -1,5 +1,5 @@
 {
-  "name": "Le Père Quignon — Randonnée VTT & marche",
+  "name": "Les Tournées du Père Quignon",
   "short_name": "Père Quignon",
   "description": "Randonnée VTT et marche d'hiver au profit du Téléthon",
   "start_url": "/",
@@ -8,8 +8,25 @@
   "theme_color": "#6B1E2E",
   "orientation": "portrait",
   "icons": [
-    { "src": "assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "assets/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "assets/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
-  ]
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "/",
+  "scope": "/",
+  "lang": "fr"
 }

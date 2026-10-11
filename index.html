@@ -107,7 +107,7 @@ body.menu-open .drawer{transform:none;}
   box-shadow:0 10px 30px rgba(60,20,10,.18);text-align:left;}
 .hero-info{display:flex;gap:.7rem;align-items:flex-start;font-size:15px;margin-bottom:.55rem;}
 .hero-info b{display:block;}
-.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:1rem 0;}
+.cd{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0;}
 .cd div{background:#F6EEE0;border-radius:10px;text-align:center;padding:.55rem 0;}
 .cd b{display:block;font-size:22px;color:var(--main);font-variant-numeric:tabular-nums;}
 .cd span{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
@@ -250,10 +250,10 @@ body.menu-open .drawer{transform:none;}
 .lb img{max-width:96vw;max-height:92vh;object-fit:contain;}
 .lb button{position:absolute;top:calc(1rem + var(--safe-t));right:1rem;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;}
 /* venir */
-.nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
-.nav-btn{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.9rem .5rem;border-radius:12px;border:1.5px solid var(--line);background:#fff;text-decoration:none;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
-.nav-btn i{font-style:normal;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:900;}
-.mini-map{height:200px;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-top:.8rem;}
+.nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.45rem .2rem;border-radius:10px;border:1.5px solid var(--line);background:#fff;text-decoration:none;color:var(--ink);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;text-align:center;line-height:1.15;}
+.nav-btn i{font-style:normal;width:26px;height:26px;border-radius:7px;font-size:14px !important;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:900;}
+.mini-map{height:240px;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-top:.8rem;}
 .fb-full{margin:0 -.8rem;display:flex;justify-content:center;min-height:120px;}
 .fb-full #fbBox{width:100%;max-width:500px;display:flex;justify-content:center;}
 .embed{width:100%;border:none;border-radius:12px;background:#fff;display:block;}
@@ -267,6 +267,31 @@ body.menu-open .drawer{transform:none;}
 .dm-b b{font-size:15px;color:var(--ink);display:block;margin-bottom:.15rem;}
 .dm-links{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.45rem;}
 .dm-links a{font-size:12px;font-weight:700;padding:5px 10px;border-radius:8px;border:1px solid var(--line);text-decoration:none;color:var(--main);background:#FFFDF9;}
+/* ── INSTALLATION (PWA) ── */
+.ins-ov{position:fixed;inset:0;background:rgba(20,10,5,.55);z-index:960;opacity:0;pointer-events:none;transition:opacity .25s;}
+.ins-ov.on{opacity:1;pointer-events:auto;}
+.ins{position:fixed;left:.6rem;right:.6rem;bottom:.6rem;z-index:970;background:var(--card);border-radius:18px;max-width:460px;margin:0 auto;
+  box-shadow:0 12px 40px rgba(0,0,0,.3);padding:1.1rem 1.1rem 1rem;transform:translateY(130%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  padding-bottom:calc(1rem + env(safe-area-inset-bottom,0px));max-height:88vh;overflow-y:auto;}
+.ins:not(.on){visibility:hidden;transition:transform .35s,visibility 0s .35s;}
+.ins.on{transform:none;}
+.ins-hd{display:flex;gap:.8rem;align-items:center;margin-bottom:.7rem;}
+.ins-hd img{width:52px;height:52px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.2);flex-shrink:0;}
+.ins-hd b{display:block;font-size:16px;color:var(--main);}
+.ins-hd small{font-size:13px;color:var(--muted);line-height:1.35;display:block;}
+.ins-x{margin-left:auto;align-self:flex-start;border:none;background:#F3E6CF;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:14px;flex-shrink:0;}
+.ins-steps{list-style:none;counter-reset:st;margin:.3rem 0 .9rem;}
+.ins-steps li{counter-increment:st;display:flex;gap:.7rem;align-items:center;font-size:14px;padding:.5rem 0;border-bottom:1px solid var(--line);line-height:1.4;}
+.ins-steps li:last-child{border-bottom:none;}
+.ins-steps li::before{content:counter(st);width:24px;height:24px;border-radius:50%;background:var(--main);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ios-ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:#F2F2F7;flex-shrink:0;vertical-align:middle;}
+.ios-ic svg{width:20px;height:20px;}
+.ios-row{display:inline-flex;align-items:center;gap:.5rem;background:#F2F2F7;border-radius:8px;padding:.25rem .6rem;font-weight:600;font-size:13px;}
+.ins-arrow{position:fixed;left:50%;bottom:6px;transform:translateX(-50%);z-index:980;font-size:30px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);animation:bob 1s infinite alternate;display:none;pointer-events:none;}
+@keyframes bob{to{transform:translate(-50%,-10px)}}
+.ins-btns{display:flex;gap:.5rem;}
+.ins-btns .btn{flex:1;padding:.75rem .6rem;font-size:14px;}
+.drw-install{display:none;margin-top:.6rem;font-weight:700;color:var(--main);background:none;border:1.5px solid var(--main);border-radius:10px;padding:.5rem .8rem;cursor:pointer;font-size:13px;width:100%;}
 .empty{color:var(--muted);font-style:italic;font-size:14px;}
 @media(min-width:900px){.tiles{grid-template-columns:repeat(4,1fr);}}
 </style>
@@ -284,18 +309,18 @@ body.menu-open .drawer{transform:none;}
 <div class="overlay" onclick="toggleMenu(false)"></div>
 <nav class="drawer" id="drawer" aria-label="Navigation">
   <div class="drw-head">
-    <img src="assets/images/logo.png" alt="" onerror="this.style.display='none'">
+    <img id="drwLogo" alt="" style="display:none">
     <div class="drw-nom" id="drwNom"></div>
     <div class="drw-date" id="drwDate"></div>
   </div>
   <div class="drw-nav" id="drwNav"></div>
-  <div class="drw-foot" id="drwFoot"></div>
+  <div class="drw-foot"><div id="drwFoot"></div><button class="drw-install" id="drwInstall" onclick="toggleMenu(false);openInstall(true)">📲 Installer l'application</button></div>
 </nav>
 
 <!-- ══ 1. ACCUEIL ══ -->
 <section class="page" id="p-accueil">
   <div class="hero">
-    <img class="hero-logo" src="assets/images/logo.png" alt="" onerror="this.style.display='none'">
+    <img class="hero-logo" id="aLogo" alt="" style="display:none">
     <div class="hero-ed" id="aEd"></div>
     <h1 class="hero-nom" id="aNom"></h1>
     <div class="hero-sous" id="aSous"></div>
@@ -381,6 +406,7 @@ body.menu-open .drawer{transform:none;}
       <div style="font-size:13px;color:var(--muted);margin:.2rem 0 .8rem;font-family:ui-monospace,Menlo,monospace" id="vGps"></div>
       <div class="nav-grid" id="vNav"></div>
       <div class="mini-map" id="vMap"></div>
+      <div class="lg-keys" id="vLeg" style="border:none;padding:.5rem 0 0"></div>
     </div>
     <div id="vCov"></div>
   </div>
@@ -483,6 +509,18 @@ body.menu-open .drawer{transform:none;}
   </div>
 </section>
 
+
+<!-- ══ PANNEAU D'INSTALLATION ══ -->
+<div class="ins-ov" id="insOv" onclick="closeInstall()"></div>
+<div class="ins" id="ins" role="dialog" aria-labelledby="insT">
+  <div class="ins-hd">
+    <img src="assets/images/icon-192.png" alt="">
+    <div><b id="insT">Installer l'application</b><small id="insS">Retrouvez parcours, ravitos et secours en un geste, même avec peu de réseau.</small></div>
+    <button class="ins-x" onclick="closeInstall()" aria-label="Fermer">✕</button>
+  </div>
+  <div id="insBody"></div>
+</div>
+<div class="ins-arrow" id="insArrow">⬇</div>
 <div class="toast" id="toast"></div>
 <div class="lb" id="lb" onclick="if(event.target===this)closeLb()"><img id="lbImg" alt=""><button onclick="closeLb()" aria-label="Fermer">✕</button></div>
 
@@ -571,7 +609,7 @@ function route() {
   if (p.id === 'communication') setTimeout(renderFbPost, 50);
 }
 window.addEventListener('hashchange', route);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { toggleMenu(false); closeLb(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { toggleMenu(false); closeLb(); closeInstall(); } });
 
 // ── INIT ──────────────────────────────────────
 async function init() {
@@ -612,6 +650,7 @@ async function init() {
     renderAccueil(); renderHistoire(); renderRavito(); renderInscription(); renderVenir(); renderDormir();
     renderFaq(); renderCaritatif(); renderCom(); renderPartenaires(); renderSecours(); renderFdcy(); renderReglement();
     route();
+    initInstall();
   } catch (e) { console.error(e); document.body.insertAdjacentHTML('beforeend', `<div class="toast on">Erreur : ${esc(e.message)}</div>`); }
 }
 
@@ -621,6 +660,7 @@ const typeIco = t => /vtt|v[ée]lo/i.test(t || '') ? ic('vtt') : ic('marche');
 
 // ── ACCUEIL ───────────────────────────────────
 function renderAccueil() {
+  if (E.logo_accueil) ['aLogo', 'drwLogo'].forEach(id => { const i = $(id); i.src = E.logo_accueil; i.style.display = 'block'; i.onerror = () => i.style.display = 'none'; });
   $('aEd').textContent = E.edition || '';
   $('aNom').textContent = E.nom || '';
   $('aSous').textContent = E.sous_titre || '';
@@ -642,8 +682,7 @@ function countdown() {
   let s = Math.floor((t - new Date()) / 1000);
   if (s <= 0) { el.innerHTML = `<div style="grid-column:1/-1;padding:.8rem"><b style="font-size:17px">${s > -86400 ? "🎉 C'est aujourd'hui !" : 'Merci à tous !'}</b></div>`; return; }
   const j = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
-  el.innerHTML = [[j, 'jours'], [h, 'heures'], [m, 'min']].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('')
-    + `<div><b>${ic('ravito') || '🥣'}</b><span>soupe</span></div>`;
+  el.innerHTML = [[j, 'jours'], [h, 'heures'], [m, 'min']].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
 }
 
 // ── HISTOIRE ──────────────────────────────────
@@ -654,6 +693,10 @@ function renderHistoire() {
 
 // ── CARTE ─────────────────────────────────────
 const PT_TYPES = ['depart', 'ravito', 'point', 'secours', 'parking'];
+// Sur quelle carte afficher un type de point : parcours | transport | les_deux (colonne « page » de l'onglet Icones)
+const ptPage = t => ((IC[t] || {}).page || (['parking', 'lavage'].includes(t) ? 'transport' : 'parcours')).toLowerCase();
+const onParcours = t => ptPage(t) !== 'transport';
+const onTransport = t => /transport|deux/.test(ptPage(t));
 const isPtType = t => PT_TYPES.includes(t) || !!(IC[t] && IC[t].couleur);
 const ptSt = t => isPtType(t) ? IC[t] : IC.point;
 function initMap() {
@@ -668,7 +711,7 @@ function initMap() {
   L.control.layers({'Plan': osm, 'IGN': ign, 'Topographique': topo}, null, {position: 'topleft'}).addTo(MAP);
 
   const pcs = D.parcours || [];
-  const types = [...new Set((D.points || []).map(p => p.type))].filter(isPtType);
+  const types = [...new Set((D.points || []).filter(p => onParcours(p.type)).map(p => p.type))].filter(isPtType);
   $('lgBody').innerHTML = pcs.map(p => `
     <div class="lg-row">
       <input type="checkbox" checked onchange="togglePc('${esc(p.id)}',this.checked)" aria-label="Afficher ${esc(p.nom)}">
@@ -698,7 +741,7 @@ function initMap() {
   });
 
   const pcById = Object.fromEntries(pcs.map(p => [p.id, p]));
-  (D.points || []).forEach(pt => {
+  (D.points || []).filter(pt => onParcours(pt.type)).forEach(pt => {
     const st = ptSt(pt.type);
     const size = pt.type === 'depart' ? 40 : 34;
     const m = L.marker([pt.gps.lat, pt.gps.lng], {
@@ -811,13 +854,14 @@ function renderVenir() {
     const btns = [
       ['Google Maps', '#4285F4', 'G', `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`],
       ['Waze', '#33CCFF', 'W', `https://waze.com/ul?ll=${la},${lo}&navigate=yes`],
-      ['Plans (Apple)', '#555', '', `https://maps.apple.com/?daddr=${la},${lo}&q=${lbl}`],
-      ios ? ['Coyote / autre', '#E3001B', 'C', `javascript:copyGps()`]
-          : ['Coyote / autre', '#E3001B', 'C', `geo:${la},${lo}?q=${la},${lo}(${lbl})`],
+      ['Plans', '#555', '', `https://maps.apple.com/?daddr=${la},${lo}&q=${lbl}`],
+      ios ? ['Coyote', '#E3001B', 'C', `javascript:copyGps()`]
+          : ['Coyote', '#E3001B', 'C', `geo:${la},${lo}?q=${la},${lo}(${lbl})`],
     ];
     $('vNav').innerHTML = btns.map(([n, c, l, u]) => `<a class="nav-btn" href="${u}" ${u.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}><i style="background:${c}">${l}</i>${n}</a>`).join('')
-      + `<button class="nav-btn" style="grid-column:1/-1;flex-direction:row;justify-content:center" onclick="copyGps()">📋 Copier les coordonnées GPS</button>`;
+      + `<button class="nav-btn" style="grid-column:1/-1;flex-direction:row;justify-content:center;font-size:12px;padding:.4rem" onclick="copyGps()">📋 Copier les coordonnées GPS</button>`;
   }
+  renderVLegend();
   // Covoiturage : code iframe collé, ou simple lien
   const cv = (E.covoiturage || '').trim();
   if (cv) {
@@ -831,12 +875,23 @@ function renderVenir() {
 function copyGps() { copy(`${E.venir_lat}, ${E.venir_lng}`, 'Coordonnées copiées — collez-les dans votre appli GPS'); }
 function initVMap() {
   if (VMAP || !E.venir_lat || typeof L === 'undefined') { VMAP && setTimeout(() => VMAP.invalidateSize(), 50); return; }
-  VMAP = L.map('vMap', {center: [E.venir_lat, E.venir_lng], zoom: 14, scrollWheelZoom: false});
+  VMAP = L.map('vMap', {center: [E.venir_lat, E.venir_lng], zoom: 16, scrollWheelZoom: false});
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OpenStreetMap', maxZoom: 19}).addTo(VMAP);
-  const st = IC.depart;
-  L.marker([E.venir_lat, E.venir_lng], {icon: L.divIcon({className: '', iconSize: [38, 38], iconAnchor: [19, 19],
-    html: `<div class="mk" style="width:38px;height:38px;background:${esc(st.couleur || '#2E7D32')};font-size:17px">${icon(st.icone)}</div>`})}).addTo(VMAP);
+  const mk = (ll, st, size, nom) => L.marker(ll, {icon: L.divIcon({className: '', iconSize: [size, size], iconAnchor: [size / 2, size / 2],
+    html: `<div class="mk" style="width:${size}px;height:${size}px;background:${esc(st.couleur || '#2E7D32')};font-size:${size * .45}px">${icon(st.icone)}</div>`})})
+    .addTo(VMAP).bindPopup(`<div class="pop-t">${icon(st.icone)} ${esc(nom)}</div>`);
+  const pts = [[E.venir_lat, E.venir_lng]];
+  mk(pts[0], IC.depart, 38, E.venir_nom || 'Départ');
+  (D.points || []).filter(p => onTransport(p.type) && p.type !== 'depart').forEach(p => {
+    const ll = [p.gps.lat, p.gps.lng]; pts.push(ll);
+    mk(ll, ptSt(p.type), 30, p.nom).getPopup().setContent(`<div class="pop-t">${icon(ptSt(p.type).icone)} ${esc(p.nom)}</div>${esc(p.description || '')}`);
+  });
+  if (pts.length > 1) VMAP.fitBounds(pts, {padding: [28, 28], maxZoom: 17});
   setTimeout(() => VMAP.invalidateSize(), 150);
+}
+function renderVLegend() {
+  const types = [...new Set((D.points || []).filter(p => onTransport(p.type) && p.type !== 'depart').map(p => p.type))].filter(isPtType);
+  $('vLeg').innerHTML = types.map(t => `<span>${ic(t)} ${esc(IC[t].libelle || t)}</span>`).join('');
 }
 // N'autorise que des <iframe> dans le code collé (sécurité)
 function sanitizeEmbed(code) {
@@ -1056,6 +1111,100 @@ function renderReglement() {
     ? `<iframe class="doc-frame" src="${esc(drivePreview(u))}" loading="lazy" allow="autoplay"></iframe>
        <a class="btn btn-main btn-block" style="margin-top:.8rem" href="${esc(u)}" target="_blank" rel="noopener">📄 Ouvrir / télécharger le règlement ↗</a>`
     : '<div class="card empty">Le règlement sera publié prochainement.</div>';
+}
+
+
+// ── INSTALLATION DE L'APPLICATION ─────────────
+// Contextes : android (bouton) · ios (notice illustrée) · inapp (ouvrir dans le navigateur) · desktop
+const UA = navigator.userAgent;
+const IS_IOS = /iPad|iPhone|iPod/.test(UA) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const IS_ANDROID = /Android/i.test(UA);
+const IN_APP = /FBAN|FBAV|FB_IAB|FBIOS|Instagram|Messenger|MicroMessenger|Snapchat|Twitter|LinkedInApp|Line\/|GSA\/|TikTok|musical_ly/i.test(UA) || (IS_ANDROID && /; wv\)/.test(UA));
+const IOS_SAFARI = IS_IOS && /Safari/i.test(UA) && !/CriOS|FxiOS|EdgiOS|OPiOS/i.test(UA) && !IN_APP;
+const isInstalled = () => matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || navigator.standalone === true;
+let deferredPrompt = null, insMode = '';
+const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; $('drwInstall').style.display = 'block'; if ($('ins').classList.contains('on')) renderInstall(); });
+window.addEventListener('appinstalled', () => { deferredPrompt = null; closeInstall(); lsSet('pq_install', 'installee'); $('drwInstall').style.display = 'none'; toast('Application installée ✔'); });
+
+const SVG_SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M8 10H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-2"/></svg>';
+const SVG_ADD = '<svg viewBox="0 0 24 24" fill="none" stroke="#1C1C1E" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+const SVG_DOTS = '<svg viewBox="0 0 24 24" fill="#007AFF"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>';
+
+function installContext() {
+  if (IN_APP) return 'inapp';
+  if (IS_IOS) return 'ios';
+  if (deferredPrompt) return 'prompt';
+  if (IS_ANDROID) return 'android';
+  return 'desktop';
+}
+function renderInstall() {
+  insMode = installContext();
+  const later = `<button class="btn btn-ghost" onclick="closeInstall()">Plus tard</button>`;
+  const url = location.origin + location.pathname;
+  let h = '';
+  $('insArrow').style.display = 'none';
+  if (insMode === 'prompt') {
+    h = `<div class="ins-btns">${later}<button class="btn btn-main" onclick="doInstall()">📲 Installer</button></div>`;
+  } else if (insMode === 'android') {
+    h = `<ol class="ins-steps"><li><span>Touchez le menu <b>⋮</b> en haut à droite du navigateur</span></li>
+      <li><span>Choisissez <b>« Installer l'application »</b> ou <b>« Ajouter à l'écran d'accueil »</b></span></li></ol>
+      <div class="ins-btns">${later}</div>`;
+  } else if (insMode === 'ios') {
+    h = `<ol class="ins-steps">
+      <li><span>Touchez <span class="ios-ic">${SVG_SHARE}</span> <b>Partager</b> en bas de l'écran <small style="color:var(--muted)">(ou <span class="ios-ic" style="width:24px;height:24px">${SVG_DOTS}</span> puis Partager)</small></span></li>
+      <li><span>Faites défiler et touchez <span class="ios-row">${SVG_ADD.replace('<svg', '<svg width="18" height="18"')} Sur l'écran d'accueil</span></span></li>
+      <li><span>Touchez <b style="color:#007AFF">Ajouter</b> en haut à droite</span></li></ol>
+      ${IOS_SAFARI ? '' : `<p style="font-size:13px;color:var(--muted);margin-bottom:.8rem">Si l'option n'apparaît pas, ouvrez cette page dans <b>Safari</b>.</p>`}
+      <div class="ins-btns">${later}</div>`;
+    if (IOS_SAFARI && !/iPad/.test(UA)) $('insArrow').style.display = 'block';
+  } else if (insMode === 'inapp') {
+    const chrome = IS_ANDROID ? `<a class="btn btn-main" href="intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end">Ouvrir dans Chrome</a>` : '';
+    h = `<p style="font-size:14px;line-height:1.5;margin-bottom:.6rem">Vous êtes dans l'application Facebook, Instagram ou Messenger : l'installation n'y est pas possible.</p>
+      <ol class="ins-steps"><li><span>Touchez <b>⋯</b> ou <b>⋮</b> en haut à droite</span></li>
+      <li><span>Choisissez <b>« Ouvrir dans le navigateur »</b>${IS_IOS ? ' (ou « Ouvrir dans Safari »)' : ''}</span></li></ol>
+      <div class="ins-btns">${chrome || `<button class="btn btn-main" onclick="copy('${esc(url)}','Lien copié — collez-le dans votre navigateur')">Copier le lien</button>`}${later}</div>`;
+  } else {
+    h = `<p style="font-size:14px;line-height:1.5;margin-bottom:.8rem">Ouvrez cette page sur votre <b>téléphone</b> (Chrome sur Android, Safari sur iPhone) pour l'installer sur l'écran d'accueil.</p><div class="ins-btns">${later}</div>`;
+  }
+  $('insS').textContent = insMode === 'inapp' ? 'Ouvrez d\'abord la page dans votre navigateur.' : "Retrouvez parcours, ravitos et secours en un geste, même avec peu de réseau.";
+  $('insBody').innerHTML = h;
+}
+// fort = arrivée par QR code ou demande explicite (fond assombri) · sinon panneau discret
+function openInstall(fort) {
+  if (isInstalled()) return;
+  renderInstall();
+  if (!fort && insMode === 'desktop') return; // pas de panneau discret sur ordinateur
+  $('insOv').classList.toggle('on', !!fort);
+  $('ins').classList.add('on');
+}
+function closeInstall() {
+  if (!$('ins').classList.contains('on')) return;
+  $('ins').classList.remove('on'); $('insOv').classList.remove('on'); $('insArrow').style.display = 'none';
+  if (lsGet('pq_install') !== 'installee') lsSet('pq_install', 'plus_tard');
+}
+async function doInstall() {
+  if (!deferredPrompt) return renderInstall();
+  deferredPrompt.prompt();
+  const r = await deferredPrompt.userChoice.catch(() => ({}));
+  deferredPrompt = null;
+  if (r.outcome === 'accepted') closeInstall(); else renderInstall();
+}
+function initInstall() {
+  if (isInstalled()) return;                         // déjà installée : rien ne s'affiche
+  if (IS_IOS || IS_ANDROID) $('drwInstall').style.display = 'block';
+  const q = new URLSearchParams(location.search);
+  if (q.has('install') || q.has('qr')) {              // arrivée par le QR code
+    history.replaceState(null, '', location.pathname + location.hash);
+    setTimeout(() => openInstall(true), 900);
+    return;
+  }
+  if (String(E.install_actif || 'oui').toLowerCase() === 'non' || lsGet('pq_install')) return;
+  const delai = (parseInt(E.install_delai) || 25) * 1000;
+  setTimeout(() => { if (!lsGet('pq_install')) { openInstall(false); lsSet('pq_install', 'vu'); } }, delai);
 }
 
 // ── OUTILS ────────────────────────────────────

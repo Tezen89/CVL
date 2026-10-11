@@ -3,8 +3,14 @@
 # on copie donc les fichiers utiles de l'app dans "public" et on publie ce dossier.
 # (Bonus : l'Excel et les scripts Python ne sont pas mis en ligne.)
 [build]
-  command = "rm -rf public && mkdir public && cp -r index.html manifest.json data.json config.json assets public/"
+  command = "rm -rf public && mkdir public && cp -r index.html manifest.json sw.js data.json config.json assets public/"
   publish = "public"
+
+# Le service worker doit toujours être relu (mises à jour de l'app)
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
 
 # Toujours servir la dernière version des données
 [[headers]]
