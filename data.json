@@ -661,7 +661,7 @@
     {
       "nom": "AuxR'M le Bus",
       "categorie": "Partenaire",
-      "logo": "",
+      "logo": "assets/partenaires/bus.jfif",
       "lien": "https://www.auxrmlebus.com/",
       "description": ""
     },
@@ -703,14 +703,14 @@
     {
       "nom": "La Table Lobies",
       "categorie": "Partenaire",
-      "logo": "assets/partenaires/lobies",
+      "logo": "assets/partenaires/lobies.jpg",
       "lien": "https://latable-lobies.fr/",
       "description": ""
     },
     {
       "nom": "L'évidence",
       "categorie": "Partenaire",
-      "logo": "assets/partenaires/evidence",
+      "logo": "assets/partenaires/evidence.jpg",
       "lien": "https://www.facebook.com/profile.php?id=100063481655517&locale=fr_FR",
       "description": ""
     },
