@@ -53,7 +53,7 @@
     "logo_accueil": "assets/images/logo.png",
     "url_app": "",
     "install_actif": "oui",
-    "install_delai": "5"
+    "install_delai": "10"
   },
   "menu": [
     {
