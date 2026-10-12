@@ -189,13 +189,13 @@
     "depart": {
       "icone": "assets/icons/depart.png",
       "libelle": "Départ / arrivée",
-      "couleur": "#2E7D32",
+      "couleur": "#6B1E2E",
       "page": "parcours"
     },
     "ravito": {
       "icone": "assets/icons/ravito.png",
       "libelle": "Ravitaillement",
-      "couleur": "#E0A526",
+      "couleur": "#6B1E2E",
       "page": "parcours"
     },
     "point": {
