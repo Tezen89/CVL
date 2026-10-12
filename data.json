@@ -247,7 +247,7 @@
       "page": ""
     },
     "vue": {
-      "icone": "🔍",
+      "icone": "assets/icons/carte.png",
       "libelle": "Vue d'ensemble",
       "couleur": "",
       "page": ""
