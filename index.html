@@ -139,6 +139,8 @@ body.menu-open .drawer{transform:none;}
 .lg-txt b{font-size:14px;display:block;}
 .lg-txt small{font-size:12px;color:var(--muted);}
 .lg-gpx{font-size:11px;font-weight:700;color:var(--main);text-decoration:none;border:1px solid var(--line);padding:4px 8px;border-radius:8px;white-space:nowrap;}
+.lg-tx{font-size:14px;line-height:1.6;padding:.2rem .4rem .7rem;}
+.lg-tx p{margin-bottom:.5rem;}
 .lg-keys{display:flex;flex-wrap:wrap;gap:.8rem;padding:.6rem .4rem .2rem;border-top:1px solid var(--line);font-size:12px;color:var(--muted);}
 .map-btns{position:fixed;right:.7rem;top:calc(var(--hh) + var(--safe-t) + .7rem);z-index:400;display:flex;flex-direction:column;gap:.5rem;}
 .map-btn{width:44px;height:44px;border-radius:12px;border:none;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.25);font-size:20px;cursor:pointer;}
@@ -359,6 +361,7 @@ body.menu-open .drawer{transform:none;}
   <div class="map-btns">
     <button class="map-btn" id="btnLoc" title="Me localiser" onclick="toggleLoc()"><span data-ic="localiser">📍</span></button>
     <button class="map-btn" title="Vue d'ensemble" onclick="fitAll()"><span data-ic="vue">🔍</span></button>
+    <button class="map-btn" id="btnInfo" title="Infos parcours" style="display:none" onclick="showPcInfo()"><span data-ic="info">ℹ️</span></button>
   </div>
   <div class="legend" id="legend">
     <div class="lg-head" onclick="document.getElementById('legend').classList.toggle('closed')">
@@ -712,7 +715,7 @@ function initMap() {
 
   const pcs = D.parcours || [];
   const types = [...new Set((D.points || []).filter(p => onParcours(p.type)).map(p => p.type))].filter(isPtType);
-  $('lgBody').innerHTML = pcs.map(p => `
+  $('lgBody').innerHTML = (E.texte_parcours ? `<div class="rich lg-tx">${E.texte_parcours}</div>` : '') + pcs.map(p => `
     <div class="lg-row">
       <input type="checkbox" checked onchange="togglePc('${esc(p.id)}',this.checked)" aria-label="Afficher ${esc(p.nom)}">
       <span class="lg-line" style="background:${esc(p.couleur)}"></span>
@@ -721,6 +724,7 @@ function initMap() {
     </div>`).join('')
     + `<div class="lg-keys">${types.map(t => `<span>${ic(t)} ${esc(IC[t].libelle || t)}</span>`).join('')}</div>`;
   if (innerWidth < 600 && pcs.length > 3) $('legend').classList.add('closed');
+  if (E.texte_parcours) $('btnInfo').style.display = '';
 
   const all = L.featureGroup();
   pcs.forEach(p => {
@@ -756,6 +760,7 @@ function initMap() {
   });
   setTimeout(() => MAP.invalidateSize(), 100);
 }
+function showPcInfo() { const lg = $('legend'); lg.classList.remove('closed'); $('lgBody').scrollTop = 0; }
 function fitAll() { if (MAP && MAP._all && MAP._all.getLayers().length) MAP.fitBounds(MAP._all.getBounds(), {padding: [30, 30], paddingBottomRight: [30, 120]}); }
 function togglePc(id, on) {
   const l = LAYERS[id]; if (!l) return;

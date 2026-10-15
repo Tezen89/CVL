@@ -53,7 +53,8 @@
     "logo_accueil": "assets/images/logo.png",
     "url_app": "",
     "install_actif": "oui",
-    "install_delai": "6"
+    "install_delai": "6",
+    "texte_parcours": "<p>Dimanche 22, vous pourrez retrouvez ici tous les parcours de la manifestations ainsi que les lieux de ravitaillement</p>"
   },
   "menu": [
     {
