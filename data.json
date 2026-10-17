@@ -25,7 +25,7 @@
     "lien_facebook_evenement": "https://www.facebook.com/events/",
     "lien_facebook_page": "https://www.facebook.com/ChevannesVtt/",
     "lien_instagram": "https://www.instagram.com/chevannesvtt",
-    "texte_fdcy": "<h2>Vététistes, Randonneurs et Chasseurs : partager la nature</h2>\n<p>Fin novembre, la <strong>saison de chasse</strong> bat son plein dans l'Yonne. Les parcours empruntent des chemins ouverts au public, mais traversent ou longent des territoires de chasse.</p>\n<p>L'organisation informe les sociétés de chasse locales de la date et des tracés de la manifestation.</p>\n<h3>Les bons réflexes</h3>\n<ul>\n<li>Restez <strong>sur les chemins balisés</strong>, ne coupez pas à travers bois ou cultures.</li>\n<li>Respectez les <strong>panneaux « Chasse en cours »</strong> et les consignes des signaleurs.</li>\n<li>Portez une <strong>couleur vive</strong> (gilet fluo conseillé).</li>\n<li>Tenez votre <strong>chien en laisse</strong>.</li>\n<li>Restez courtois : chacun a sa place dans la nature.</li>\n</ul>\n<h3>La Fédération départementale des chasseurs de l'Yonne</h3>\n<p>La FDC 89 coordonne l'activité cynégétique du département, la gestion de la faune sauvage et la sécurité à la chasse. Elle mène aussi des actions en faveur des habitats et de la biodiversité.</p>",
+    "texte_fdcy": "<h2>Vététistes, Randonneurs et Chasseurs : partageons la nature</h2>\n<p>Fin novembre, la <strong>saison de chasse</strong> bat son plein dans l'Yonne. Les parcours empruntent des chemins ouverts au public, mais traversent ou longent des territoires de chasse.</p>\n<p>L'organisation informe les sociétés de chasse locales de la date et des tracés de la manifestation.</p>\n<h3>Les bons réflexes</h3>\n<ul>\n<li>Restez <strong>sur les chemins balisés</strong>, ne coupez pas à travers bois ou cultures.</li>\n<li>Respectez les <strong>panneaux « Chasse en cours »</strong> et les consignes des signaleurs.</li>\n<li>Portez une <strong>couleur vive</strong> (gilet fluo conseillé).</li>\n<li>Tenez votre <strong>chien en laisse</strong>.</li>\n<li>Restez courtois : chacun a sa place dans la nature.</li>\n</ul>\n<h3>La Fédération départementale des chasseurs de l'Yonne</h3>\n<p>La FDC 89 coordonne l'activité cynégétique du département, la gestion de la faune sauvage et la sécurité à la chasse. Elle mène aussi des actions en faveur des habitats et de la biodiversité.</p>",
     "fdcy_adresse": "20 avenue de la Paix, 89000 Saint-Georges-sur-Baulche",
     "fdcy_telephone": "03 86 94 22 94",
     "fdcy_email": "fdc89@fdc89.fr",
@@ -37,13 +37,13 @@
     "organisateur": "Chevannes VTT Loisirs",
     "affiche": "assets/images/Affiche.jpg",
     "facebook_embed": "<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FCaSePasseAChevannes%2Fposts%2Fpfbid0gv1cBWWadWKN1wr7jWSi1oAXvukg2SpfixoUEzTzT9iGYpQh849WQyn9mvzDophYl&show_text=true&width=500\" width=\"500\" height=\"0\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>",
-    "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération)</li>\n<li>et et bien d'autres mets et comme d'habitude de la bonne humeur !</li>\n</ul>\n<p>Pensez à votre gobelet</p>",
+    "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération)</li>\n<li>et bien d'autres mets et comme d'habitude de la bonne humeur !</li>\n</ul>\n<p>Pensez à prendre votre gobelet</p>",
     "images_ravitaillement": [
       "assets/images/soupe.jpg",
       "assets/images/vin.jpg",
       "assets/images/Ravitaillement.jpg"
     ],
-    "texte_venir": "<p>La randonnée part de la <strong>salle polyvalente de Chevannes</strong>, à une dizaine de minutes au sud d'Auxerre.</p>\n<ul>\n<li><strong>Par l'A6</strong> (Paris) : sortie 19, puis direction Perrigny puis Chevannes.</li>\n<li><strong>Par l'A6</strong> (Lyon) : sortie 20, puis direction Auxerre puis Chevannes.</li>\n<li><strong>Par l'A77</strong> (Nevers / Montargis) : sortie 21, puis direction Auxerre / Chevannes.</li>\n<li><strong>Depuis Auxerre</strong> : suivre la direction de Chevannes.</li>\n<li><strong>Stationnement</strong> : parking à proximité de la salle, suivre les indications des bénévoles.</li>\n</ul>\n<p>Pensez au <strong>covoiturage</strong> : moins de voitures, plus de places de parking… et un geste pour la planète !</p>",
+    "texte_venir": "<p>La randonnée part de la <strong>salle polyvalente de Chevannes</strong>, à une dizaine de minutes au sud d'Auxerre.</p>\n<ul>\n<li><strong>Par l'A6</strong> (Paris) : sortie 19, puis direction Perrigny, St Georges sur Baulches puis Chevannes.</li>\n<li><strong>Par l'A6</strong> (Lyon) : sortie 20, puis direction Auxerre, Direction Bourges/Nevers puis Chevannes.</li>\n<li><strong>Par l'A77</strong> (Nevers / Montargis) : sortie 21, puis direction Auxerre / Chevannes.</li>\n<li><strong>Depuis Auxerre</strong> : suivre la direction de Chevannes.</li>\n<li><strong>Stationnement</strong> : parking à proximité de la salle, suivre les indications des bénévoles.</li>\n</ul>\n<p>Pensez au <strong>covoiturage</strong> : moins de voitures, plus de places de parking… et un geste pour la planète !</p>",
     "venir_nom": "Salle polyvalente de Chevannes",
     "venir_adresse": "Chevannes (89240)",
     "venir_lat": 47.7520014345828,
@@ -293,13 +293,13 @@
       "icone": "🚾",
       "libelle": "WC",
       "couleur": "#1565C0",
-      "page": "transport"
+      "page": "les_deux"
     },
     "douche": {
       "icone": "🚿",
       "libelle": "Douche",
       "couleur": "#1565C0",
-      "page": "transport"
+      "page": "les_deux"
     },
     "lavage": {
       "icone": "💧",
@@ -308,20 +308,7 @@
       "page": "parcours"
     }
   },
-  "parcours": [
-    {
-      "id": "V12",
-      "nom": "La Carte Postale du Père Quignon",
-      "type": "VTT",
-      "couleur": "#E67E22",
-      "gpx": "assets/gpx/vtt22.gpx",
-      "distance_km": 12,
-      "denivele_m": 200,
-      "difficulte": "Facile",
-      "horaire_depart": "7h30 – 10h00",
-      "description": "Vrai parcours de découverte du VTT alliant chemins forestiers et sentiers (\"singles\") avec des racines\nParcours sans difficulté technique particulière (déconseillé aux enfants de moins de 9 ans)\nNos amis les animaux sont acceptés tenus en laisse.\nAttention chemin non accessible aux poussettes et aux personnes à mobilité réduite (PMR)."
-    }
-  ],
+  "parcours": [],
   "points": [
     {
       "id": "D",
@@ -401,7 +388,19 @@
       },
       "parcours": [],
       "horaires": "",
-      "description": ""
+      "description": "WC Extérieur"
+    },
+    {
+      "id": "P3",
+      "nom": "Douches",
+      "type": "douche",
+      "gps": {
+        "lat": 47.752072133554,
+        "lng": 3.4901963151611
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": "WC et douches collectives"
     },
     {
       "id": "P4",
@@ -440,7 +439,7 @@
       "description": ""
     },
     {
-      "id": "P6",
+      "id": "P7",
       "nom": "Parking 4",
       "type": "parking",
       "gps": {
@@ -450,6 +449,18 @@
       "parcours": [],
       "horaires": "",
       "description": ""
+    },
+    {
+      "id": "P8",
+      "nom": "Parking 5",
+      "type": "parking",
+      "gps": {
+        "lat": 47.7511538860386,
+        "lng": 3.49006087136449
+      },
+      "parcours": [],
+      "horaires": "",
+      "description": "Sur invitation de nos bénévoles uniquement"
     }
   ],
   "faq": [
@@ -709,47 +720,56 @@
     {
       "nom": "Château de Ribourdin",
       "categorie": "Dormir",
-      "logo": "",
+      "logo": "assets/partenaires/ribourdin.webp",
       "lien": "https://www.chateauderibourdin.com/fr",
-      "adresse": "Chevannes",
-      "telephone": "",
-      "description": "Gîte 6 personnes"
+      "adresse": "8 Rte de Ribourdin, 89240 Chevannes",
+      "telephone": "06 80 75 00 43",
+      "description": "Maison d'Hôtes de Charme en Bourgogne labellisée Destination d'Excellence"
     },
     {
-      "nom": "Chambre d'hôtes exemple",
+      "nom": "La Chevannaise",
+      "categorie": "Dormir",
+      "logo": "",
+      "lien": "https://www.lachevannaise.com/",
+      "adresse": "5 Ter Chemin Des Prés Ronds - La Villotte, 89240 CHEVANNES",
+      "telephone": "06 88 77 12 15",
+      "description": "Chambre d'Hôtes"
+    },
+    {
+      "nom": "Aux nuits sereines",
+      "categorie": "Dormir",
+      "logo": "",
+      "lien": "https://www.aux-nuits-sereines.com/",
+      "adresse": "13 Rue de la Tour, 89240 Chevannes",
+      "telephone": "06 17 95 01 52",
+      "description": "Chambre d'Hôtes"
+    },
+    {
+      "nom": "Le Relais des Vignottes",
       "categorie": "Dormir",
       "logo": "",
       "lien": "",
-      "adresse": "",
-      "telephone": "",
-      "description": ""
+      "adresse": "hameau de Serein, 4 Rue des Vignottes, 89240 Chevannes",
+      "telephone": "03 45 45 19 70",
+      "description": "Chambres d'Hôtes"
     },
     {
       "nom": "Maison Lobies",
       "categorie": "Manger",
-      "logo": "",
+      "logo": "assets/partenaires/lobies.png",
       "lien": "https://latable-lobies.fr/",
-      "adresse": "",
-      "telephone": "",
-      "description": ""
+      "adresse": "2 rue Porte d’en Haut, 89240 Chevannes",
+      "telephone": "09 85 07 05 27",
+      "description": "Fermé le week-end"
     },
     {
       "nom": "Restaurant L'évidence",
       "categorie": "Manger",
-      "logo": "",
+      "logo": "assets/partenaires/evidence,jpg",
       "lien": "https://www.facebook.com/profile.php?id=100063481655517#",
-      "adresse": "",
-      "telephone": "",
+      "adresse": "3 Place du Commerce, 89240 Chevannes",
+      "telephone": "09 86 27 34 99",
       "description": "Cuisine du terroir"
-    },
-    {
-      "nom": "Boulangerie Patisserie Bisson",
-      "categorie": "Manger",
-      "logo": "assets/partenaires/Bisson.jpg",
-      "lien": "https://www.facebook.com/BoulangeriePatisserieLaurentBisson",
-      "adresse": "",
-      "telephone": "",
-      "description": ""
     }
   ],
   "secours": [
@@ -790,14 +810,20 @@
       "type": "organisation"
     },
     {
-      "libelle": "Poste de secours Ravitaillement 1",
-      "numero": "06 70 52 40 11",
+      "libelle": "Poste de secours 1",
+      "numero": "07 64 21 05 84",
       "description": "Équipe de premiers secours de la manifestation.",
       "type": "organisation"
     },
     {
-      "libelle": "Poste de secours Ravitaillement 2",
-      "numero": "06 00 00 00 01",
+      "libelle": "Poste de secours 2",
+      "numero": "06 26 81 40 42",
+      "description": "Équipe de premiers secours de la manifestation.",
+      "type": "organisation"
+    },
+    {
+      "libelle": "Poste de secours 3",
+      "numero": "06 84 85 37 63",
       "description": "Équipe de premiers secours de la manifestation.",
       "type": "organisation"
     }
