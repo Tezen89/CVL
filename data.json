@@ -641,7 +641,7 @@
     {
       "nom": "Roland Paysage",
       "categorie": "Partenaire",
-      "logo": "",
+      "logo": "assets/partenaires/roland.jpg",
       "lien": "",
       "description": ""
     },
@@ -697,7 +697,7 @@
     {
       "nom": "Cave de Toucy",
       "categorie": "Partenaire",
-      "logo": "",
+      "logo": "assets/partenaires/cave.png",
       "lien": "",
       "description": ""
     },
@@ -769,7 +769,7 @@
       "lien": "https://www.facebook.com/profile.php?id=100063481655517#",
       "adresse": "3 Place du Commerce, 89240 Chevannes",
       "telephone": "09 86 27 34 99",
-      "description": "Cuisine du terroir"
+      "description": "Fermé le dimanche"
     }
   ],
   "secours": [
