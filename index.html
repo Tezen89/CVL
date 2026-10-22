@@ -179,7 +179,16 @@ body.menu-open .drawer{transform:none;}
 .don-box p{font-size:14px;opacity:.92;margin-bottom:1rem;}
 .don-box .btn{background:#fff;color:var(--don);}
 .gauge{background:#F3E6CF;border-radius:20px;height:16px;overflow:hidden;margin:.6rem 0 .4rem;}
-.gauge div{height:100%;background:linear-gradient(90deg,var(--accent),var(--don));border-radius:20px;transition:width 1s;}
+.gauge{display:flex;}
+.gauge div{height:100%;width:0;transition:width 1s;}
+.gauge div:first-child{border-radius:20px 0 0 20px;}
+.gauge div:last-child{border-radius:0 20px 20px 0;}
+.gauge div:only-child{border-radius:20px;background:linear-gradient(90deg,var(--accent),var(--don));}
+.gauge-leg{display:flex;flex-direction:column;gap:.3rem;margin-top:.7rem;padding-top:.6rem;border-top:1px solid var(--line);font-size:13px;}
+.gauge-leg:empty{display:none;}
+.gauge-leg div{display:flex;align-items:center;gap:.5rem;}
+.gauge-leg i{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+.gauge-leg b{margin-left:auto;font-variant-numeric:tabular-nums;}
 .gauge-txt{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);}
 .gauge-txt b{color:var(--ink);font-size:16px;}
 
@@ -458,8 +467,9 @@ body.menu-open .drawer{transform:none;}
     <h1 class="h1" data-title="caritatif">Caritatif & dons</h1>
     <div class="card" id="cGauge" style="display:none">
       <div style="font-weight:700">Notre collecte</div>
-      <div class="gauge"><div id="cGaugeBar" style="width:0"></div></div>
+      <div class="gauge" id="cGaugeBar"></div>
       <div class="gauge-txt"><span><b id="cMontant"></b> collectés</span><span>Objectif <span id="cObj"></span></span></div>
+      <div class="gauge-leg" id="cLeg"></div>
     </div>
     <div class="card"><div class="rich" id="cTx"></div></div>
     <div class="don-box">
@@ -973,15 +983,23 @@ function renderCaritatif() {
   $('cTx').innerHTML = E.texte_caritatif || '';
   showGauge(E.objectif_dons, E.montant_collecte);
   // Montant en direct depuis un Google Sheet (sans repasser par GitHub)
-  if (E.lien_dons_sheet) loadDons(E.lien_dons_sheet).then(v => { if (v) showGauge(v.objectif ?? E.objectif_dons, v.montant ?? E.montant_collecte); }).catch(() => {});
+  if (E.lien_dons_sheet) loadDons(E.lien_dons_sheet).then(v => { if (v) showGauge(v.objectif ?? E.objectif_dons, v.montant ?? E.montant_collecte, v.cats); }).catch(() => {});
 }
-function showGauge(obj, m) {
-  obj = +obj || 0; m = +m || 0;
+const GAUGE_COLORS = ['var(--don)', 'var(--accent)', 'var(--main2)', '#2E86C1', '#27AE60', '#8E44AD'];
+// cats = [{nom, montant}] : catégories de dons (barre empilée) — sinon barre simple
+function showGauge(obj, m, cats) {
+  obj = +obj || 0; cats = (cats || []).filter(c => c.montant > 0 || c.montant === 0);
+  if (cats.length) m = cats.reduce((t, c) => t + (c.montant || 0), 0);
+  m = +m || 0;
   if (!obj) { $('cGauge').style.display = 'none'; return; }
-  const pct = Math.min(100, m / obj * 100);
   const eur = v => v.toLocaleString('fr-FR', {style: 'currency', currency: 'EUR', maximumFractionDigits: 0});
   $('cGauge').style.display = ''; $('cMontant').textContent = eur(m); $('cObj').textContent = eur(obj);
-  setTimeout(() => $('cGaugeBar').style.width = Math.max(pct, 2) + '%', 300);
+  const base = Math.max(obj, m);                         // si l'objectif est dépassé, la barre est pleine
+  const segs = cats.length ? cats.map((c, i) => ({w: (c.montant || 0) / base * 100, col: GAUGE_COLORS[i % GAUGE_COLORS.length]}))
+                           : [{w: Math.max(m / base * 100, 2), col: ''}];
+  $('cGaugeBar').innerHTML = segs.map(x => `<div data-w="${x.w}" style="${x.col ? 'background:' + x.col : ''}"></div>`).join('');
+  $('cLeg').innerHTML = cats.length > 1 ? cats.map((c, i) => `<div><i style="background:${GAUGE_COLORS[i % GAUGE_COLORS.length]}"></i>${esc(c.nom)}<b>${eur(c.montant || 0)}</b></div>`).join('') : '';
+  setTimeout(() => [...$('cGaugeBar').children].forEach(d => d.style.width = d.dataset.w + '%'), 300);
 }
 // Accepte un lien « Publier sur le Web » au format CSV, ou un lien de partage classique du Google Sheet
 function sheetCsvUrl(u) {
@@ -1002,10 +1020,15 @@ async function loadDons(u) {
   const out = {};
   const norm = k => (k || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   // Format « clé ; valeur » (une ligne par info)
-  rows.forEach(([k, v]) => { k = norm(k); if (/objectif/.test(k)) out.objectif = num(v); else if (/montant|collect|total/.test(k)) out.montant = num(v); });
+  // Les autres lignes chiffrées (Dons participants, Dons Chevannes VTT, Dons directs…) = catégories de la barre
+  out.cats = [];
+  rows.forEach(([k, v]) => { const n = norm(k); if (!k) return;
+    if (/objectif/.test(n)) out.objectif = num(v);
+    else if (/montant|collect|total/.test(n)) out.montant = num(v);
+    else if (num(v) != null && !/^(info|libelle|categorie|champ)$/.test(n)) out.cats.push({nom: k, montant: num(v)}); });
   // Format « en-têtes en ligne 1, valeurs en ligne 2 »
   if (out.objectif == null && out.montant == null && rows.length > 1) rows[0].forEach((h, i) => { h = norm(h); if (/objectif/.test(h)) out.objectif = num(rows[1][i]); else if (/montant|collect|total/.test(h)) out.montant = num(rows[1][i]); });
-  return (out.objectif != null || out.montant != null) ? out : null;
+  return (out.objectif != null || out.montant != null || out.cats.length) ? out : null;
 }
 
 // ── COMMUNICATION ─────────────────────────────

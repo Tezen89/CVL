@@ -189,7 +189,7 @@
       "id": "credits",
       "titre": "Mentions légales",
       "icone": "",
-      "visible": false,
+      "visible": true,
       "tuile": false,
       "sous_menu": false
     }
