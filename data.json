@@ -188,7 +188,7 @@
     {
       "id": "credits",
       "titre": "Mentions légales",
-      "icone": "",
+      "icone": "assets/icons/legal.png",
       "visible": true,
       "tuile": false,
       "sous_menu": false
