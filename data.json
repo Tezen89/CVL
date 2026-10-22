@@ -16,7 +16,7 @@
     "image_histoire": "assets/images/marmite.png",
     "texte_inscription": "<div id=\"rendered-md\"><p><strong>Accueil et d&eacute;parts :</strong><br/>\nSalle polyvalente de Chevannes<br/>\nD&eacute;parts libres de 7h30 jusqu&apos;&agrave; 10h<br/>\n<br class=\"jop-noMdConv\"/><strong>Chevannes VTT :</strong><br/>\n- Organise la collecte<br/>\n- Verse 1 &euro; supplémentaire pour chaque participant<br/>\n- Reverse vos dons</p>\n<p><strong>Tarifs de la manifestation :</strong><br/>\n- VTT 9 &euro;<br/>\n- Marche 6 &euro;<br/>\n- 1&euro; pour les moins de 12 ans</p>\n<p><strong>Dons</strong><br/>\nAu moment de votre inscription, nous faisons <strong>appel &agrave; votre g&eacute;n&eacute;rosit&eacute;</strong>, et comme la Soupe du P&egrave;re Guignon composez votre recette :<br/>\n- don d&apos;un grain de sel : 2 &euro;<br/>\n- don d&apos;un oignon : 5 &euro;<br/>\n- don d&apos;un quignon : 10 &euro;<br/>\n- don d&apos;un chabrot : 20 &euro;<br/>\n- don d&apos;une marmite :&nbsp; 50 &euro;<br/>\n- don d&apos;une tourn&eacute;e : 100 &euro;</p>\n<p>Vous pouvez &eacute;galement participer uniquement &agrave; la collecte en donnant un montant libre sur <a data-from-md=\"\" title=\"https://pay.sumup.com/b2c/QTCNEEZ2\" href=\"https://pay.sumup.com/b2c/QTCNEEZ2\">notre page de collecte</a><br/>\nUne urne se tiendra &eacute;galement au d&eacute;part de la manifestation pour les dons sur place.<br/>\n<br class=\"jop-noMdConv\"/><strong>Inscriptions :</strong><br/>\n- en ligne<br/>\n- sur place le jour J avec un suppl&eacute;ment de 2 &euro; sous forme de don.<br/>\n<br class=\"jop-noMdConv\"/><br class=\"jop-noMdConv\"/></p></div>",
     "lien_inscription": "https://store.chevannesvtt.com/produits",
-    "lien_don": "https://mapage.telethon.fr/animation/VT-TELETHON",
+    "lien_don": "https://mapage.telethon.fr/animation/LES-TOURNEES-DU-PERE-QUIGNON",
     "texte_caritatif": "<h2>Pourquoi le Téléthon ?</h2>\n<p>Le Téléthon, organisé par l'<strong>AFM-Téléthon</strong>, finance la recherche sur les maladies génétiques rares et neuromusculaires, et accompagne les malades et leurs familles au quotidien.</p>\n<p>La 40<sup>e</sup> édition nationale a lieu les <strong>4 et 5 décembre 2026</strong>. Notre randonnée en est une étape locale : chaque inscription et chaque don rejoignent la collecte nationale.</p>\n<h2>Où va votre argent ?</h2>\n<ul>\n<p><strong>Chevannes VTT :</strong><br/>\n- organise la collecte<br/>\n- verse 1 &euro; supplémentaire pour chaque participant<br/>\n- reverse vos dons</p>\n<br>\n<p><strong>Vous ne participez pas mais souhaitez donner ? </strong> : versés directement sur notre lien de collecte le montant que vous souhaitez.</p>\n<br>\n<p><strong>Dons sur place</strong> : une urne sera également présente au départ.</p>\n</ul>\n<p>Un don à l'AFM-Téléthon ouvre droit à une réduction d'impôt selon les règles en vigueur</p>",
     "objectif_dons": null,
     "montant_collecte": null,
@@ -37,7 +37,7 @@
     "organisateur": "Chevannes VTT Loisirs",
     "affiche": "assets/images/Affiche.jpg",
     "facebook_embed": "<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FCaSePasseAChevannes%2Fposts%2Fpfbid0gv1cBWWadWKN1wr7jWSi1oAXvukg2SpfixoUEzTzT9iGYpQh849WQyn9mvzDophYl&show_text=true&width=500\" width=\"500\" height=\"0\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>",
-    "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements vous attendent :</p>\n<ul>\n<li><strong>Soupe à l'oignon</strong> maison, servie bien chaude</li>\n<li><strong>Vin chaud</strong> (avec modération)</li>\n<li>et bien d'autres mets et comme d'habitude de la bonne humeur !</li>\n</ul>\n<p>Pensez à prendre votre gobelet et à vérfier les horaires des ravitaillements.</p>",
+    "texte_ravitaillement": "<p>Le Père Quignon n'a jamais laissé un voyageur le ventre vide ! Sur chaque parcours, des ravitaillements vous attendent :</p>\n<ul>\n<li><strong>Ravitaillement des Salamandres</li>\n<li><strong>Recettes du Père Quignon : </li>\n<li><strong>- Soupe à l'oignon</strong>  servie bien chaude</li>\n<li><strong>- Vin chaud</strong> (avec modération)</li>\n<li>et bien d'autres mets et comme d'habitude de la bonne humeur !</li>\n</ul>\n<p>Pensez à prendre votre gobelet et à vérfier les horaires des ravitaillements.</p>",
     "images_ravitaillement": [
       "assets/images/soupe.jpg",
       "assets/images/vin.jpg",
@@ -182,6 +182,14 @@
       "titre": "Partenaires",
       "icone": "assets/icons/partenaire.png",
       "visible": true,
+      "tuile": false,
+      "sous_menu": false
+    },
+    {
+      "id": "credits",
+      "titre": "Mentions légales",
+      "icone": "",
+      "visible": false,
       "tuile": false,
       "sous_menu": false
     }
@@ -811,7 +819,7 @@
     "texte_donnees": "<p>L'application ne demande ni compte ni mot de passe et n'enregistre aucune donnée personnelle sur nos serveurs.</p>\n<ul>\n<li><strong>Localisation</strong> : utilisée uniquement sur votre téléphone et à votre demande (bouton « Me localiser », page Secours) pour afficher votre position. Elle n'est ni transmise ni conservée par l'organisation, sauf si vous choisissez de l'envoyer par SMS.</li>\n<li><strong>Stockage sur votre téléphone</strong> : l'application mémorise seulement si la proposition d'installation vous a déjà été montrée. Elle n'utilise aucun cookie publicitaire ni de mesure d'audience.</li>\n<li><strong>Services tiers</strong> : certaines pages affichent des contenus externes (publication Facebook, widget de covoiturage Togetzer, fonds de carte) ou renvoient vers SumUp pour l'inscription et les dons. Ces services peuvent déposer leurs propres cookies et appliquent leur propre politique de confidentialité.</li>\n<li><strong>Inscriptions et dons</strong> : les informations saisies sur SumUp sont utilisées par l'association uniquement pour l'organisation de la manifestation.</li>\n</ul>\n<p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et d'effacement de vos données en écrivant à l'adresse e-mail ci-dessus. Vous pouvez également adresser une réclamation à la CNIL (cnil.fr).</p>",
     "texte_propriete": "<p>Les textes, l'histoire du Père Quignon, l'affiche, les photos et les tracés sont la propriété de l'association, sauf mention contraire. Toute reproduction sans autorisation est interdite. Les logos des partenaires restent la propriété de leurs titulaires respectifs.</p>",
     "credits_photos": "Chevannes VTT Loisirs",
-    "credits_realisation": "Chevannes VTT Loisirs",
+    "credits_realisation": "Axion Numerik",
     "texte_libre": "",
     "date_maj": "octobre 2026",
     "Les crédits cartographiques (Leaflet, OpenStreetMap, IGN, OpenTopoMap) sont ajoutés automatiquement par l'application.": ""

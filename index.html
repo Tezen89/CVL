@@ -300,6 +300,9 @@ body.menu-open .drawer{transform:none;}
 .ml dd{color:var(--ink);word-break:break-word;}
 .ml .rich{font-size:14px;}
 .drw-legal{display:inline-block;margin-top:.35rem;font-size:12px;color:var(--muted);}
+.soc-row{display:flex;gap:.5rem;}
+.soc{flex:1;color:#fff;padding:.75rem .5rem;font-size:15px;}
+.soc .ic img{width:22px;height:22px;}
 .empty{color:var(--muted);font-style:italic;font-size:14px;}
 @media(min-width:900px){.tiles{grid-template-columns:repeat(4,1fr);}}
 </style>
@@ -572,7 +575,7 @@ let IC = {
   point:{icone:'⭐',couleur:'#6B1E2E',libelle:'Point remarquable'}, secours:{icone:'➕',couleur:'#C62828',libelle:'Poste de secours'},
   parking:{icone:'🅿️',couleur:'#1565C0',libelle:'Parking'}, vtt:{icone:'🚵'}, marche:{icone:'🥾'}, don:{icone:'❤️'},
   inscription:{icone:'✍️'}, localiser:{icone:'📍'}, vue:{icone:'🔍'}, telephone:{icone:'📞'}, date:{icone:'📅'}, lieu:{icone:'📍'},
-  facebook:{icone:'📅'}, instagram:{icone:'📸'}, partager:{icone:'🔗'},
+  facebook:{icone:''}, instagram:{icone:''}, partager:{icone:'🔗'},
 };
 
 let MENU = null, D = null, E = {}, MAP = null, VMAP = null, LAYERS = {}, PTS = [], uMark = null, watchId = null, faqCat = 'Toutes';
@@ -653,6 +656,8 @@ async function init() {
           const p = pages.find(x => x.id === m.id); if (!p) return;
           if (m.sous_menu && g) g.items.push(p); else { g = null; MENU.push(p); }
         });
+        // Page absente de l'onglet Menu (ex : nouvelle page « credits ») → ajoutée en fin de menu
+        Object.values(def).forEach(p => { if (!pages.find(x => x.id === p.id)) { const q = {...p}; pages.push(q); MENU.push(q); } });
         PAGES = pages;
       }
     }
@@ -1009,8 +1014,11 @@ function renderCom() {
   const b = [];
   const evOk = E.lien_facebook_evenement && !/facebook\.com\/events\/?$/.test(E.lien_facebook_evenement);
   if (evOk) b.push(`<a class="btn btn-block" style="background:#1877F2;color:#fff" href="${esc(E.lien_facebook_evenement)}" target="_blank" rel="noopener">${ic('facebook')} Événement Facebook ↗</a>`);
-  if (E.lien_facebook_page) b.push(`<a class="btn btn-ghost btn-block" href="${esc(E.lien_facebook_page)}" target="_blank" rel="noopener">👍 Page Facebook ↗</a>`);
-  if (E.lien_instagram) b.push(`<a class="btn btn-ghost btn-block" href="${esc(E.lien_instagram)}" target="_blank" rel="noopener">${ic('instagram')} Instagram ↗</a>`);
+  // Facebook et Instagram côte à côte, aux couleurs des réseaux
+  const soc = [];
+  if (E.lien_facebook_page) soc.push(`<a class="btn soc" style="background:#1877F2" href="${esc(E.lien_facebook_page)}" target="_blank" rel="noopener">${ic('facebook')}<span>Facebook</span></a>`);
+  if (E.lien_instagram) soc.push(`<a class="btn soc" style="background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)" href="${esc(E.lien_instagram)}" target="_blank" rel="noopener">${ic('instagram')}<span>Instagram</span></a>`);
+  if (soc.length) b.push(`<div class="soc-row">${soc.join('')}</div>`);
   b.push(`<button class="btn btn-acc btn-block" onclick="share()">${ic('partager')} Partager l'application</button>`);
   $('mBtns').innerHTML = b.join('');
   // Intégration de l'événement : code <iframe> collé, sinon onglet « Évènements » de la page Facebook
@@ -1231,7 +1239,7 @@ function initInstall() {
 
 // ── MENTIONS LÉGALES & CRÉDITS ────────────────
 function renderMentions() {
-  const M = D.mentions || {};
+  const M = Object.assign({hebergeur_nom: 'Netlify, Inc.', hebergeur_adresse: '2325 3rd Street, Suite 215, San Francisco, CA 94107, États-Unis', hebergeur_site: 'https://www.netlify.com'}, D.mentions || {});
   const v = k => (M[k] || '').trim();
   const rows = list => list.filter(([, x]) => x).map(([l, x]) => `<dt>${esc(l)}</dt><dd>${x}</dd>`).join('');
   const mail = x => x ? `<a href="mailto:${esc(x)}">${esc(x)}</a>` : '';
