@@ -294,6 +294,12 @@ body.menu-open .drawer{transform:none;}
 .ins-btns{display:flex;gap:.5rem;}
 .ins-btns .btn{flex:1;padding:.75rem .6rem;font-size:14px;}
 .drw-install{display:none;margin-top:.6rem;font-weight:700;color:var(--main);background:none;border:1.5px solid var(--main);border-radius:10px;padding:.5rem .8rem;cursor:pointer;font-size:13px;width:100%;}
+.ml h2{font-size:16px;color:var(--main);margin:0 0 .5rem;}
+.ml dl{display:grid;grid-template-columns:auto 1fr;gap:.25rem .8rem;font-size:14px;line-height:1.5;}
+.ml dt{color:var(--muted);}
+.ml dd{color:var(--ink);word-break:break-word;}
+.ml .rich{font-size:14px;}
+.drw-legal{display:inline-block;margin-top:.35rem;font-size:12px;color:var(--muted);}
 .empty{color:var(--muted);font-style:italic;font-size:14px;}
 @media(min-width:900px){.tiles{grid-template-columns:repeat(4,1fr);}}
 </style>
@@ -424,6 +430,14 @@ body.menu-open .drawer{transform:none;}
   </div>
 </section>
 
+<!-- ══ MENTIONS LÉGALES & CRÉDITS ══ -->
+<section class="page" id="p-credits">
+  <div class="wrap">
+    <h1 class="h1" data-title="credits">Mentions légales & crédits</h1>
+    <div id="mlBody"></div>
+  </div>
+</section>
+
 <!-- ══ 5. FAQ ══ -->
 <section class="page" id="p-faq">
   <div class="wrap">
@@ -550,6 +564,7 @@ let PAGES = [
   {id:'secours',        icone:'🚑', titre:'Secours', tuile:true},
   {id:'fdcy',           icone:'🦌', titre:'Chasse – FDCY'},
   {id:'reglement',      icone:'📄', titre:'Règlement'},
+  {id:'credits',        icone:'⚖️', titre:'Mentions légales & crédits'},
 ];
 // Icônes par défaut (remplacées par l'onglet Icones)
 let IC = {
@@ -648,10 +663,11 @@ async function init() {
     renderMenu();
     $('drwNom').textContent = E.nom || '';
     $('drwDate').textContent = [E.date_affichee, E.lieu].filter(Boolean).join(' · ');
-    $('drwFoot').innerHTML = esc(E.organisateur || '') + (E.contact_email ? `<br><a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : '');
+    $('drwFoot').innerHTML = esc(E.organisateur || '') + (E.contact_email ? `<br><a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : '')
+      + (pageOf('credits').visible !== false ? `<br><a class="drw-legal" href="#credits">${esc(pageOf('credits').titre || 'Mentions légales')}</a>` : '');
 
     renderAccueil(); renderHistoire(); renderRavito(); renderInscription(); renderVenir(); renderDormir();
-    renderFaq(); renderCaritatif(); renderCom(); renderPartenaires(); renderSecours(); renderFdcy(); renderReglement();
+    renderFaq(); renderCaritatif(); renderCom(); renderPartenaires(); renderSecours(); renderFdcy(); renderReglement(); renderMentions();
     route();
     initInstall();
   } catch (e) { console.error(e); document.body.insertAdjacentHTML('beforeend', `<div class="toast on">Erreur : ${esc(e.message)}</div>`); }
@@ -1210,6 +1226,44 @@ function initInstall() {
   if (String(E.install_actif || 'oui').toLowerCase() === 'non' || lsGet('pq_install')) return;
   const delai = (parseInt(E.install_delai) || 25) * 1000;
   setTimeout(() => { if (!lsGet('pq_install')) { openInstall(false); lsSet('pq_install', 'vu'); } }, delai);
+}
+
+
+// ── MENTIONS LÉGALES & CRÉDITS ────────────────
+function renderMentions() {
+  const M = D.mentions || {};
+  const v = k => (M[k] || '').trim();
+  const rows = list => list.filter(([, x]) => x).map(([l, x]) => `<dt>${esc(l)}</dt><dd>${x}</dd>`).join('');
+  const mail = x => x ? `<a href="mailto:${esc(x)}">${esc(x)}</a>` : '';
+  const telA = x => x ? `<a href="${tel(x)}">${esc(x)}</a>` : '';
+  const web = x => x ? `<a href="${esc(x)}" target="_blank" rel="noopener">${esc(x.replace(/^https?:\/\/(www\.)?|\/$/g, ''))}</a>` : '';
+  const card = (t, body) => body ? `<div class="card ml"><h2>${t}</h2>${body}</div>` : '';
+  const editeur = rows([
+    ['Nom', esc(v('editeur_nom') || E.organisateur || '')], ['Forme', esc(v('editeur_forme'))],
+    ['Siège', esc(v('editeur_adresse'))], ['RNA / SIREN', esc(v('editeur_rna'))],
+    ['Téléphone', telA(v('editeur_telephone') || E.contact_telephone)], ['E-mail', mail(v('editeur_email') || E.contact_email)],
+  ]);
+  const dirPub = rows([['Directeur de la publication', esc(v('directeur_publication'))]]);
+  const heb = rows([
+    ['Nom', esc(v('hebergeur_nom'))], ['Adresse', esc(v('hebergeur_adresse'))],
+    ['Téléphone', telA(v('hebergeur_telephone'))], ['Site', web(v('hebergeur_site'))],
+  ]);
+  // Crédits techniques : générés automatiquement selon ce que l'app utilise
+  const tech = [
+    'Cartographie : <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> (licence BSD-2).',
+    'Fonds de carte : © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a> (ODbL) · © IGN – Géoplateforme · © <a href="https://opentopomap.org" target="_blank" rel="noopener">OpenTopoMap</a> (CC-BY-SA).',
+    'Icônes : emojis Unicode (rendu propre à chaque téléphone).',
+  ];
+  if (v('credits_photos')) tech.unshift('Photos et visuels : ' + esc(v('credits_photos')) + '.');
+  if (v('credits_realisation')) tech.unshift('Réalisation de l\'application : ' + esc(v('credits_realisation')) + '.');
+  $('mlBody').innerHTML =
+      card('Éditeur', editeur ? `<dl>${editeur}${dirPub}</dl>` : '')
+    + card('Hébergement', heb ? `<dl>${heb}</dl>` : '')
+    + card('Données personnelles', v('texte_donnees') ? `<div class="rich">${v('texte_donnees')}</div>` : '')
+    + card('Propriété intellectuelle', v('texte_propriete') ? `<div class="rich">${v('texte_propriete')}</div>` : '')
+    + card('Crédits', `<ul class="rich" style="padding-left:1.1rem">${tech.map(t => `<li>${t}</li>`).join('')}</ul>`)
+    + (v('texte_libre') ? `<div class="card ml"><div class="rich">${v('texte_libre')}</div></div>` : '')
+    + (v('date_maj') ? `<p class="empty" style="text-align:center;font-size:12px">Dernière mise à jour : ${esc(v('date_maj'))}</p>` : '');
 }
 
 // ── OUTILS ────────────────────────────────────
