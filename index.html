@@ -1283,16 +1283,15 @@ function renderMentions() {
   const tech = [
     'Cartographie : <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> (licence BSD-2).',
     'Fonds de carte : © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a> (ODbL) · © IGN – Géoplateforme · © <a href="https://opentopomap.org" target="_blank" rel="noopener">OpenTopoMap</a> (CC-BY-SA).',
-    'Icônes : emojis Unicode (rendu propre à chaque téléphone).',
   ];
   if (v('credits_photos')) tech.unshift('Photos et visuels : ' + esc(v('credits_photos')) + '.');
   if (v('credits_realisation')) tech.unshift('Réalisation de l\'application : ' + esc(v('credits_realisation')) + '.');
   $('mlBody').innerHTML =
       card('Éditeur', editeur ? `<dl>${editeur}${dirPub}</dl>` : '')
-    + card('Hébergement', heb ? `<dl>${heb}</dl>` : '')
-    + card('Données personnelles', v('texte_donnees') ? `<div class="rich">${v('texte_donnees')}</div>` : '')
-    + card('Propriété intellectuelle', v('texte_propriete') ? `<div class="rich">${v('texte_propriete')}</div>` : '')
     + card('Crédits', `<ul class="rich" style="padding-left:1.1rem">${tech.map(t => `<li>${t}</li>`).join('')}</ul>`)
+    + card('Données personnelles', v('texte_donnees') ? `<div class="rich">${v('texte_donnees')}</div>` : '')
+    + card('Hébergement', heb ? `<dl>${heb}</dl>` : '')
+    + card('Propriété intellectuelle', v('texte_propriete') ? `<div class="rich">${v('texte_propriete')}</div>` : '')
     + (v('texte_libre') ? `<div class="card ml"><div class="rich">${v('texte_libre')}</div></div>` : '')
     + (v('date_maj') ? `<p class="empty" style="text-align:center;font-size:12px">Dernière mise à jour : ${esc(v('date_maj'))}</p>` : '');
 }
