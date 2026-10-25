@@ -54,7 +54,12 @@
     "url_app": "",
     "install_actif": "oui",
     "install_delai": "6",
-    "texte_parcours": "<p>Dimanche 22, vous pourrez retrouvez ici tous les parcours de la manifestations ainsi que les lieux de ravitaillement</p>"
+    "texte_parcours": "<p>Dimanche 22, vous pourrez retrouvez ici tous les parcours de la manifestations ainsi que les lieux de ravitaillement</p>",
+    "flechage_texte": "<div id=\"rendered-md\"><h2 id=\"le-fl&eacute;chage\">Le fl&eacute;chage</h2>\n<p>Vous trouverez les r&egrave;gles de fl&eacute;chages que nous utilisons sur l&apos;image ci-dessous.</p>\n<p>En cas de doute sur le fl&eacute;chage lors de la randonn&eacute;e, la consigne absolue est de s&apos;arr&ecirc;ter imm&eacute;diatement et de rebrousser chemin jusqu&apos;&agrave; la derni&egrave;re balise confirm&eacute;e. Ne continuez jamais &agrave; avancer au hasard en esp&eacute;rant retrouver le sentier plus loin.</p>\n<p>Voici la marche &agrave; suivre &eacute;tape par &eacute;tape pour r&eacute;agir correctement :</p>\n<p>Le balisage est g&eacute;n&eacute;ralement plac&eacute; tous les 200/300 m&egrave;tres environ, ainsi qu&apos;&agrave; chaque intersection.<br/>\n<strong>Si vous randonnez depuis plus 5 minutes sans voir la moindre marque, vous avez probablement quitt&eacute; l&apos;itin&eacute;raire.</strong></p>\n<ul>\n<li><strong>Consulter notre application</strong> pour vous g&eacute;olocaliser et confronter votre position r&eacute;elle avec le trac&eacute; th&eacute;orique.</li>\n<li><strong>Si besoin faites demi-tour :</strong> Revenez sur vos pas jusqu&apos;au dernier rep&egrave;re visuel que vous &ecirc;tes certain d&apos;avoir valid&eacute;.</li>\n<li><strong>Analysez l&apos;intersection :</strong> Une fois revenu(e) &agrave; la derni&egrave;re balise, observez attentivement les environs. Une marque de changement de direction (fl&egrave;che ou trait coud&eacute;) vous a peut-&ecirc;tre &eacute;chapp&eacute;e.</li>\n<li><strong>V&eacute;rifiez les fausses pistes :</strong> Cherchez si l&apos;un des chemins adjacents comporte une croix de peinture. La croix signifie explicitement &quot;Mauvaise direction&quot;</li>\n</ul>\n</div></div>",
+    "flechage_images": [
+      "assets/images/consigne_flechage.jpg"
+    ],
+    "flechage_pdf": ""
   },
   "menu": [
     {
@@ -95,6 +100,14 @@
       "icone": "assets/icons/parcours.png",
       "visible": true,
       "tuile": true,
+      "sous_menu": true
+    },
+    {
+      "id": "flechage",
+      "titre": "Fléchage",
+      "icone": "assets/icons/flechage.png",
+      "visible": true,
+      "tuile": false,
       "sous_menu": true
     },
     {

@@ -406,6 +406,16 @@ body.menu-open .drawer{transform:none;}
   </div>
 </section>
 
+<!-- ══ FLÉCHAGE (texte + images et/ou PDF Drive) ══ -->
+<section class="page" id="p-flechage">
+  <div class="wrap">
+    <h1 class="h1" data-title="flechage">Fléchage</h1>
+    <div class="card" id="plTxCard"><div class="rich" id="plTx"></div></div>
+    <div id="plImgs"></div>
+    <div id="plDoc"></div>
+  </div>
+</section>
+
 <!-- ══ RAVITAILLEMENT ══ -->
 <section class="page" id="p-ravitaillement">
   <div class="wrap">
@@ -566,6 +576,7 @@ let PAGES = [
   {id:'accueil',        icone:'🏠', titre:'Accueil'},
   {id:'histoire',       icone:'📜', titre:'Origine de la randonnée', tuile:true},
   {id:'carte',          icone:'🗺️', titre:'Carte des parcours', tuile:true},
+  {id:'flechage',       icone:'🪧', titre:'Fléchage', noauto:true},
   {id:'ravitaillement', icone:'🍲', titre:'Ravitaillement'},
   {id:'inscription',    icone:'✍️', titre:'Inscription & dons'},
   {id:'venir',          icone:'🚗', titre:'Venir à Chevannes', tuile:true},
@@ -667,7 +678,7 @@ async function init() {
           if (m.sous_menu && g) g.items.push(p); else { g = null; MENU.push(p); }
         });
         // Page absente de l'onglet Menu (ex : nouvelle page « credits ») → ajoutée en fin de menu
-        Object.values(def).forEach(p => { if (!pages.find(x => x.id === p.id)) { const q = {...p}; pages.push(q); MENU.push(q); } });
+        Object.values(def).forEach(p => { if (!p.noauto && !pages.find(x => x.id === p.id)) { const q = {...p}; pages.push(q); MENU.push(q); } });
         PAGES = pages;
       }
     }
@@ -681,7 +692,7 @@ async function init() {
     $('drwFoot').innerHTML = esc(E.organisateur || '') + (E.contact_email ? `<br><a href="mailto:${esc(E.contact_email)}">${esc(E.contact_email)}</a>` : '')
       + (pageOf('credits').visible !== false ? `<br><a class="drw-legal" href="#credits">${esc(pageOf('credits').titre || 'Mentions légales')}</a>` : '');
 
-    renderAccueil(); renderHistoire(); renderRavito(); renderInscription(); renderVenir(); renderDormir();
+    renderAccueil(); renderHistoire(); renderRavito(); renderFlechage(); renderInscription(); renderVenir(); renderDormir();
     renderFaq(); renderCaritatif(); renderCom(); renderPartenaires(); renderSecours(); renderFdcy(); renderReglement(); renderMentions();
     route();
     initInstall();
@@ -869,6 +880,18 @@ function bindCarousels(root) {
 }
 function lightbox(src) { if (!src) return; $('lbImg').src = src; $('lb').classList.add('open'); }
 function closeLb() { $('lb') && $('lb').classList.remove('open'); }
+
+// ── FLÉCHAGE ──────────────────────────────────
+function renderFlechage() {
+  const f = k => E['flechage_' + k] ?? E['pagelibre_' + k];   // accepte aussi les anciens noms pagelibre_*
+  $('plTx').innerHTML = f('texte') || '';
+  $('plTxCard').style.display = f('texte') ? '' : 'none';
+  $('plImgs').innerHTML = gallery(f('images') || []);
+  bindCarousels($('plImgs'));
+  const u = (f('pdf') || '').trim();
+  $('plDoc').innerHTML = u ? `<iframe class="doc-frame" src="${esc(drivePreview(u))}" loading="lazy" allow="autoplay"></iframe>
+    <a class="btn btn-main btn-block" style="margin-top:.8rem" href="${esc(u)}" target="_blank" rel="noopener">📄 ${esc(f('bouton') || 'Ouvrir le document')} ↗</a>` : '';
+}
 
 // ── INSCRIPTION ───────────────────────────────
 function renderInscription() {
