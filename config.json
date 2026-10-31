@@ -6,7 +6,11 @@
     "--bg": "#FAF6EF",
     "--ink": "#2A1E17",
     "--muted": "#7A6A5C",
-    "--don": "#D62839"
+    "--don": "#D62839",
+    "--don1": "#8BA888",
+    "--don2": "#E0A526",
+    "--don3": "#A35D6A",
+    "--anneau": "#6B1E2E"
   },
   "images": {
     "logo.png": "assets/images/logo.png",

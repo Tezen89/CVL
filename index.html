@@ -178,18 +178,23 @@ body.menu-open .drawer{transform:none;}
 .don-box h3{font-size:20px;margin-bottom:.3rem;}
 .don-box p{font-size:14px;opacity:.92;margin-bottom:1rem;}
 .don-box .btn{background:#fff;color:var(--don);}
-.gauge{background:#F3E6CF;border-radius:20px;height:16px;overflow:hidden;margin:.6rem 0 .4rem;}
-.gauge{display:flex;}
-.gauge div{height:100%;width:0;transition:width 1s;}
-.gauge div:first-child{border-radius:20px 0 0 20px;}
-.gauge div:last-child{border-radius:0 20px 20px 0;}
-.gauge div:only-child{border-radius:20px;background:linear-gradient(90deg,var(--accent),var(--don));}
+:root{--don1:#8BA888;--don2:#E0A526;--don3:#A35D6A;--don4:#2E86C1;--don5:#7D4E6D;--anneau:var(--main);--reste:#EFE4D2;}
+.gauge-row{display:flex;align-items:center;gap:.7rem;margin:.8rem 0 .3rem;}
+.gauge{flex:1;display:flex;gap:4px;align-items:flex-end;min-width:0;}
+.gauge .col{display:flex;flex-direction:column;gap:6px;min-width:8px;flex-grow:0;flex-basis:0;transition:flex-grow 1s;}
+.gauge .col small{font-size:11px;color:var(--muted);white-space:nowrap;text-align:center;transition:opacity .3s;}
+.gauge .dot{width:7px;height:7px;border-radius:50%;margin:0 auto;}
+.gauge .seg{height:12px;border-radius:6px;width:100%;}
+.ring{width:58px;height:58px;flex-shrink:0;position:relative;}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+.ring circle{transition:stroke-dasharray 1s;}
+.ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--ink);}
 .gauge-leg{display:flex;flex-direction:column;gap:.3rem;margin-top:.7rem;padding-top:.6rem;border-top:1px solid var(--line);font-size:13px;}
 .gauge-leg:empty{display:none;}
 .gauge-leg div{display:flex;align-items:center;gap:.5rem;}
 .gauge-leg i{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
 .gauge-leg b{margin-left:auto;font-variant-numeric:tabular-nums;}
-.gauge-txt{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);}
+.gauge-txt{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:.4rem;}
 .gauge-txt b{color:var(--ink);font-size:16px;}
 
 /* ── FAQ ── */
@@ -477,7 +482,7 @@ body.menu-open .drawer{transform:none;}
     <h1 class="h1" data-title="caritatif">Caritatif & dons</h1>
     <div class="card" id="cGauge" style="display:none">
       <div style="font-weight:700">Notre collecte</div>
-      <div class="gauge" id="cGaugeBar"></div>
+      <div class="gauge-row"><div class="gauge" id="cGaugeBar"></div><div class="ring" id="cRing"></div></div>
       <div class="gauge-txt"><span><b id="cMontant"></b> collectés</span><span>Objectif <span id="cObj"></span></span></div>
       <div class="gauge-leg" id="cLeg"></div>
     </div>
@@ -649,6 +654,7 @@ function route() {
   if (p.id === 'carte') initMap();
   if (p.id === 'venir') initVMap();
   if (p.id === 'communication') setTimeout(renderFbPost, 50);
+  if (p.id === 'caritatif') setTimeout(fitGaugeLabels, 60);
 }
 window.addEventListener('hashchange', route);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { toggleMenu(false); closeLb(); closeInstall(); } });
@@ -1008,22 +1014,36 @@ function renderCaritatif() {
   // Montant en direct depuis un Google Sheet (sans repasser par GitHub)
   if (E.lien_dons_sheet) loadDons(E.lien_dons_sheet).then(v => { if (v) showGauge(v.objectif ?? E.objectif_dons, v.montant ?? E.montant_collecte, v.cats); }).catch(() => {});
 }
-const GAUGE_COLORS = ['var(--don)', 'var(--accent)', 'var(--main2)', '#2E86C1', '#27AE60', '#8E44AD'];
-// cats = [{nom, montant}] : catégories de dons (barre empilée) — sinon barre simple
+// Couleurs des catégories : --don1 à --don5 (modifiables dans l'onglet Habillage), palette « Terroir » par défaut
+const GAUGE_COLORS = ['var(--don1)', 'var(--don2)', 'var(--don3)', 'var(--don4)', 'var(--don5)'];
+// cats = [{nom, montant}] : un tiret par catégorie + le reste à collecter, puis l'anneau de pourcentage
 function showGauge(obj, m, cats) {
-  obj = +obj || 0; cats = (cats || []).filter(c => c.montant > 0 || c.montant === 0);
+  obj = +obj || 0; cats = (cats || []).filter(c => c.montant != null);
   if (cats.length) m = cats.reduce((t, c) => t + (c.montant || 0), 0);
   m = +m || 0;
   if (!obj) { $('cGauge').style.display = 'none'; return; }
+  if (!cats.length) cats = [{nom: 'Collecte', montant: m}];
   const eur = v => v.toLocaleString('fr-FR', {style: 'currency', currency: 'EUR', maximumFractionDigits: 0});
   $('cGauge').style.display = ''; $('cMontant').textContent = eur(m); $('cObj').textContent = eur(obj);
-  const base = Math.max(obj, m);                         // si l'objectif est dépassé, la barre est pleine
-  const segs = cats.length ? cats.map((c, i) => ({w: (c.montant || 0) / base * 100, col: GAUGE_COLORS[i % GAUGE_COLORS.length]}))
-                           : [{w: Math.max(m / base * 100, 2), col: ''}];
-  $('cGaugeBar').innerHTML = segs.map(x => `<div data-w="${x.w}" style="${x.col ? 'background:' + x.col : ''}"></div>`).join('');
+  const rest = Math.max(obj - m, 0), pct = Math.round(m / obj * 100);
+  const col = (w, c, lbl) => `<div class="col" data-g="${w}"><small>${lbl}</small><div class="dot" style="background:${c}"></div><div class="seg" style="background:${c}"></div></div>`;
+  $('cGaugeBar').innerHTML = cats.map((c, i) => col(c.montant || 0, GAUGE_COLORS[i % GAUGE_COLORS.length], eur(c.montant || 0))).join('')
+    + (rest ? col(rest, 'var(--reste)', 'reste ' + eur(rest)) : '');
+  const r = 24, C = 2 * Math.PI * r;
+  $('cRing').innerHTML = `<svg viewBox="0 0 58 58"><circle cx="29" cy="29" r="${r}" fill="none" stroke="var(--reste)" stroke-width="6"/>
+    <circle id="cRingArc" cx="29" cy="29" r="${r}" fill="none" stroke="var(--anneau)" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 ${C}"/></svg><span style="${pct >= 100 ? 'font-size:12px' : ''}">${pct}%</span>`;
   $('cLeg').innerHTML = cats.length > 1 ? cats.map((c, i) => `<div><i style="background:${GAUGE_COLORS[i % GAUGE_COLORS.length]}"></i>${esc(c.nom)}<b>${eur(c.montant || 0)}</b></div>`).join('') : '';
-  setTimeout(() => [...$('cGaugeBar').children].forEach(d => d.style.width = d.dataset.w + '%'), 300);
+  setTimeout(() => {
+    [...$('cGaugeBar').children].forEach(d => d.style.flexGrow = d.dataset.g);
+    const arc = $('cRingArc'); if (arc) arc.setAttribute('stroke-dasharray', `${C * Math.min(pct, 100) / 100} ${C}`);
+  }, 300);
+  // Montant masqué si le tiret est trop étroit pour l'afficher sans chevauchement
+  setTimeout(fitGaugeLabels, 1400);
 }
+function fitGaugeLabels() {
+  document.querySelectorAll('#cGaugeBar .col').forEach(c => { const s = c.querySelector('small'); s.style.opacity = s.scrollWidth > c.clientWidth + 6 ? 0 : 1; });
+}
+window.addEventListener('resize', () => { if ($('cGaugeBar')) fitGaugeLabels(); });
 // Accepte un lien « Publier sur le Web » au format CSV, ou un lien de partage classique du Google Sheet
 function sheetCsvUrl(u) {
   u = (u || '').trim();
