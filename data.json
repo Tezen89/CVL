@@ -329,7 +329,80 @@
       "page": "parcours"
     }
   },
-  "parcours": [],
+  "parcours": [
+    {
+      "id": "V35",
+      "nom": "Le Colis du Père Quignon",
+      "type": "VTT",
+      "couleur": "#C0392B",
+      "gpx": "assets/gpx/vtt35.gpx",
+      "distance_km": 35,
+      "denivele_m": 690,
+      "difficulte": "Difficile",
+      "horaire_depart": "7h30 – 10h00",
+      "description": "Le parcours emprunte des passages en sous bois (chemins, sentiers, singles, racines) et liaisons de champs.\nLes parcours sont communs à toutes les activités, les zones de sentiers/singles sont séparées.\nIl nécessite des cuisses un peu aguerries et pour le VTT une maitrise du pilotage."
+    },
+    {
+      "id": "V20",
+      "nom": "La Lettre du Père Quignon",
+      "type": "VTT",
+      "couleur": "#C0392B",
+      "gpx": "assets/gpx/vtt22.gpx",
+      "distance_km": 20,
+      "denivele_m": 294,
+      "difficulte": "Moyen",
+      "horaire_depart": "7h30 – 10h00",
+      "description": "Le parcours emprunte des passages en sous bois (chemins, sentiers, singles, racines), quelques liaisons de champs.\nLes parcours sont communs à toutes les activités, les zones de sentiers/singles sont séparées.\nNos amis les animaux sont acceptés tenus en laisse."
+    },
+    {
+      "id": "V12",
+      "nom": "La Carte Postale du Père Quignon",
+      "type": "VTT",
+      "couleur": "#E67E22",
+      "gpx": "assets/gpx/vtt12.gpx",
+      "distance_km": 12,
+      "denivele_m": 152,
+      "difficulte": "Facile",
+      "horaire_depart": "7h30 – 10h00",
+      "description": "Vrai parcours de découverte du VTT alliant chemins forestiers et sentiers (\"singles\") avec des racines\nParcours sans difficulté technique particulière (déconseillé aux enfants de moins de 9 ans)\nNos amis les animaux sont acceptés tenus en laisse.\nAttention chemin non accessible aux poussettes et aux personnes à mobilité réduite (PMR)."
+    },
+    {
+      "id": "V8",
+      "nom": "Le Billet du Père Quignon",
+      "type": "VTT/Marche",
+      "couleur": "#E67E22",
+      "gpx": "assets/gpx/marche8.gpx",
+      "distance_km": 8,
+      "denivele_m": 86,
+      "difficulte": "Facile",
+      "horaire_depart": "7h30 – 10h00",
+      "description": "Parcours champêtre composé de chemins agricoles ou forestiers.\nLes parcours sont communs à toutes les activités, les zones de sentiers/singles sont séparées.\nNos amis les animaux sont acceptés tenus en laisse.\nAttention chemin non accessible aux poussettes et aux personnes à mobilité réduite (PMR)."
+    },
+    {
+      "id": "M20",
+      "nom": "La Lettre du Père Quignon",
+      "type": "Marche",
+      "couleur": "#2E86C1",
+      "gpx": "assets/gpx/marche20.gpx",
+      "distance_km": 20,
+      "denivele_m": 276,
+      "difficulte": "Moyen",
+      "horaire_depart": "7h30 – 10h00",
+      "description": "Le parcours emprunte des passages en sous bois (chemins, sentiers, singles, racines), quelques liaisons de champs.\nLes parcours sont communs à toutes les activités, les zones de sentiers/singles sont séparées.\nNos amis les animaux sont acceptés tenus en laisse."
+    },
+    {
+      "id": "M12",
+      "nom": "La Carte Postale du Père Quignon",
+      "type": "Marche",
+      "couleur": "#27AE60",
+      "gpx": "assets/gpx/marche12.gpx",
+      "distance_km": 12,
+      "denivele_m": 145,
+      "difficulte": "Facile",
+      "horaire_depart": "7h30 – 10h00",
+      "description": "Parcours chemins forestiers et sentiers (\"singles\") avec des racines.\nNos amis les animaux sont acceptés tenus en laisse.\nAttention chemin non accessible aux poussettes et aux personnes à mobilité réduite (PMR)."
+    }
+  ],
   "points": [
     {
       "id": "D",
@@ -342,6 +415,38 @@
       "parcours": [],
       "horaires": "07h30 - 13h00",
       "description": "Accueil, inscriptions, Arrivée"
+    },
+    {
+      "id": "R1",
+      "nom": "Ravito des Brimées",
+      "type": "ravito",
+      "gps": {
+        "lat": 47.7611618277409,
+        "lng": 3.45745449872892
+      },
+      "parcours": [
+        "V12",
+        "V8",
+        "M12"
+      ],
+      "horaires": "08h00 - 11h00",
+      "description": "Le rendez-vous des gourmands"
+    },
+    {
+      "id": "R2",
+      "nom": "Ravito des Bourguignons",
+      "type": "ravito",
+      "gps": {
+        "lat": 47.778839323098495,
+        "lng": 3.437477987665992
+      },
+      "parcours": [
+        "V35",
+        "V20",
+        "M20"
+      ],
+      "horaires": "08h00 - 12h00",
+      "description": "L'esprit du Père Guignon souffle sur ce ravito"
     },
     {
       "id": "P1",
